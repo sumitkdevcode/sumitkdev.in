@@ -1,0 +1,276 @@
+/**
+ * SPA (Single Page Application) Styles
+ * Smooth transitions and loading states
+ */
+
+/* ========================
+   Page Transition Content
+   ======================== */
+
+#spa-content {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    will-change: opacity, transform;
+}
+
+/* ========================
+   Loading Overlay
+   ======================== */
+
+#spa-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#spa-loading.active {
+    opacity: 1;
+}
+
+#spa-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #000, #333, #000);
+    animation: spa-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes spa-loading {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+    50% {
+        width: 70%;
+        left: 15%;
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+/* ========================
+   Page Transition Overlay
+   ======================== */
+
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.page-transition-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.page-transition-overlay.entering .page-transition-inner {
+    transform: translateY(0);
+}
+
+.page-transition-overlay.leaving .page-transition-inner {
+    transform: translateY(100%);
+}
+
+.transition-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: transition-shimmer 1s ease-in-out infinite;
+}
+
+@keyframes transition-shimmer {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ========================
+   Active Navigation State
+   ======================== */
+
+.nav-link.active {
+    color: #000;
+    font-weight: 700;
+}
+
+.nav-link.active::after {
+    width: 100% !important;
+    background: #000;
+}
+
+/* ========================
+   Content Fade Animations
+   ======================== */
+
+.spa-fade-in {
+    animation: spaFadeIn 0.5s ease forwards;
+}
+
+.spa-fade-out {
+    animation: spaFadeOut 0.3s ease forwards;
+}
+
+@keyframes spaFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spaFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* ========================
+   Skeleton Loading States
+   ======================== */
+
+.spa-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: spa-skeleton-shimmer 1.5s infinite;
+    border-radius: 4px;
+}
+
+@keyframes spa-skeleton-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ========================
+   Smooth Page Transitions
+   ======================== */
+
+.page-enter {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.page-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.page-exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.page-exit-active {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ========================
+   Loading Spinner (Alternative)
+   ======================== */
+
+.spa-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9997;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.spa-spinner.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.spa-spinner-inner {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #f0f0f0;
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spa-spin 0.8s linear infinite;
+}
+
+@keyframes spa-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================
+   Mobile Optimizations
+   ======================== */
+
+@media (max-width: 768px) {
+    #spa-loading {
+        height: 2px;
+    }
+    
+    .page-transition-inner {
+        transition-duration: 0.3s;
+    }
+}
+
+/* ========================
+   Reduced Motion Support
+   ======================== */
+
+@media (prefers-reduced-motion: reduce) {
+    #spa-content,
+    .page-transition-inner,
+    .spa-fade-in,
+    .spa-fade-out,
+    .page-enter-active,
+    .page-exit-active {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    #spa-loading::before {
+        animation: none;
+        width: 100%;
+    }
+}
