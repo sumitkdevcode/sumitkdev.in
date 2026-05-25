@@ -36,6 +36,81 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 
 /*
 |--------------------------------------------------------------------------
+| SEO Routes (Sitemap & Robots)
+|--------------------------------------------------------------------------
+*/
+Route::get('/sitemap.xml', function () {
+    $posts = \App\Models\BlogPost::where('is_published', true)
+        ->orderBy('published_at', 'desc')
+        ->get();
+
+    $portfolios = \App\Models\PortfolioItem::where('is_published', true)
+        ->orderBy('updated_at', 'desc')
+        ->get();
+
+    $content = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+    $content .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+    // Static pages
+    $staticPages = [
+        ['url' => url('/'),           'priority' => '1.0',  'changefreq' => 'daily'],
+        ['url' => url('/about'),      'priority' => '0.9',  'changefreq' => 'monthly'],
+        ['url' => url('/portfolio'),  'priority' => '0.9',  'changefreq' => 'weekly'],
+        ['url' => url('/blog'),       'priority' => '0.9',  'changefreq' => 'daily'],
+        ['url' => url('/gallery'),    'priority' => '0.7',  'changefreq' => 'weekly'],
+        ['url' => url('/contact'),    'priority' => '0.8',  'changefreq' => 'monthly'],
+    ];
+
+    foreach ($staticPages as $page) {
+        $content .= '  <url>' . "\n";
+        $content .= '    <loc>' . $page['url'] . '</loc>' . "\n";
+        $content .= '    <lastmod>' . now()->toDateString() . '</lastmod>' . "\n";
+        $content .= '    <changefreq>' . $page['changefreq'] . '</changefreq>' . "\n";
+        $content .= '    <priority>' . $page['priority'] . '</priority>' . "\n";
+        $content .= '  </url>' . "\n";
+    }
+
+    // Blog posts
+    foreach ($posts as $post) {
+        $content .= '  <url>' . "\n";
+        $content .= '    <loc>' . url('/blog/' . $post->slug) . '</loc>' . "\n";
+        $content .= '    <lastmod>' . $post->updated_at->toDateString() . '</lastmod>' . "\n";
+        $content .= '    <changefreq>monthly</changefreq>' . "\n";
+        $content .= '    <priority>0.8</priority>' . "\n";
+        $content .= '  </url>' . "\n";
+    }
+
+    // Portfolio items
+    foreach ($portfolios as $project) {
+        $content .= '  <url>' . "\n";
+        $content .= '    <loc>' . url('/portfolio/' . $project->slug) . '</loc>' . "\n";
+        $content .= '    <lastmod>' . $project->updated_at->toDateString() . '</lastmod>' . "\n";
+        $content .= '    <changefreq>monthly</changefreq>' . "\n";
+        $content .= '    <priority>0.7</priority>' . "\n";
+        $content .= '  </url>' . "\n";
+    }
+
+    $content .= '</urlset>';
+
+    return response($content, 200, ['Content-Type' => 'application/xml']);
+})->name('sitemap');
+
+Route::get('/robots.txt', function () {
+    $content = "User-agent: *\n";
+    $content .= "Allow: /\n";
+    $content .= "Disallow: /admin\n";
+    $content .= "Disallow: /dashboard\n";
+    $content .= "Disallow: /login\n";
+    $content .= "Disallow: /register\n";
+    $content .= "Disallow: /profile\n\n";
+    $content .= "# Sitemap\n";
+    $content .= "Sitemap: " . url('/sitemap.xml') . "\n";
+
+    return response($content, 200, ['Content-Type' => 'text/plain']);
+})->name('robots');
+
+/*
+|--------------------------------------------------------------------------
 | Profile Routes (Standard Breeze)
 |--------------------------------------------------------------------------
 */

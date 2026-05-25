@@ -13,40 +13,126 @@
     <link rel="icon" href="{{ asset('images/favicon.png') }}" sizes="48x48" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Sumit Kumar">
+    <meta name="language" content="en">
+    <meta name="geo.region" content="IN-UP">
+    <meta name="geo.placename" content="Greater Noida, Uttar Pradesh, India">
+
+    <!-- Schema.org Person (Rich Results) -->
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Portfolio",
-  "name": "Sumit Kumar",
-  "url": "https://sumitkumarr.in",
-  "logo": "{{ asset('images/favicon.png') }}"
-}
-</script>
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sumit Kumar",
+        "url": "https://sumitkdev.in",
+        "image": "{{ asset('images/og-default.jpg') }}",
+        "jobTitle": "Full Stack Developer",
+        "description": "Results-oriented Full Stack Developer with expertise in Laravel, React, Vue.js, Node.js, and modern web technologies.",
+        "email": "contact@sumitkdev.in",
+        "telephone": "+91-8303744132",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Greater Noida",
+            "addressRegion": "Uttar Pradesh",
+            "addressCountry": "IN"
+        },
+        "alumniOf": [
+            {
+                "@type": "EducationalOrganization",
+                "name": "Gautam Buddha University",
+                "url": "https://www.gbu.ac.in"
+            },
+            {
+                "@type": "EducationalOrganization",
+                "name": "Galgotias University",
+                "url": "https://www.galgotiasuniversity.edu.in"
+            }
+        ],
+        "knowsAbout": ["Laravel", "React", "Vue.js", "Node.js", "PHP", "JavaScript", "TypeScript", "Python", "MySQL", "PostgreSQL", "Docker", "AWS", "Full Stack Development", "Web Development", "Software Engineering"],
+        "sameAs": [
+            "https://github.com/sumitkumar5683",
+            "https://linkedin.com/in/sumit-kumar-84b869231",
+            "https://twitter.com/sumitkdevs",
+            "https://instagram.com/sumitkdev"
+        ]
+    }
+    </script>
 
+    <!-- Schema.org WebSite (Sitelinks Search Box) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Sumit Kumar — Full Stack Developer",
+        "alternateName": ["sumitkdev", "Sumit Kumar Developer", "Sumit Kumar Portfolio"],
+        "url": "https://sumitkdev.in",
+        "description": "Official website of Sumit Kumar — Full Stack Developer & Software Engineer. Portfolio, blog, and contact.",
+        "author": {
+            "@type": "Person",
+            "name": "Sumit Kumar"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://sumitkdev.in/blog?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
 
-    <title>{{ $seoData->meta_title ?? 'Sumit Kumar - Full Stack Developer' }}</title>
+    <!-- Schema.org BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://sumitkdev.in"
+            }
+            @if(request()->path() !== '/')
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ ucfirst(explode('/', request()->path())[0]) }}",
+                "item": "{{ url('/' . explode('/', request()->path())[0]) }}"
+            }
+            @endif
+        ]
+    }
+    </script>
+
+    <title>{{ $seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer & Software Engineer' }}</title>
     <meta name="description"
-        content="{{ $seoData->meta_description ?? 'Professional portfolio of Sumit Kumar, a Full Stack Developer.' }}">
-    <meta name="keywords" content="{{ $seoData->meta_keywords ?? 'web development, laravel, portfolio' }}">
+        content="{{ $seoData->meta_description ?? 'Sumit Kumar is a Full Stack Developer & Software Engineer specializing in Laravel, React, Vue.js, and modern web technologies. Explore portfolio, read tutorials, and get in touch.' }}">
+    <meta name="keywords" content="{{ $seoData->meta_keywords ?? 'Sumit Kumar, full stack developer, web developer, software engineer, Laravel developer, React developer, PHP developer, sumitkdev, Sumit Kumar portfolio' }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar') }}">
-    <meta property="og:description" content="{{ $seoData->og_description ?? ($seoData->meta_description ?? '') }}">
-    <meta property="og:image" content="{{ $seoData->og_image ?? asset('images/og-default.jpg') }}">
+    <meta property="og:site_name" content="Sumit Kumar — Full Stack Developer">
+    <meta property="og:title" content="{{ $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer') }}">
+    <meta property="og:description" content="{{ $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer specializing in Laravel, React, Vue.js.') }}">
+    <meta property="og:image" content="{{ $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.jpg') }}">
+    <meta property="og:locale" content="en_IN">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="{{ $seoData->twitter_card ?? 'summary_large_image' }}">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="{{ $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar') }}">
-    <meta property="twitter:description" content="{{ $seoData->og_description ?? ($seoData->meta_description ?? '') }}">
-    <meta property="twitter:image" content="{{ $seoData->og_image ?? asset('images/og-default.jpg') }}">
-    @if($seoData->twitter_handle ?? false)
-        <meta name="twitter:site" content="{{ $seoData->twitter_handle }}">
-    @endif
+    <meta property="twitter:title" content="{{ $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer') }}">
+    <meta property="twitter:description" content="{{ $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer.') }}">
+    <meta property="twitter:image" content="{{ $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.jpg') }}">
+    <meta name="twitter:site" content="{{ $seoData->twitter_handle ?? '@sumitkdevs' }}">
+    <meta name="twitter:creator" content="{{ $seoData->twitter_handle ?? '@sumitkdevs' }}">
 
     @yield('meta')
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,6 +146,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5730762848368403"

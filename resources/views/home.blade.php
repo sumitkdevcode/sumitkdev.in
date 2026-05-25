@@ -263,4 +263,48 @@
             </div>
         </div>
     </section>
-@endsection
+
+    <!-- FAQ Section -->
+    @php
+        $homeFaqs = [
+            [
+                'question' => 'Who is Sumit Kumar?',
+                'answer' => 'Sumit Kumar is a Full Stack Developer and Software Engineer based in Greater Noida, India. With a Master\'s degree in Computer Applications (MCA) from Gautam Buddha University, Sumit specializes in building modern web applications using Laravel, React, Vue.js, Node.js, and other cutting-edge technologies. He has professional experience at Apex Byte IT Services and has interned at the Ministry of Housing and Urban Affairs.',
+            ],
+            [
+                'question' => 'What technologies does Sumit Kumar work with?',
+                'answer' => 'Sumit Kumar is proficient in a wide range of technologies including Laravel, React.js, Vue.js, Node.js, PHP, JavaScript, TypeScript, Python, C#, ASP.NET Core, MySQL, PostgreSQL, MongoDB, Docker, AWS, Git, and more. He specializes in full-stack web development with a focus on clean architecture and scalable solutions.',
+            ],
+            [
+                'question' => 'Is Sumit Kumar available for freelance projects?',
+                'answer' => 'Yes, Sumit Kumar is available for freelance web development projects, consulting, and full-time opportunities. Whether you need a custom web application, e-commerce platform, API development, or technical consultation, you can reach out through the contact page or email at contact@sumitkdev.in.',
+            ],
+            [
+                'question' => 'What kind of projects does Sumit Kumar build?',
+                'answer' => 'Sumit Kumar builds a variety of web applications including e-commerce platforms, content management systems (CMS), SaaS products, portfolio websites, REST and GraphQL APIs, admin dashboards, real-time applications, and enterprise-grade software solutions. He follows best practices in software architecture, testing, and deployment.',
+            ],
+            [
+                'question' => 'Where is Sumit Kumar located?',
+                'answer' => 'Sumit Kumar is based in Greater Noida, Uttar Pradesh, India. He is available for remote work globally and is open to relocating for the right opportunity. He has experience working with clients and teams across different time zones.',
+            ],
+            [
+                'question' => 'What is Sumit Kumar\'s educational background?',
+                'answer' => 'Sumit Kumar holds a Master of Computer Applications (MCA) degree from Gautam Buddha University, Greater Noida (2023-2025) and a Bachelor of Computer Applications (BCA) degree from Galgotias University, Greater Noida (2020-2023). He also holds certifications in React from HackerRank and Web Development from IIT Bombay.',
+            ],
+            [
+                'question' => 'How can I hire Sumit Kumar for my project?',
+                'answer' => 'You can hire Sumit Kumar by visiting the Contact page on this website and filling out the inquiry form, or by sending an email to contact@sumitkdev.in. Please include details about your project requirements, timeline, and budget. Sumit typically responds within 24 hours with a consultation plan.',
+            ],
+            [
+                'question' => 'Does Sumit Kumar write technical blogs?',
+                'answer' => 'Yes! Sumit Kumar actively maintains a blog covering topics like Laravel, React, JavaScript, DevOps, database optimization, security best practices, software architecture, and more. With 500+ articles, the blog serves as a comprehensive resource for developers of all skill levels. Visit the Blog section to explore tutorials and insights.',
+            ],
+        ];
+    @endphp
+
+    <x-faq-section 
+        :faqs="$homeFaqs" 
+        title="Frequently Asked Questions" 
+        subtitle="Got Questions?"
+    />
+@endsection

@@ -2,7 +2,53 @@
 
 @section('title', $post->title . ' — Sumit Kumar')
 
+@section('meta')
+    <!-- Blog Post Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "{{ $post->title }}",
+        "description": "{{ $post->meta_description ?? $post->excerpt }}",
+        "author": {
+            "@type": "Person",
+            "name": "Sumit Kumar",
+            "url": "https://sumitkdev.in"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Sumit Kumar",
+            "url": "https://sumitkdev.in"
+        },
+        "datePublished": "{{ optional($post->published_at)->toIso8601String() }}",
+        "dateModified": "{{ $post->updated_at->toIso8601String() }}",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ url()->current() }}"
+        },
+        @if($post->featured_image)
+        "image": "{{ asset('storage/' . $post->featured_image) }}",
+        @endif
+        "articleSection": "{{ $post->category }}",
+        "keywords": "{{ is_array($post->tags) ? implode(', ', $post->tags) : '' }}, Sumit Kumar",
+        "wordCount": {{ str_word_count(strip_tags($post->content)) }},
+        "inLanguage": "en"
+    }
+    </script>
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="Sumit Kumar">
+    <meta property="article:published_time" content="{{ optional($post->published_at)->toIso8601String() }}">
+    <meta property="article:modified_time" content="{{ $post->updated_at->toIso8601String() }}">
+    <meta property="article:section" content="{{ $post->category }}">
+    @if(is_array($post->tags))
+        @foreach($post->tags as $tag)
+            <meta property="article:tag" content="{{ $tag }}">
+        @endforeach
+    @endif
+@endsection
+
 @section('content')
+
     <article class="pb-32">
         <!-- Post Header -->
         <header class="max-w-4xl mx-auto px-6 mb-24 text-center">

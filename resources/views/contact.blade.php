@@ -125,4 +125,37 @@
             </div>
         </div>
     </section>
-@endsection
+
+    <!-- FAQ Section -->
+    @php
+        $contactFaqs = [
+            [
+                'question' => 'How quickly does Sumit Kumar respond to inquiries?',
+                'answer' => 'Sumit Kumar typically responds to all professional inquiries within 24 hours. For urgent project matters, please make sure to clearly state your timeline in the subject line or message body.',
+            ],
+            [
+                'question' => 'What information should I include in my project inquiry?',
+                'answer' => 'To help provide an accurate estimate and timeline, please include: a brief description of the project, your business goals, required features, preferred technology stack (if any), timeline expectations, and your estimated budget range.',
+            ],
+            [
+                'question' => 'What is Sumit Kumar\'s process for taking on new projects?',
+                'answer' => 'The typical process involves: 1) Initial discovery call to understand your needs. 2) Proposal detailing scope, timeline, and budget. 3) Agreement and milestone planning. 4) Iterative development with regular updates. 5) Testing, deployment, and handover.',
+            ],
+            [
+                'question' => 'Does Sumit Kumar provide ongoing maintenance?',
+                'answer' => 'Yes, Sumit Kumar offers post-launch maintenance and support contracts. This includes server monitoring, security updates, bug fixes, and feature enhancements to ensure your application remains stable and up-to-date.',
+            ],
+            [
+                'question' => 'Is Sumit Kumar open to full-time employment opportunities?',
+                'answer' => 'Yes, Sumit Kumar is open to discussing full-time opportunities with innovative companies that value clean code and strong engineering practices. Please feel free to reach out via email or LinkedIn with job details.',
+            ],
+        ];
+    @endphp
+
+    <x-faq-section 
+        :faqs="$contactFaqs" 
+        title="Common Inquiries" 
+        subtitle="Before You Reach Out"
+        :dark="true"
+    />
+@endsection

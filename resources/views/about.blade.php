@@ -120,4 +120,40 @@
             </div>
         </div>
     </section>
-@endsection
+
+    <!-- FAQ Section -->
+    @php
+        $aboutFaqs = [
+            [
+                'question' => 'What is Sumit Kumar\'s professional experience?',
+                'answer' => 'Sumit Kumar currently works as a Full Stack Developer at Apex Byte IT Services Company, where he develops and maintains responsive client websites using C#, PHP, SQL, and modern JavaScript. He has also interned at Gautam Buddha University (USoICT) redesigning their website, and at the Ministry of Housing and Urban Affairs through the TULIP program, contributing to the DAY-NULM 2.0 portal using React.js.',
+            ],
+            [
+                'question' => 'What programming languages does Sumit Kumar know?',
+                'answer' => 'Sumit Kumar is proficient in PHP, JavaScript, TypeScript, Python, C#, SQL, HTML5, and CSS3. He has extensive experience with frameworks like Laravel, React.js, Vue.js, ASP.NET Core, Django, and Node.js. He is also skilled with databases including MySQL, PostgreSQL, SQL Server, and MongoDB.',
+            ],
+            [
+                'question' => 'Does Sumit Kumar have any certifications?',
+                'answer' => 'Yes, Sumit Kumar holds a React Basic certification from HackerRank and a Web Development certification from IIT Bombay. He continuously upskills through online courses, tech conferences, and hands-on project work.',
+            ],
+            [
+                'question' => 'What is Sumit Kumar\'s approach to software development?',
+                'answer' => 'Sumit Kumar follows clean architecture principles, test-driven development (TDD), and agile methodologies. He believes in writing maintainable, scalable code with proper documentation. His approach emphasizes understanding business requirements first, then translating them into elegant technical solutions.',
+            ],
+            [
+                'question' => 'Can Sumit Kumar work with teams remotely?',
+                'answer' => 'Absolutely. Sumit Kumar has experience collaborating with remote teams across different time zones. He is proficient with collaboration tools like Git/GitHub, Slack, Jira, Trello, and various CI/CD platforms. He values clear communication and consistent code quality in distributed team environments.',
+            ],
+            [
+                'question' => 'What sets Sumit Kumar apart from other developers?',
+                'answer' => 'Sumit Kumar combines strong technical skills with excellent communication abilities. He can translate complex technical concepts into clear business strategies. His MCA education provides a solid theoretical foundation, while his hands-on industry experience ensures practical, production-ready solutions. He is passionate about staying current with emerging technologies and sharing knowledge through his 500+ article blog.',
+            ],
+        ];
+    @endphp
+
+    <x-faq-section 
+        :faqs="$aboutFaqs" 
+        title="About Sumit Kumar" 
+        subtitle="Know More"
+    />
+@endsection
