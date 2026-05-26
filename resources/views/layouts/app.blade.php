@@ -105,26 +105,26 @@
     }
     </script>
 
-    <title>{{ $seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer & Software Engineer' }}</title>
+    <title>@yield('meta_title', $seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer & Software Engineer')</title>
     <meta name="description"
-        content="{{ $seoData->meta_description ?? 'Sumit Kumar is a Full Stack Developer & Software Engineer specializing in Laravel, React, Vue.js, and modern web technologies. Explore portfolio, read tutorials, and get in touch.' }}">
-    <meta name="keywords" content="{{ $seoData->meta_keywords ?? 'Sumit Kumar, full stack developer, web developer, software engineer, Laravel developer, React developer, PHP developer, sumitkdev, Sumit Kumar portfolio' }}">
+        content="@yield('meta_description', $seoData->meta_description ?? 'Sumit Kumar is a Full Stack Developer & Software Engineer specializing in Laravel, React, Vue.js, and modern web technologies. Explore portfolio, read tutorials, and get in touch.')">
+    <meta name="keywords" content="@yield('meta_keywords', $seoData->meta_keywords ?? 'Sumit Kumar, full stack developer, web developer, software engineer, Laravel developer, React developer, PHP developer, sumitkdev, Sumit Kumar portfolio')">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="Sumit Kumar — Full Stack Developer">
-    <meta property="og:title" content="{{ $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer') }}">
-    <meta property="og:description" content="{{ $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer specializing in Laravel, React, Vue.js.') }}">
-    <meta property="og:image" content="{{ $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.jpg') }}">
+    <meta property="og:title" content="@yield('og_title', $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
+    <meta property="og:description" content="@yield('og_description', $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer specializing in Laravel, React, Vue.js.'))">
+    <meta property="og:image" content="@yield('og_image', $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.jpg'))">
     <meta property="og:locale" content="en_IN">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="{{ $seoData->twitter_card ?? 'summary_large_image' }}">
+    <meta property="twitter:card" content="@yield('twitter_card', $seoData->twitter_card ?? 'summary_large_image')">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="{{ $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer') }}">
-    <meta property="twitter:description" content="{{ $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer.') }}">
-    <meta property="twitter:image" content="{{ $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.jpg') }}">
+    <meta property="twitter:title" content="@yield('twitter_title', $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
+    <meta property="twitter:description" content="@yield('twitter_description', $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer.'))">
+    <meta property="twitter:image" content="@yield('twitter_image', $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.jpg'))">
     <meta name="twitter:site" content="{{ $seoData->twitter_handle ?? '@sumitkdevs' }}">
     <meta name="twitter:creator" content="{{ $seoData->twitter_handle ?? '@sumitkdevs' }}">
 

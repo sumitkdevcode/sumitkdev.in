@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', $post->title . ' — Sumit Kumar')
+@section('meta_title', $post->meta_title ?? $post->title . ' — Sumit Kumar')
+@section('meta_description', $post->meta_description ?? $post->excerpt)
+@section('meta_keywords', is_array($post->tags) ? implode(', ', $post->tags) . ', Sumit Kumar' : 'Sumit Kumar')
+
+@section('og_type', 'article')
+@section('og_title', $post->meta_title ?? $post->title)
+@section('og_description', $post->meta_description ?? $post->excerpt)
+@section('og_image', $post->featured_image ? asset('storage/' . $post->featured_image) : asset('images/og-default.jpg'))
+
+@section('twitter_title', $post->meta_title ?? $post->title)
+@section('twitter_description', $post->meta_description ?? $post->excerpt)
+@section('twitter_image', $post->featured_image ? asset('storage/' . $post->featured_image) : asset('images/og-default.jpg'))
 
 @section('meta')
     <!-- Blog Post Article Schema -->
@@ -35,7 +46,6 @@
         "inLanguage": "en"
     }
     </script>
-    <meta property="og:type" content="article">
     <meta property="article:author" content="Sumit Kumar">
     <meta property="article:published_time" content="{{ optional($post->published_at)->toIso8601String() }}">
     <meta property="article:modified_time" content="{{ $post->updated_at->toIso8601String() }}">

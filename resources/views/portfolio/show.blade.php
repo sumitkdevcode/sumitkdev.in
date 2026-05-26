@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
-@section('title', $project->title . ' — Sumit Kumar')
+@section('meta_title', $project->title . ' — Portfolio | Sumit Kumar')
+@section('meta_description', Str::limit(strip_tags($project->description), 160))
+@section('meta_keywords', is_array($project->tech_stack) ? implode(', ', $project->tech_stack) . ', Sumit Kumar' : 'Sumit Kumar portfolio')
 
+@section('og_type', 'article')
+@section('og_title', $project->title . ' — Portfolio | Sumit Kumar')
+@section('og_description', Str::limit(strip_tags($project->description), 160))
+@section('og_image', $project->featured_image ? asset('storage/' . $project->featured_image) : asset('images/og-default.jpg'))
+
+@section('twitter_title', $project->title . ' — Portfolio | Sumit Kumar')
+@section('twitter_description', Str::limit(strip_tags($project->description), 160))
+@section('twitter_image', $project->featured_image ? asset('storage/' . $project->featured_image) : asset('images/og-default.jpg'))
 @section('content')
     <article class="pb-32">
         <!-- Header -->
