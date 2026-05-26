@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->environment('production')) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         // Only target layout views instead of '*' to avoid redundant queries on partials/components
         View::composer(['layouts.app', 'layouts.admin'], function ($view) {
             $path = '/' . request()->path();
