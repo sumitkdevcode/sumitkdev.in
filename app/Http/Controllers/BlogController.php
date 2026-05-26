@@ -19,6 +19,10 @@ class BlogController extends Controller
                 ->paginate(10);
         });
 
+        if ($request->ajax()) {
+            return view('blog.partials.posts', compact('posts'))->render();
+        }
+
         return view('blog.index', compact('posts'));
     }
 
