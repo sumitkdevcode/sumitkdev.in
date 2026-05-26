@@ -13,4 +13,23 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        // Enable CSS code splitting
+        cssCodeSplit: true,
+        // Use esbuild for minification (bundled with Vite, faster than terser)
+        minify: 'esbuild',
+        esbuild: {
+            drop: ['console', 'debugger'],
+        },
+        // Chunk splitting for better caching
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return 'vendor';
+                    }
+                },
+            },
+        },
+    },
 });

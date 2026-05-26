@@ -23,7 +23,7 @@
             <div class="relative" data-aos="fade-up" data-aos-delay="200">
                 <div class="aspect-[4/5] bg-gray-100 overflow-hidden">
                     <img src="https://sumitkdev.in/storage/media/j0qk6wFOPGrGJEBdwp6IieB8rVokn357csmu91Sq.jpg"
-                        alt="Sumit Kumar" class="w-full h-full object-cover img-premium">
+                        alt="Sumit Kumar" class="w-full h-full object-cover img-premium" fetchpriority="high">
                 </div>
                 <div class="absolute -bottom-10 -left-10 bg-black text-white p-12 hidden lg:block">
                     <p class="text-xs uppercase tracking-[0.3em] mb-4">Current Focus</p>
@@ -73,7 +73,7 @@
                         <a href="{{ route('portfolio.show', $project->slug) }}">
                             <div class="aspect-[16/10] bg-gray-100 overflow-hidden mb-8">
                                 <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}"
-                                    class="w-full h-full img-premium">
+                                    class="w-full h-full img-premium" loading="lazy">
                             </div>
                             <div class="flex justify-between items-start">
                                 <div>
@@ -165,7 +165,7 @@
                             class="bg-white  p-6 flex flex-col items-center justify-center gap-4 hover:scale-105 transition-all duration-300 border border-black/10 hover:border-black hover:shadow-xl group skill-card">
                             <div class="w-12 h-12 flex items-center justify-center">
                                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ $skill['icon'] }}"
-                                    alt="{{ $skill['name'] }}"
+                                    alt="{{ $skill['name'] }}" loading="lazy"
                                     class="w-full h-full object-contain skill-icon grayscale group-hover:grayscale-0 transition-all duration-300">
                             </div>
                             <span
@@ -205,7 +205,7 @@
                         data-aos-delay="{{ $index * 50 }}">
                         <a href="{{ route('gallery') }}">
                             <img src="{{ asset('storage/' . $image->file_path) }}" alt="{{ $image->title ?? 'Gallery Image' }}"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
                         </a>
                     </div>
                 @empty

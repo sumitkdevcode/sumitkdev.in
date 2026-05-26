@@ -3,28 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Fetch all published portfolio items (not just featured)
-        $featuredProjects = \App\Models\PortfolioItem::where('is_published', true)
-            ->orderBy('order')
-            ->orderBy('created_at', 'desc')
-            ->take(6)
-            ->get();
+        $featuredProjects = Cache::remember('home_featured_projects', 3600, function () {
+            return \App\Models\PortfolioItem::where('is_published', true)
+                ->orderBy('order')
+                ->orderBy('created_at', 'desc')
+                ->take(6)
+                ->get();
+        });
 
-        $recentBlogs = \App\Models\BlogPost::where('is_published', true)
-            ->orderBy('published_at', 'desc')
-            ->take(3)
-            ->get();
+        $recentBlogs = Cache::remember('home_recent_blogs', 1800, function () {
+            return \App\Models\BlogPost::where('is_published', true)
+                ->orderBy('published_at', 'desc')
+                ->take(3)
+                ->get();
+        });
 
-        // Fetch gallery images from Media model
-        $galleryImages = \App\Models\Media::where('file_type', 'image')
-            ->orderBy('created_at', 'desc')
-            ->take(8)
-            ->get();
+        $galleryImages = Cache::remember('home_gallery_images', 3600, function () {
+            return \App\Models\Media::where('file_type', 'image')
+                ->orderBy('created_at', 'desc')
+                ->take(8)
+                ->get();
+        });
 
         $settings = $this->getSettings();
 
@@ -57,3 +62,4 @@ class HomeController extends Controller
         ];
     }
 }
+

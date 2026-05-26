@@ -17,7 +17,7 @@
                         <a href="{{ route('portfolio.show', $project->slug) }}">
                             <div class="aspect-square bg-gray-100 overflow-hidden mb-8">
                                 <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}"
-                                    class="w-full h-full object-cover img-premium">
+                                    class="w-full h-full object-cover img-premium" loading="lazy">
                             </div>
                             <div class="space-y-2">
                                 <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400">{{ $project->category }}</p>

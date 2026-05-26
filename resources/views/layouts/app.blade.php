@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- SEO Management -->
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('images/favicon.png') }}" sizes="48x48" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
 
@@ -134,23 +131,31 @@
     @yield('meta')
 
 
-    <!-- Fonts -->
+    <!-- Fonts (non-render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet">
+    </noscript>
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/css/spa.css', 'resources/js/app.js', 'resources/js/spa.js'])
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" media="print" onload="this.media='all'" />
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    </noscript>
 
-    <!-- Alpine.js -->
-    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js (pinned versions for better CDN caching) -->
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.14.8/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5730762848368403"
-        crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-5730762848368403">
 
     <!-- Google tag (gtag.js) -->
@@ -195,7 +200,7 @@
     <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="{{ route('home') }}" class="flex items-center">
-                <img src="{{ asset('images/logo.png') }}" alt="Sumit Kumar" class="h-10 w-auto">
+                <img src="{{ asset('images/logo.png') }}" alt="Sumit Kumar" class="h-10 w-auto" fetchpriority="high">
             </a>
 
             <div class="hidden md:flex items-center space-x-10 text-sm font-medium uppercase tracking-widest">
@@ -347,7 +352,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 1000,
@@ -355,6 +360,10 @@
             easing: 'ease-out-cubic'
         });
     </script>
+
+    <!-- AdSense (deferred to bottom) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5730762848368403"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

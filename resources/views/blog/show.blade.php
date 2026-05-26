@@ -77,7 +77,7 @@
                 <!-- Main Viewer -->
                 <div class="aspect-video bg-gray-100 overflow-hidden shadow-2xl mb-8">
                     <img src="{{ asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}" id="mainImage"
-                        class="w-full h-full  transition-opacity duration-300">
+                        class="w-full h-full  transition-opacity duration-300" fetchpriority="high">
                 </div>
 
                 <!-- Sub Images Row -->
@@ -87,7 +87,7 @@
                         <div class="flex-none w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 overflow-hidden group border-2 border-transparent hover:border-black transition-all cursor-pointer"
                             onclick="updateMainImage('{{ asset('storage/' . $post->featured_image) }}')">
                             <img src="{{ asset('storage/' . $post->featured_image) }}" alt=""
-                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy">
                         </div>
 
                         {{-- Sub Images --}}
@@ -95,7 +95,7 @@
                             <div class="flex-none w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 overflow-hidden group border-2 border-transparent hover:border-black transition-all cursor-pointer"
                                 onclick="updateMainImage('{{ asset('storage/' . $image) }}')">
                                 <img src="{{ asset('storage/' . $image) }}" alt=""
-                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy">
                             </div>
                         @endforeach
                     </div>

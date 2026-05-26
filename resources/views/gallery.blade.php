@@ -16,7 +16,7 @@
                     <div class="group relative aspect-square bg-gray-100 overflow-hidden" data-aos="fade-up">
                         @if($item->file_type === 'video')
                             <video src="{{ asset('storage/' . $item->file_path) }}" class="w-full h-full object-cover" muted loop
-                                onmouseover="this.play()" onmouseout="this.pause()"></video>
+                                onmouseover="this.play()" onmouseout="this.pause()" preload="none"></video>
                             <div class="absolute top-4 left-4">
                                 <svg class="w-4 h-4 text-white drop-shadow-md" fill="currentColor" viewBox="0 0 20 20">
                                     <path
@@ -26,7 +26,7 @@
                             </div>
                         @else
                             <img src="{{ asset('storage/' . $item->file_path) }}" alt="{{ $item->title }}"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+                                class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" loading="lazy">
                         @endif
 
                         <div

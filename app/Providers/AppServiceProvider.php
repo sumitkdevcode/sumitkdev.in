@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,18 +25,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Illuminate\Support\Facades\View::composer('*', function ($view) {
+        // Only target layout views instead of '*' to avoid redundant queries on partials/components
+        View::composer(['layouts.app', 'layouts.admin'], function ($view) {
             $path = '/' . request()->path();
             if ($path === '//')
                 $path = '/';
 
-            $seo = \App\Models\PageSeo::where('page_path', $path)->first();
+            $cacheKey = 'page_seo_' . md5($path);
 
-            // If not found, try stripping query strings or trailing slashes
-            if (!$seo) {
-                $path = '/' . explode('/', request()->path())[0];
+            $seo = Cache::remember($cacheKey, 3600, function () use ($path) {
                 $seo = \App\Models\PageSeo::where('page_path', $path)->first();
-            }
+
+                // If not found, try stripping query strings or trailing slashes
+                if (!$seo) {
+                    $parentPath = '/' . explode('/', ltrim($path, '/'))[0];
+                    $seo = \App\Models\PageSeo::where('page_path', $parentPath)->first();
+                }
+
+                return $seo;
+            });
 
             $view->with('seoData', $seo);
         });
