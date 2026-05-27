@@ -25,11 +25,13 @@
     {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "{{ url('/') }}/#person",
         "name": "Sumit Kumar",
+        "alternateName": ["sumitkdev", "Sumit Kumar Developer", "sumitkdev.in"],
         "url": "{{ url('/') }}",
         "image": "{{ asset('images/og-default.webp') }}",
         "jobTitle": "Full Stack Developer",
-        "description": "Results-oriented Full Stack Developer with expertise in Laravel, React, Vue.js, Node.js, and modern web technologies.",
+        "description": "Sumit Kumar (sumitkdev) is a results-oriented Full Stack Developer & Software Engineer with expertise in Laravel, React, Vue.js, Node.js, and modern web technologies. Available for freelance and full-time opportunities.",
         "email": "contact@sumitkdev.in",
         "telephone": "+91-8303744132",
         "address": {
@@ -50,7 +52,23 @@
                 "url": "https://www.galgotiasuniversity.edu.in"
             }
         ],
-        "knowsAbout": ["Laravel", "React", "Vue.js", "Node.js", "PHP", "JavaScript", "TypeScript", "Python", "MySQL", "PostgreSQL", "Docker", "AWS", "Full Stack Development", "Web Development", "Software Engineering"],
+        "hasCredential": [
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "degree",
+                "name": "Master of Computer Applications (MCA)"
+            },
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "degree",
+                "name": "Bachelor of Computer Applications (BCA)"
+            }
+        ],
+        "knowsAbout": ["Laravel", "React", "Vue.js", "Node.js", "PHP", "JavaScript", "TypeScript", "Python", "MySQL", "PostgreSQL", "Docker", "AWS", "Full Stack Development", "Web Development", "Software Engineering", "ASP.NET Core", "C#", "REST API", "GraphQL"],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Apex Byte IT Services"
+        },
         "sameAs": [
             "https://github.com/sumitkumar5683",
             "https://linkedin.com/in/sumit-kumar-84b869231",
@@ -65,14 +83,18 @@
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "Sumit Kumar — Full Stack Developer",
-        "alternateName": ["sumitkdev", "Sumit Kumar Developer", "Sumit Kumar Portfolio"],
+        "@id": "{{ url('/') }}/#website",
+        "name": "Sumit Kumar (sumitkdev) — Full Stack Developer",
+        "alternateName": ["sumitkdev", "sumitkdev.in", "Sumit Kumar Developer", "Sumit Kumar Portfolio", "Sumit Kumar Blog"],
         "url": "{{ url('/') }}",
-        "description": "Official website of Sumit Kumar — Full Stack Developer & Software Engineer. Portfolio, blog, and contact.",
-        "author": {
-            "@type": "Person",
-            "name": "Sumit Kumar"
+        "description": "Official website of Sumit Kumar (sumitkdev) — Full Stack Developer & Software Engineer. Explore portfolio, read 500+ coding tutorials, and get in touch.",
+        "publisher": {
+            "@id": "{{ url('/') }}/#person"
         },
+        "author": {
+            "@id": "{{ url('/') }}/#person"
+        },
+        "inLanguage": "en-IN",
         "potentialAction": {
             "@type": "SearchAction",
             "target": "{{ url('/blog') }}?q={search_term_string}",

@@ -73,7 +73,7 @@
                         class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold">
                         S</div>
                     <div class="text-left">
-                        <p class="text-xs font-bold uppercase tracking-widest">{{ $post->author->name }}</p>
+                        <p class="text-xs font-bold uppercase tracking-widest">{{ optional($post->author)->name ?? 'Sumit Kumar' }}</p>
                         <p class="text-[10px] text-gray-400 uppercase tracking-tighter">
                             {{ optional($post->published_at)->format('F d, Y') ?? 'Draft' }}
                         </p>
