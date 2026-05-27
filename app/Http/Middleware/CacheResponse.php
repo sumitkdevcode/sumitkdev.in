@@ -39,7 +39,7 @@ class CacheResponse
         }
 
         $response->headers->set('Cache-Control', "public, max-age={$maxAge}, s-maxage={$sMaxAge}");
-        $response->headers->set('Vary', 'Accept-Encoding');
+        $response->headers->set('Vary', 'Accept-Encoding, X-Requested-With, X-SPA-Request');
 
         return $response;
     }

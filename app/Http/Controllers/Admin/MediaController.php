@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Media;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\ImageHelper;
 
 class MediaController extends Controller
 {
@@ -30,9 +31,17 @@ class MediaController extends Controller
         ]);
 
         $file = $request->file('file');
-        $path = $file->store('media', 'public');
         $mime = $file->getMimeType();
         $type = str_contains($mime, 'video') ? 'video' : 'image';
+
+        // Convert images to WebP, store videos as-is
+        if ($type === 'image') {
+            $path = ImageHelper::storeAsWebp($file, 'media');
+            $mime = 'image/webp'; // Update MIME after conversion
+        } else {
+            $path = $file->store('media', 'public');
+        }
+
 
         Media::create([
             'title' => $request->title ?: $file->getClientOriginalName(),

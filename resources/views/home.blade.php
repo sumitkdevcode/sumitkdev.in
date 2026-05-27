@@ -22,7 +22,12 @@
             </div>
             <div class="relative" data-aos="fade-up" data-aos-delay="200">
                 <div class="aspect-[4/5] bg-gray-100 overflow-hidden">
-                    <img src="https://sumitkdev.in/storage/media/j0qk6wFOPGrGJEBdwp6IieB8rVokn357csmu91Sq.jpg"
+                    @php
+                        $heroImage = \App\Models\Setting::get('home_hero_image')
+                            ? asset('storage/' . \App\Models\Setting::get('home_hero_image'))
+                            : asset('storage/media/j0qk6wFOPGrGJEBdwp6IieB8rVokn357csmu91Sq.webp');
+                    @endphp
+                    <img src="{{ $heroImage }}"
                         alt="Sumit Kumar" class="w-full h-full object-cover img-premium" fetchpriority="high">
                 </div>
                 <div class="absolute -bottom-10 -left-10 bg-black text-white p-12 hidden lg:block">

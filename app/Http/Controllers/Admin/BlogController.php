@@ -9,6 +9,7 @@ use App\Models\BlogPost;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\ImageHelper;
 
 class BlogController extends Controller
 {
@@ -39,14 +40,14 @@ class BlogController extends Controller
         $subImagePaths = [];
         if ($request->hasFile('sub_images')) {
             foreach ($request->file('sub_images') as $image) {
-                $subImagePaths[] = $image->store('blog/sub', 'public');
+                $subImagePaths[] = ImageHelper::storeAsWebp($image, 'blog/sub');
             }
         }
         $validated['sub_images'] = $subImagePaths;
 
         // Handle featured image
         if ($request->hasFile('featured_image')) {
-            $validated['featured_image'] = $request->file('featured_image')->store('blog', 'public');
+            $validated['featured_image'] = ImageHelper::storeAsWebp($request->file('featured_image'), 'blog');
         }
 
         // Set additional fields
@@ -88,7 +89,7 @@ class BlogController extends Controller
             }
             $subImagePaths = [];
             foreach ($request->file('sub_images') as $image) {
-                $subImagePaths[] = $image->store('blog/sub', 'public');
+                $subImagePaths[] = ImageHelper::storeAsWebp($image, 'blog/sub');
             }
             $validated['sub_images'] = $subImagePaths;
         }
@@ -97,7 +98,7 @@ class BlogController extends Controller
             if ($blog->featured_image) {
                 Storage::disk('public')->delete($blog->featured_image);
             }
-            $validated['featured_image'] = $request->file('featured_image')->store('blog', 'public');
+            $validated['featured_image'] = ImageHelper::storeAsWebp($request->file('featured_image'), 'blog');
         }
 
         $validated['slug'] = Str::slug($request->title);

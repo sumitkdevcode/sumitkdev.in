@@ -10,7 +10,7 @@
                 identity</p>
         </div>
 
-        <form action="{{ route('admin.settings.update') }}" method="POST" class="space-y-12 lg:space-y-20 pb-20">
+        <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data" class="space-y-12 lg:space-y-20 pb-20">
             @csrf
 
             <!-- General Identity -->
@@ -32,6 +32,19 @@
                             class="w-full bg-transparent border-b border-black/10 focus:border-black py-4 text-sm outline-none transition-all placeholder:text-gray-200">
                     </div>
                 </div>
+                
+                <div class="space-y-2">
+                    <label class="text-[9px] lg:text-[10px] uppercase tracking-widest font-bold text-gray-400">Home Hero Image</label>
+                    @if(\App\Models\Setting::get('home_hero_image'))
+                        <div class="mb-4">
+                            <img src="{{ asset('storage/' . \App\Models\Setting::get('home_hero_image')) }}" alt="Current Hero Image" class="h-32 object-cover rounded shadow-sm">
+                        </div>
+                    @endif
+                    <input type="file" name="home_hero_image" accept="image/*"
+                        class="w-full bg-transparent border-b border-black/10 focus:border-black py-4 text-sm outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-black file:text-white hover:file:bg-gray-800">
+                    <p class="text-xs text-gray-400 mt-1">Recommended: Portrait aspect ratio (4:5). Will be automatically converted to WebP.</p>
+                </div>
+
                 <div class="space-y-2">
                     <label class="text-[9px] lg:text-[10px] uppercase tracking-widest font-bold text-gray-400">Biography /
                         About Short</label>

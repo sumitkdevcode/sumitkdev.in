@@ -30,12 +30,14 @@
                 </div>
 
                 <script>
-                    document.addEventListener('DOMContentLoaded', function () {
+                    (function() {
                         let page = 1;
                         let loading = false;
                         let hasMore = true;
                         const container = document.getElementById('posts-container');
                         const trigger = document.getElementById('load-more-trigger');
+
+                        if (!container || !trigger) return;
 
                         const observer = new IntersectionObserver((entries) => {
                             if (entries[0].isIntersecting && !loading && hasMore) {
@@ -48,7 +50,7 @@
                         function loadMore() {
                             loading = true;
                             page++;
-                            fetch(`?page=${page}`, {
+                            fetch(`/blog?page=${page}`, {
                                 headers: {
                                     'X-Requested-With': 'XMLHttpRequest'
                                 }
@@ -71,7 +73,7 @@
                                     loading = false;
                                 });
                         }
-                    });
+                    })();
                 </script>
             @endif
         </div>

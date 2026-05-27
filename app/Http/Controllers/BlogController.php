@@ -19,7 +19,9 @@ class BlogController extends Controller
                 ->paginate(10);
         });
 
-        if ($request->ajax()) {
+        // Only return the partial for genuine AJAX pagination requests,
+        // NOT for SPA navigation requests
+        if ($request->ajax() && !$request->header('X-SPA-Request')) {
             return view('blog.partials.posts', compact('posts'))->render();
         }
 

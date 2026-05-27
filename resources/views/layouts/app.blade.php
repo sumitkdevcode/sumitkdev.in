@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/favicon.png') }}" sizes="48x48" type="image/png">
-    <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
+    <link rel="icon" href="{{ asset('images/favicon.webp') }}" sizes="48x48" type="image/webp">
+    <link rel="apple-touch-icon" href="{{ asset('images/favicon.webp') }}">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
@@ -26,8 +26,8 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Sumit Kumar",
-        "url": "https://sumitkdev.in",
-        "image": "{{ asset('images/og-default.jpg') }}",
+        "url": "{{ url('/') }}",
+        "image": "{{ asset('images/og-default.webp') }}",
         "jobTitle": "Full Stack Developer",
         "description": "Results-oriented Full Stack Developer with expertise in Laravel, React, Vue.js, Node.js, and modern web technologies.",
         "email": "contact@sumitkdev.in",
@@ -67,7 +67,7 @@
         "@type": "WebSite",
         "name": "Sumit Kumar — Full Stack Developer",
         "alternateName": ["sumitkdev", "Sumit Kumar Developer", "Sumit Kumar Portfolio"],
-        "url": "https://sumitkdev.in",
+        "url": "{{ url('/') }}",
         "description": "Official website of Sumit Kumar — Full Stack Developer & Software Engineer. Portfolio, blog, and contact.",
         "author": {
             "@type": "Person",
@@ -75,7 +75,7 @@
         },
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://sumitkdev.in/blog?q={search_term_string}",
+            "target": "{{ url('/blog') }}?q={search_term_string}",
             "query-input": "required name=search_term_string"
         }
     }
@@ -91,7 +91,7 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://sumitkdev.in"
+                "item": "{{ url('/') }}"
             }
             @if(request()->path() !== '/')
             ,{
@@ -116,7 +116,7 @@
     <meta property="og:site_name" content="Sumit Kumar — Full Stack Developer">
     <meta property="og:title" content="@yield('og_title', $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
     <meta property="og:description" content="@yield('og_description', $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer specializing in Laravel, React, Vue.js.'))">
-    <meta property="og:image" content="@yield('og_image', $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.jpg'))">
+    <meta property="og:image" content="@yield('og_image', $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.webp'))">
     <meta property="og:locale" content="en_IN">
 
     <!-- Twitter -->
@@ -124,7 +124,7 @@
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="@yield('twitter_title', $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
     <meta property="twitter:description" content="@yield('twitter_description', $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer.'))">
-    <meta property="twitter:image" content="@yield('twitter_image', $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.jpg'))">
+    <meta property="twitter:image" content="@yield('twitter_image', $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.webp'))">
     <meta name="twitter:site" content="{{ $seoData->twitter_handle ?? '@sumitkdevs' }}">
     <meta name="twitter:creator" content="{{ $seoData->twitter_handle ?? '@sumitkdevs' }}">
 
@@ -200,7 +200,7 @@
     <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="{{ route('home') }}" class="flex items-center">
-                <img src="{{ asset('images/logo.png') }}" alt="Sumit Kumar" class="h-10 w-auto" fetchpriority="high">
+                <img src="{{ asset('images/logo.webp') }}" alt="Sumit Kumar" class="h-10 w-auto" fetchpriority="high">
             </a>
 
             <div class="hidden md:flex items-center space-x-10 text-sm font-medium uppercase tracking-widest">

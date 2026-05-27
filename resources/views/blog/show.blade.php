@@ -7,11 +7,11 @@
 @section('og_type', 'article')
 @section('og_title', $post->meta_title ?? $post->title)
 @section('og_description', $post->meta_description ?? $post->excerpt)
-@section('og_image', $post->featured_image ? asset('storage/' . $post->featured_image) : asset('images/og-default.jpg'))
+@section('og_image', $post->featured_image ? asset('storage/' . $post->featured_image) : asset('images/og-default.webp'))
 
 @section('twitter_title', $post->meta_title ?? $post->title)
 @section('twitter_description', $post->meta_description ?? $post->excerpt)
-@section('twitter_image', $post->featured_image ? asset('storage/' . $post->featured_image) : asset('images/og-default.jpg'))
+@section('twitter_image', $post->featured_image ? asset('storage/' . $post->featured_image) : asset('images/og-default.webp'))
 
 @section('meta')
     <!-- Blog Post Article Schema -->
@@ -24,12 +24,12 @@
         "author": {
             "@type": "Person",
             "name": "Sumit Kumar",
-            "url": "https://sumitkdev.in"
+            "url": "{{ url('/') }}"
         },
         "publisher": {
             "@type": "Person",
             "name": "Sumit Kumar",
-            "url": "https://sumitkdev.in"
+            "url": "{{ url('/') }}"
         },
         "datePublished": "{{ optional($post->published_at)->toIso8601String() }}",
         "dateModified": "{{ $post->updated_at->toIso8601String() }}",

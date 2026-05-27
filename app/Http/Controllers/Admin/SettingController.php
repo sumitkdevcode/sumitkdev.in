@@ -17,14 +17,25 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
-        $settings = $request->except('_token');
+        $settings = $request->except(['_token', 'home_hero_image']);
 
+        // Handle text settings
         foreach ($settings as $key => $value) {
-            Setting::updateOrCreate(
-                ['key' => $key],
-                ['value' => $value]
-            );
+            Setting::set($key, $value);
         }
+
+        // Handle image uploads
+        if ($request->hasFile('home_hero_image')) {
+            $path = \App\Helpers\ImageHelper::storeAsWebp(
+                $request->file('home_hero_image'),
+                'settings'
+            );
+            
+            Setting::set('home_hero_image', $path, 'image', 'general');
+        }
+
+        // Flush cache explicitly just to be safe
+        Setting::flushCache();
 
         return redirect()->back()->with('success', 'Settings updated successfully.');
     }

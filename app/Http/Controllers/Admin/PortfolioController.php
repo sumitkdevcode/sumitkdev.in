@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\PortfolioItem;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\ImageHelper;
 
 class PortfolioController extends Controller
 {
@@ -41,14 +42,14 @@ class PortfolioController extends Controller
         $subImagePaths = [];
         if ($request->hasFile('sub_images')) {
             foreach ($request->file('sub_images') as $image) {
-                $subImagePaths[] = $image->store('projects/sub', 'public');
+                $subImagePaths[] = ImageHelper::storeAsWebp($image, 'projects/sub');
             }
         }
         $validated['sub_images'] = $subImagePaths;
 
         // Handle featured image
         if ($request->hasFile('featured_image')) {
-            $validated['featured_image'] = $request->file('featured_image')->store('projects', 'public');
+            $validated['featured_image'] = ImageHelper::storeAsWebp($request->file('featured_image'), 'projects');
         }
 
         // Set additional fields
@@ -91,7 +92,7 @@ class PortfolioController extends Controller
             }
             $subImagePaths = [];
             foreach ($request->file('sub_images') as $image) {
-                $subImagePaths[] = $image->store('projects/sub', 'public');
+                $subImagePaths[] = ImageHelper::storeAsWebp($image, 'projects/sub');
             }
             $validated['sub_images'] = $subImagePaths;
         }
@@ -100,7 +101,7 @@ class PortfolioController extends Controller
             if ($portfolio->featured_image) {
                 Storage::disk('public')->delete($portfolio->featured_image);
             }
-            $validated['featured_image'] = $request->file('featured_image')->store('projects', 'public');
+            $validated['featured_image'] = ImageHelper::storeAsWebp($request->file('featured_image'), 'projects');
         }
 
         $validated['slug'] = Str::slug($request->title);
