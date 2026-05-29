@@ -2,6 +2,14 @@
 
 @section('title', 'Journal — Sumit Kumar')
 
+@section('canonical_url', route('blog.index'))
+
+@section('pagination_meta')
+    @if(request()->has('page') && request()->get('page') > 1)
+        <meta name="robots" content="noindex, follow">
+    @endif
+@endsection
+
 @section('content')
     <section class="pb-32">
         <div class="max-w-7xl mx-auto px-6">

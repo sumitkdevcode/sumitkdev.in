@@ -110,7 +110,12 @@ Route::get('/robots.txt', function () {
         $content .= "Disallow: /dashboard\n";
         $content .= "Disallow: /login\n";
         $content .= "Disallow: /register\n";
-        $content .= "Disallow: /profile\n\n";
+        $content .= "Disallow: /profile\n";
+        $content .= "Disallow: /forgot-password\n";
+        $content .= "Disallow: /reset-password\n";
+        $content .= "Disallow: /verify-email\n";
+        $content .= "Disallow: /confirm-password\n";
+        $content .= "Disallow: /email/verification-notification\n\n";
         $content .= "# Sitemap\n";
         $content .= "Sitemap: " . url('/sitemap.xml') . "\n";
         return $content;

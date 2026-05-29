@@ -11,7 +11,9 @@
     <link rel="apple-touch-icon" href="{{ asset('images/favicon.webp') }}">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="@yield('canonical_url', strtok(url()->current(), '?'))">
+
+    @yield('pagination_meta')
 
     <!-- Robots -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -134,7 +136,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="@yield('og_type', 'website')">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="@yield('canonical_url', strtok(url()->current(), '?'))">
     <meta property="og:site_name" content="Sumit Kumar — Full Stack Developer">
     <meta property="og:title" content="@yield('og_title', $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
     <meta property="og:description" content="@yield('og_description', $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer specializing in Laravel, React, Vue.js.'))">
@@ -143,7 +145,7 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="@yield('twitter_card', $seoData->twitter_card ?? 'summary_large_image')">
-    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:url" content="@yield('canonical_url', strtok(url()->current(), '?'))">
     <meta property="twitter:title" content="@yield('twitter_title', $seoData->og_title ?? ($seoData->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
     <meta property="twitter:description" content="@yield('twitter_description', $seoData->og_description ?? ($seoData->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer.'))">
     <meta property="twitter:image" content="@yield('twitter_image', $seoData->og_image ? asset($seoData->og_image) : asset('images/og-default.webp'))">
