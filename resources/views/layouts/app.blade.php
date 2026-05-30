@@ -298,11 +298,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-20 mt-20">
+    <footer class="bg-black text-white py-12 mt-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-20">
                 <div>
-                    <h2 class="text-5xl font-premium italic mb-8">Let's create something remarkable.</h2>
+                    <h2 class="text-5xl font-bold tracking-tighter mb-8">Let's create something remarkable.</h2>
                     <p class="text-gray-400 max-w-md mb-10">Available for freelance opportunities and full-time
                         positions as a Full Stack Developer.</p>
                     <a href="{{ route('contact') }}"

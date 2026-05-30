@@ -15,23 +15,24 @@
 @section('content')
     <article class="pb-32">
         <!-- Header -->
-        <header class="max-w-7xl mx-auto px-6 mb-24">
+        <header class="max-w-7xl mx-auto px-6 mb-16 pt-8">
             <div class="grid lg:grid-cols-12 gap-12 items-end">
                 <div class="lg:col-span-8" data-aos="fade-right">
-                    <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-6">{{ $project->category }}</p>
-                    <h1 class="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-none">{{ $project->title }}
+                    <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-6 font-bold">{{ $project->category }}</p>
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase leading-none">
+                        <span class="text-outline-premium opacity-100">{{ $project->title }}</span>
                     </h1>
                 </div>
                 <div class="lg:col-span-4 lg:text-right" data-aos="fade-left">
                     <div class="space-y-6">
                         @if($project->live_link)
                             <a href="{{ $project->live_link }}" target="_blank"
-                                class="inline-block bg-black text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all">Launch
+                                class="inline-block bg-black text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all neo-frame hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Launch
                                 Project</a>
                         @endif
                         @if($project->github_link)
                             <a href="{{ $project->github_link }}" target="_blank"
-                                class="block text-xs font-bold uppercase tracking-widest hover:underline decoration-1 underline-offset-4">Source
+                                class="block text-xs font-bold uppercase tracking-widest hover:underline decoration-1 underline-offset-4 hover:text-gray-500">Source
                                 Code</a>
                         @endif
                     </div>
@@ -42,16 +43,16 @@
         <!-- Hero Image -->
         <section class="mb-24 px-6 max-w-7xl mx-auto" data-aos="zoom-out">
             <!-- Main Viewer -->
-            <div class="aspect-video bg-gray-100 overflow-hidden shadow-2xl mb-8">
+            <div class="aspect-[16/9] bg-gray-100 overflow-hidden mb-8 neo-frame">
                 <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}" id="mainImage"
-                    class="w-full h-full  transition-opacity duration-300" fetchpriority="high">
+                    class="w-full h-full object-cover transition-opacity duration-300" fetchpriority="high">
             </div>
 
             <!-- Sub Images Row -->
             @if($project->sub_images && count($project->sub_images) > 0)
                 <div class="flex overflow-x-auto gap-4 pb-6 no-scrollbar">
                     {{-- Original Image --}}
-                    <div class="flex-none w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 overflow-hidden group border-2 border-transparent hover:border-black transition-all cursor-pointer"
+                    <div class="flex-none w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 overflow-hidden group border-2 border-black/10 hover:border-black transition-all cursor-pointer neo-frame"
                         onclick="updateMainImage('{{ asset('storage/' . $project->featured_image) }}')">
                         <img src="{{ asset('storage/' . $project->featured_image) }}" alt=""
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy">
@@ -59,7 +60,7 @@
 
                     {{-- Sub Images --}}
                     @foreach($project->sub_images as $image)
-                        <div class="flex-none w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 overflow-hidden group border-2 border-transparent hover:border-black transition-all cursor-pointer"
+                        <div class="flex-none w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 overflow-hidden group border-2 border-black/10 hover:border-black transition-all cursor-pointer neo-frame"
                             onclick="updateMainImage('{{ asset('storage/' . $image) }}')">
                             <img src="{{ asset('storage/' . $image) }}" alt=""
                                 class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy">
@@ -99,7 +100,7 @@
                         <h4 class="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Core Technology</h4>
                         <ul class="flex flex-wrap gap-2">
                             @foreach($project->tech_stack ?? [] as $tech)
-                                <li class="px-3 py-1 border border-black/10 text-[10px] uppercase font-bold">{{ $tech }}</li>
+                                <li class="px-3 py-1 border border-black/20 text-[10px] uppercase font-bold hover:bg-black hover:text-white transition-colors cursor-default neo-frame">{{ $tech }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -119,11 +120,13 @@
         </section>
     </article>
 
-    <section class="py-32 border-t border-black/5">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <section class="py-32 border-t border-black/5 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 flex justify-center items-center">
             <a href="{{ route('portfolio.index') }}"
-                class="group flex items-center space-x-4 text-sm font-bold uppercase tracking-widest">
-                <span class="w-12 h-[1px] bg-black group-hover:w-20 transition-all"></span>
+                class="group flex items-center space-x-4 text-sm font-bold uppercase tracking-widest bg-white border-2 border-black/10 px-8 py-4 hover:border-black transition-all hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <svg class="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
                 <span>Back to Work</span>
             </a>
         </div>

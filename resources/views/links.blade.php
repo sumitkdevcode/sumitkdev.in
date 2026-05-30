@@ -3,11 +3,20 @@
 @section('content')
     <!-- Hero -->
     <section class="py-32">
+        <!-- Floating Background Elements -->
+        <div class="fixed inset-0 pointer-events-none overflow-hidden flex flex-col justify-between py-20 opacity-5">
+            <div class="animate-float-slow whitespace-nowrap text-9xl font-bold uppercase tracking-tighter">
+                LINK IN BIO &bull; CONNECT &bull; DIGITAL PRESENCE &bull; LINK IN BIO &bull; CONNECT &bull;
+            </div>
+            <div class="animate-float-slow-reverse whitespace-nowrap text-9xl font-bold uppercase tracking-tighter">
+                PORTFOLIO &bull; SOCIAL &bull; RESOURCES &bull; PORTFOLIO &bull; SOCIAL &bull; RESOURCES
+            </div>
+        </div>
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-24" data-aos="fade-up">
                 <p class="text-xs uppercase tracking-[0.5em] text-gray-400 font-bold mb-6">Digital Presence</p>
-                <h1 class="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-none mb-8">
-                    Find Me<br><span class="text-premium italic font-normal">Everywhere</span>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase leading-none mb-8">
+                    Find Me<br><span class="text-outline-premium opacity-100">Everywhere</span>
                 </h1>
                 <p class="text-xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
                     All my official profiles, platforms, and communities where I share code, write articles, and connect with developers.
@@ -26,24 +35,30 @@
 
             @foreach ($sections as $catKey => $section)
                 @if(isset($globalSocialLinks[$catKey]) && $globalSocialLinks[$catKey]->count() > 0)
-                    <div class="mb-20" data-aos="fade-up" data-aos-delay="{{ $section['delay'] }}">
+                    <div class="mb-12" data-aos="fade-up" data-aos-delay="{{ $section['delay'] }}">
                         <h2 class="text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 mb-8">{{ $section['title'] }}</h2>
-                        <div class="grid sm:grid-cols-2 {{ $catKey == 'freelance_platforms' ? 'lg:grid-cols-3' : '' }} gap-4">
-                            @foreach ($globalSocialLinks[$catKey] as $link)
-                                <a href="{{ $link->url }}" target="_blank" rel="noopener me"
-                                    class="group flex items-center gap-5 p-6 transition-all duration-300 {{ $catKey == 'website_blog' ? 'bg-black text-white hover:bg-gray-900' : 'border border-black/10 hover:border-black hover:bg-black hover:text-white' }}">
-                                    <div class="w-12 h-12 flex items-center justify-center border {{ $catKey == 'website_blog' ? 'border-white/20' : 'border-current/20 group-hover:border-white/30 transition-colors' }} rounded-full">
-                                        {!! str_replace('<svg ', '<svg class="w-5 h-5" ', $link->icon_svg) !!}
+                        <div class="space-y-4">
+                            @foreach($globalSocialLinks[$catKey] as $index => $link)
+                                <a href="{{ $link->url }}" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer"
+                                   class="group block bg-white border-2 border-black/10 hover:border-black p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] neo-frame"
+                                   data-aos="fade-up" 
+                                   data-aos-delay="{{ $index * 100 }}">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-4">
+                                            <span class="w-12 h-12 bg-gray-50 flex items-center justify-center border border-black/5 group-hover:bg-black group-hover:text-white transition-colors neo-frame-small">
+                                                {!! str_replace('<svg ', '<svg class="w-5 h-5" ', $link->icon_svg) !!}
+                                            </span>
+                                            <span class="text-sm font-bold uppercase tracking-widest">{{ $link->platform_name }}</span>
+                                        </div>
+                                        <!-- Arrow -->
+                                        <span class="w-10 h-10 border-2 border-black flex items-center justify-center -rotate-45 group-hover:rotate-0 group-hover:bg-black group-hover:text-white transition-all neo-frame-small">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                            </svg>
+                                        </span>
                                     </div>
-                                    <div class="flex-1">
-                                        <p class="text-sm font-bold uppercase tracking-widest">{{ $link->platform_name }}</p>
-                                        @if($link->handle)
-                                            <p class="text-xs {{ $catKey == 'website_blog' ? 'text-gray-400' : 'text-gray-400 group-hover:text-gray-300 transition-colors' }}">{{ $link->handle }}</p>
-                                        @endif
-                                    </div>
-                                    <svg class="w-5 h-5 opacity-{{ $catKey == 'website_blog' ? '50' : '0' }} group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
                                 </a>
                             @endforeach
                         </div>

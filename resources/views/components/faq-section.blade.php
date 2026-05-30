@@ -18,7 +18,7 @@
     <div class="max-w-4xl mx-auto px-6">
         <div class="mb-20 text-center" data-aos="fade-up">
             <p class="text-xs uppercase tracking-[0.4em] {{ $dark ? 'text-gray-500' : 'text-gray-400' }} mb-4">{{ $subtitle }}</p>
-            <h2 class="text-5xl font-premium italic">{{ $title }}</h2>
+            <h2 class="text-5xl font-bold tracking-tighter">{{ $title }}</h2>
         </div>
 
         <div class="space-y-0" x-data="{ openIndex: null }">

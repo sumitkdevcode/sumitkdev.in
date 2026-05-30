@@ -54,12 +54,15 @@
 @endsection
 
 @section('content')
-    <section class="pb-32">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-32" data-aos="fade-up">
-                <h1 class="text-7xl md:text-9xl font-bold tracking-tighter uppercase mb-8">Blog</h1>
-                <p class="text-xl text-gray-500 max-w-2xl font-light italic">Insights on software architecture, design
-                    systems, and the future of creative technology.</p>
+    <section class="pb-12 pt-12 relative bg-white overflow-hidden border-b border-black/5">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] z-0 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="mb-12" data-aos="fade-up">
+                <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 font-bold">Journal</p>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-8">Blog</h1>
+                <p class="text-xl text-gray-500 max-w-2xl font-light italic">Insights on software architecture, design systems, and the future of creative technology.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16" id="posts-container">

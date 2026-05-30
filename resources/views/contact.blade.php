@@ -35,17 +35,23 @@
 @endsection
 
 @section('content')
-    <section class="py-32">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-32">
-                <div data-aos="fade-right">
-                    <h1 class="text-7xl md:text-9xl font-bold tracking-tighter uppercase mb-20 leading-none">Connect</h1>
+    <section class="pt-12 pb-12 relative bg-white overflow-hidden border-b border-black/5">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] z-0 pointer-events-none"></div>
 
-                    <div class="space-y-12">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-20">
+                <div data-aos="fade-right">
+                    <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-4 font-bold">Get In Touch</p>
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-8 leading-none">
+                        <span class="text-outline-premium opacity-100">Connect</span>
+                    </h1>
+
+                    <div class="space-y-8">
                         <div>
                             <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-2">Inquiries</p>
                             <a href="mailto:contact@sumitkdev.in"
-                                class="text-3xl font-premium italic hover:text-gray-500 transition-colors">contact@sumitkdev.in</a>
+                                class="text-xl md:text-3xl font-bold tracking-tighter hover:text-gray-500 transition-colors break-all">contact@sumitkdev.in</a>
                         </div>
                         <div>
                             <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-2">Location</p>
@@ -63,8 +69,8 @@
                                   @foreach($contactLinks as $link)
                                       <li>
                                           <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
-                                              class="w-10 h-10 border border-black/10 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all group">
-                                              {!! str_replace('<svg ', '<svg class="w-4 h-4" ', $link->icon_svg) !!}
+                                              class="w-12 h-12 border-2 border-black/10 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-all group neo-frame-small">
+                                              {!! str_replace('<svg ', '<svg class="w-5 h-5" ', $link->icon_svg) !!}
                                           </a>
                                       </li>
                                   @endforeach
@@ -76,48 +82,47 @@
                 <div data-aos="fade-left" data-aos-delay="200">
                     @if(session('success'))
                         <div class="bg-black text-white p-12 mb-12 animate-fade-in">
-                            <h3 class="text-2xl font-premium italic mb-4">Gratitude.</h3>
+                            <h3 class="text-2xl font-bold tracking-tighter mb-4">Gratitude.</h3>
                             <p class="text-sm font-light uppercase tracking-widest">{{ session('success') }}</p>
                         </div>
                     @endif
 
-                    <form action="{{ route('contact.store') }}" method="POST" class="space-y-12">
+                    <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
                         @csrf
-                        <div class="space-y-2">
-
+                        <div class="space-y-2 group">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-black transition-colors">Name</label>
                             <input type="text" name="name" value="{{ old('name') }}"
-                                class="w-full bg-transparent border-b border-black/10 focus:border-black py-4 text-xl font-bold outline-none transition-all @error('name') border-red-500 @enderror"
-                                placeholder="Name" required>
+                                class="w-full bg-transparent border-2 border-black focus:border-black px-6 py-3 text-lg font-bold outline-none transition-all neo-frame-small @error('name') border-red-500 @enderror"
+                                required>
                             @error('name')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <div class="space-y-2">
-
+                        <div class="space-y-2 group">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-black transition-colors">Email Address</label>
                             <input type="email" name="email" value="{{ old('email') }}"
-                                class="w-full bg-transparent border-b border-black/10 focus:border-black py-4 text-xl font-bold outline-none transition-all @error('email') border-red-500 @enderror"
-                                placeholder="Email Id" required>
+                                class="w-full bg-transparent border-2 border-black focus:border-black px-6 py-3 text-lg font-bold outline-none transition-all neo-frame-small @error('email') border-red-500 @enderror"
+                                required>
                             @error('email')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <div class="space-y-2">
-
+                        <div class="space-y-2 group">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-black transition-colors">Subject</label>
                             <input type="text" name="subject" value="{{ old('subject') }}"
-                                class="w-full bg-transparent border-b border-black/10 focus:border-black py-4 text-xl font-bold outline-none transition-all @error('subject') border-red-500 @enderror"
-                                placeholder="Subject">
+                                class="w-full bg-transparent border-2 border-black focus:border-black px-6 py-3 text-lg font-bold outline-none transition-all neo-frame-small @error('subject') border-red-500 @enderror">
                             @error('subject')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <div class="space-y-2">
-
-                            <textarea name="message" rows="6"
-                                class="w-full bg-transparent border-b border-black/10 focus:border-black py-4 text-xl font-bold outline-none transition-all resize-none @error('message') border-red-500 @enderror"
-                                placeholder="Message" required>{{ old('message') }}</textarea>
+                        <div class="space-y-2 group">
+                            <label class="text-[10px] uppercase font-bold tracking-widest text-black transition-colors">Message</label>
+                            <textarea name="message" rows="5"
+                                class="w-full bg-transparent border-2 border-black focus:border-black px-6 py-3 text-lg font-bold outline-none transition-all resize-none neo-frame-small @error('message') border-red-500 @enderror"
+                                required>{{ old('message') }}</textarea>
                             @error('message')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -125,8 +130,11 @@
 
                         <div class="pt-8">
                             <button type="submit"
-                                class="bg-black text-white px-12 py-5 text-sm font-bold uppercase tracking-[0.3em] hover:bg-gray-800 transition-all shadow-xl">
-                                Transmit Message
+                                class="bg-black text-white px-12 py-5 text-sm font-bold uppercase tracking-[0.3em] hover:bg-gray-800 transition-all neo-frame hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center space-x-4 w-full md:w-auto group">
+                                <span>Transmit Message</span>
+                                <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
                             </button>
                         </div>
                     </form>
