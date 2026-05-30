@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SettingController as AdminSetting;
 use App\Http\Controllers\Admin\ContactController as AdminContact;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,7 @@ Route::get('/sitemap.xml', function () {
             ->get();
 
         $content = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        $content .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        $content .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n";
 
         // Static pages
         $staticPages = [
@@ -77,13 +78,21 @@ Route::get('/sitemap.xml', function () {
             $content .= '  </url>' . "\n";
         }
 
-        // Blog posts
+        // Blog posts (with image tags)
         foreach ($posts as $post) {
             $content .= '  <url>' . "\n";
             $content .= '    <loc>' . url('/blog/' . $post->slug) . '</loc>' . "\n";
             $content .= '    <lastmod>' . $post->updated_at->toDateString() . '</lastmod>' . "\n";
             $content .= '    <changefreq>monthly</changefreq>' . "\n";
             $content .= '    <priority>0.8</priority>' . "\n";
+            if ($post->featured_image) {
+                $imageUrl = str_starts_with($post->featured_image, 'http') ? $post->featured_image : asset('storage/' . $post->featured_image);
+                $content .= '    <image:image>' . "\n";
+                $content .= '      <image:loc>' . htmlspecialchars($imageUrl) . '</image:loc>' . "\n";
+                $content .= '      <image:title>' . htmlspecialchars($post->title) . '</image:title>' . "\n";
+                $content .= '      <image:caption>' . htmlspecialchars(Str::limit(strip_tags($post->excerpt ?? ''), 100)) . '</image:caption>' . "\n";
+                $content .= '    </image:image>' . "\n";
+            }
             $content .= '  </url>' . "\n";
         }
 

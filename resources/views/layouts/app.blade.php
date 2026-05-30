@@ -12,6 +12,8 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="@yield('canonical_url', strtok(url()->current(), '?'))">
+    <link rel="alternate" hreflang="en" href="@yield('canonical_url', strtok(url()->current(), '?'))">
+    <link rel="alternate" hreflang="x-default" href="@yield('canonical_url', strtok(url()->current(), '?'))">
 
     @yield('pagination_meta')
 

@@ -1,6 +1,45 @@
 @extends('layouts.app')
 
-@section('title', 'Connect — Sumit Kumar')
+@section('meta_title', 'Contact Sumit Kumar — Hire Full Stack Developer | Freelance & Full-time')
+@section('meta_description', 'Get in touch with Sumit Kumar for freelance web development, consulting, or full-time opportunities. Specializing in Laravel, React, Vue.js, PHP, and ASP.NET Core. Typically responds within 24 hours.')
+@section('meta_keywords', 'contact Sumit Kumar, hire web developer, freelance Laravel developer, hire Full Stack Developer India, sumitkdev contact')
+
+@section('og_title', 'Contact Sumit Kumar — Hire Full Stack Developer')
+@section('og_description', 'Available for freelance projects and full-time positions. Get in touch for web development, consulting, and custom software solutions.')
+
+@section('canonical_url', route('contact'))
+
+@section('meta')
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Sumit Kumar",
+        "description": "Contact page for Sumit Kumar — Full Stack Developer & Software Engineer",
+        "url": "{{ route('contact') }}",
+        "mainEntity": {
+            "@id": "{{ url('/') }}/#person"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "{{ url('/') }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Contact",
+                    "item": "{{ route('contact') }}"
+                }
+            ]
+        }
+    }
+    </script>
+@endsection
 
 @section('content')
     <section class="py-32">

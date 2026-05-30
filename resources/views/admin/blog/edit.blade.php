@@ -46,7 +46,7 @@
                             Image</label>
                         @if($blog->featured_image)
                             <div class="mb-4">
-                                <img src="{{ asset('storage/' . $blog->featured_image) }}"
+                                <img src="{{ $blog->getImageUrl() }}"
                                     class="w-32 h-20 object-cover border border-black/5" alt="">
                             </div>
                         @endif

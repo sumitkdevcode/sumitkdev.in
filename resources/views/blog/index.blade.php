@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Journal — Sumit Kumar')
+@section('meta_title', 'Blog — Sumit Kumar | 500+ Tutorials on Laravel, React, JavaScript, DevOps & More')
+@section('meta_description', 'Read 500+ in-depth tutorials and articles by Sumit Kumar (sumitkdev) on Laravel, React, Vue.js, JavaScript, TypeScript, DevOps, AI, database optimization, security, and software architecture.')
+@section('meta_keywords', 'Sumit Kumar blog, sumitkdev tutorials, Laravel tutorial, React guide, JavaScript tips, web development blog, coding articles, programming tutorials')
+
+@section('og_title', 'Blog — Sumit Kumar | Technical Tutorials & Insights')
+@section('og_description', 'Explore 500+ coding tutorials on Laravel, React, JavaScript, DevOps, AI, and software architecture by Full Stack Developer Sumit Kumar.')
 
 @section('canonical_url', route('blog.index'))
 
@@ -8,6 +13,51 @@
     @if(request()->has('page') && request()->get('page') > 1)
         <meta name="robots" content="noindex, follow">
     @endif
+    @if($posts->currentPage() > 1)
+        <link rel="prev" href="{{ $posts->previousPageUrl() }}">
+    @endif
+    @if($posts->hasMorePages())
+        <link rel="next" href="{{ $posts->nextPageUrl() }}">
+    @endif
+@endsection
+
+@section('meta')
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Blog — Sumit Kumar",
+        "description": "Technical blog by Sumit Kumar covering Laravel, React, JavaScript, DevOps, AI, and software architecture.",
+        "url": "{{ route('blog.index') }}",
+        "mainEntity": {
+            "@type": "Blog",
+            "name": "Sumit Kumar's Technical Blog",
+            "description": "500+ tutorials and articles on modern web development",
+            "url": "{{ route('blog.index') }}",
+            "author": {
+                "@id": "{{ url('/') }}/#person"
+            },
+            "inLanguage": "en"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "{{ url('/') }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Blog",
+                    "item": "{{ route('blog.index') }}"
+                }
+            ]
+        }
+    }
+    </script>
 @endsection
 
 @section('content')
@@ -19,7 +69,7 @@
                     systems, and the future of creative technology.</p>
             </div>
 
-            <div class="space-y-0" id="posts-container">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16" id="posts-container">
                 @if($posts->isEmpty())
                     <div class="py-40 text-center opacity-20">
                         <p class="text-3xl italic">The journal is currently empty.</p>

@@ -1,6 +1,45 @@
 @extends('layouts.app')
 
-@section('title', 'Sumit Kumar — About')
+@section('meta_title', 'About Sumit Kumar — Full Stack Developer | Education, Experience & Skills')
+@section('meta_description', 'Learn about Sumit Kumar (sumitkdev) — a Full Stack Developer with MCA from Gautam Buddha University, experience at Apex Byte IT Services, and expertise in Laravel, React, ASP.NET Core, PHP, C#, and modern web technologies.')
+@section('meta_keywords', 'Sumit Kumar about, sumitkdev biography, Full Stack Developer India, Laravel developer experience, Gautam Buddha University MCA, web developer portfolio')
+
+@section('og_title', 'About Sumit Kumar — Full Stack Developer')
+@section('og_description', 'Results-oriented Full Stack Developer with MCA and hands-on experience building web applications with Laravel, React, Vue.js, and ASP.NET Core.')
+
+@section('canonical_url', route('about'))
+
+@section('meta')
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+            "@id": "{{ url('/') }}/#person"
+        },
+        "name": "About Sumit Kumar",
+        "description": "Professional profile of Sumit Kumar — Full Stack Developer & Software Engineer",
+        "url": "{{ route('about') }}",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "{{ url('/') }}"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "About",
+                    "item": "{{ route('about') }}"
+                }
+            ]
+        }
+    }
+    </script>
+@endsection
 
 @section('content')
     <section class="py-32">

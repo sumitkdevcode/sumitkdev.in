@@ -32,7 +32,7 @@
                                 <div class="flex items-center space-x-6">
                                      @if($post->featured_image)
                                          <div class="relative group/img">
-                                             <img src="{{ asset('storage/' . $post->featured_image) }}" class="w-12 h-12 grayscale group-hover/img:grayscale-0 transition-all duration-700 object-cover" alt="">
+                                             <img src="{{ $post->getImageUrl() }}" class="w-12 h-12 grayscale group-hover/img:grayscale-0 transition-all duration-700 object-cover" alt="">
                                              <div class="absolute inset-0 border border-black/5"></div>
                                          </div>
                                      @else

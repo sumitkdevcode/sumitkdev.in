@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Work — Sumit Kumar')
+@section('meta_title', 'Portfolio — Sumit Kumar | Web Development Projects & Case Studies')
+@section('meta_description', 'Explore the portfolio of Sumit Kumar (sumitkdev) — a curated selection of web development projects, brand identities, SaaS products, and technical architecture built with Laravel, React, Vue.js, and ASP.NET Core.')
+@section('meta_keywords', 'Sumit Kumar portfolio, sumitkdev projects, web development case studies, Laravel projects, React applications, Full Stack Developer work')
+
+@section('og_title', 'Portfolio — Sumit Kumar | Web Development Projects')
+@section('og_description', 'A curated selection of digital products, brand identities, and technical architecture by Full Stack Developer Sumit Kumar.')
 
 @section('canonical_url', route('portfolio.index'))
 

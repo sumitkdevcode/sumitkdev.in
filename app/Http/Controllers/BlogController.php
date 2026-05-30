@@ -43,7 +43,17 @@ class BlogController extends Controller
             session()->put($viewedKey, true);
         }
 
-        return view('blog.show', compact('post'));
+        // Fetch suggested posts (same category first, then recent)
+        $suggestedPosts = Cache::remember("blog_suggestions_{$slug}", 3600, function () use ($post) {
+            return BlogPost::where('is_published', true)
+                ->where('id', '!=', $post->id)
+                ->orderByRaw("CASE WHEN category = ? THEN 0 ELSE 1 END", [$post->category])
+                ->orderBy('published_at', 'desc')
+                ->take(6)
+                ->get();
+        });
+
+        return view('blog.show', compact('post', 'suggestedPosts'));
     }
 }
 

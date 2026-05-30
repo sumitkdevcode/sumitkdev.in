@@ -63,6 +63,25 @@ class BlogPost extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * Get the full URL for the featured image.
+     * Handles both local storage paths and external URLs.
+     */
+    public function getImageUrl(): ?string
+    {
+        if (!$this->featured_image) {
+            return null;
+        }
+
+        // If it's already a full URL, return as-is
+        if (str_starts_with($this->featured_image, 'http://') || str_starts_with($this->featured_image, 'https://')) {
+            return $this->featured_image;
+        }
+
+        // Otherwise, it's a local storage path
+        return asset('storage/' . $this->featured_image);
+    }
+
     public function incrementViews()
     {
         $this->increment('views');
