@@ -1,12 +1,5 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Sumit Kumar — Full Stack Developer & Software Engineer | sumitkdev.in')
-@section('meta_description', 'Sumit Kumar (sumitkdev) is a Full Stack Developer & Software Engineer specializing in Laravel, React, Vue.js, Node.js, PHP, and C#. Explore portfolio, read 500+ coding tutorials, and hire for freelance projects.')
-@section('meta_keywords', 'Sumit Kumar, sumitkdev, Full Stack Developer, Software Engineer, Laravel Developer, React Developer, PHP Developer, web developer India, hire developer, sumitkdev.in')
-
-@section('og_title', 'Sumit Kumar — Full Stack Developer & Software Engineer')
-@section('og_description', 'Results-oriented Full Stack Developer crafting premium digital experiences. Explore portfolio, tutorials, and hire for your next project.')
-
 @section('canonical_url', route('home'))
 
 @section('content')

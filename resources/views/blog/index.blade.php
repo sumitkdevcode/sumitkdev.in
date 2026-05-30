@@ -1,12 +1,5 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Blog — Sumit Kumar | 500+ Tutorials on Laravel, React, JavaScript, DevOps & More')
-@section('meta_description', 'Read 500+ in-depth tutorials and articles by Sumit Kumar (sumitkdev) on Laravel, React, Vue.js, JavaScript, TypeScript, DevOps, AI, database optimization, security, and software architecture.')
-@section('meta_keywords', 'Sumit Kumar blog, sumitkdev tutorials, Laravel tutorial, React guide, JavaScript tips, web development blog, coding articles, programming tutorials')
-
-@section('og_title', 'Blog — Sumit Kumar | Technical Tutorials & Insights')
-@section('og_description', 'Explore 500+ coding tutorials on Laravel, React, JavaScript, DevOps, AI, and software architecture by Full Stack Developer Sumit Kumar.')
-
 @section('canonical_url', route('blog.index'))
 
 @section('pagination_meta')

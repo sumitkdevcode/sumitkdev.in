@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Links — Sumit Kumar | Find Me Across the Web')
-@section('meta_description', 'All official links and profiles of Sumit Kumar (sumitkdev) — GitHub, LinkedIn, Twitter, Stack Overflow, Dev.to, Medium, LeetCode, and more.')
-@section('meta_keywords', 'Sumit Kumar links, sumitkdev profiles, developer social profiles, Sumit Kumar GitHub, Sumit Kumar LinkedIn')
-
 @section('content')
     <!-- Hero -->
     <section class="py-32">

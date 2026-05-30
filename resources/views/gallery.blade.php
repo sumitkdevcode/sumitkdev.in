@@ -1,12 +1,5 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Gallery — Sumit Kumar | Behind-the-Scenes & Creative Captures')
-@section('meta_description', 'Explore the visual library of Sumit Kumar (sumitkdev) — behind-the-scenes moments, creative captures, and visual stories from the world of software development and design.')
-@section('meta_keywords', 'Sumit Kumar gallery, sumitkdev photos, developer behind the scenes, creative portfolio, visual stories')
-
-@section('og_title', 'Gallery — Sumit Kumar')
-@section('og_description', 'A visual library of behind-the-scenes moments, experimental motion, and creative captures.')
-
 @section('canonical_url', route('gallery'))
 
 @section('content')

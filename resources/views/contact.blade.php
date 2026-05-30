@@ -1,12 +1,5 @@
 @extends('layouts.app')
 
-@section('meta_title', 'Contact Sumit Kumar — Hire Full Stack Developer | Freelance & Full-time')
-@section('meta_description', 'Get in touch with Sumit Kumar for freelance web development, consulting, or full-time opportunities. Specializing in Laravel, React, Vue.js, PHP, and ASP.NET Core. Typically responds within 24 hours.')
-@section('meta_keywords', 'contact Sumit Kumar, hire web developer, freelance Laravel developer, hire Full Stack Developer India, sumitkdev contact')
-
-@section('og_title', 'Contact Sumit Kumar — Hire Full Stack Developer')
-@section('og_description', 'Available for freelance projects and full-time positions. Get in touch for web development, consulting, and custom software solutions.')
-
 @section('canonical_url', route('contact'))
 
 @section('meta')

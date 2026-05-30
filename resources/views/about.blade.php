@@ -1,12 +1,5 @@
 @extends('layouts.app')
 
-@section('meta_title', 'About Sumit Kumar — Full Stack Developer | Education, Experience & Skills')
-@section('meta_description', 'Learn about Sumit Kumar (sumitkdev) — a Full Stack Developer with MCA from Gautam Buddha University, experience at Apex Byte IT Services, and expertise in Laravel, React, ASP.NET Core, PHP, C#, and modern web technologies.')
-@section('meta_keywords', 'Sumit Kumar about, sumitkdev biography, Full Stack Developer India, Laravel developer experience, Gautam Buddha University MCA, web developer portfolio')
-
-@section('og_title', 'About Sumit Kumar — Full Stack Developer')
-@section('og_description', 'Results-oriented Full Stack Developer with MCA and hands-on experience building web applications with Laravel, React, Vue.js, and ASP.NET Core.')
-
 @section('canonical_url', route('about'))
 
 @section('meta')
