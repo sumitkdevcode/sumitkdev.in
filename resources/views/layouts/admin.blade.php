@@ -157,6 +157,10 @@
                         class="sidebar-link {{ request()->is('admin/users*') ? 'active' : '' }}">
                         Manage Admins
                     </a>
+                    <a href="{{ route('admin.social-links.index') }}"
+                        class="sidebar-link {{ request()->is('admin/social-links*') ? 'active' : '' }}">
+                        Social Links
+                    </a>
                 </div>
             </nav>
         </aside>

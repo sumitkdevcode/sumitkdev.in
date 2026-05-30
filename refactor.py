@@ -1,20 +1,13 @@
-@extends('layouts.app')
+import sys
 
-@section('content')
-    <!-- Hero -->
-    <section class="py-32">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-24" data-aos="fade-up">
-                <p class="text-xs uppercase tracking-[0.5em] text-gray-400 font-bold mb-6">Digital Presence</p>
-                <h1 class="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-none mb-8">
-                    Find Me<br><span class="text-premium italic font-normal">Everywhere</span>
-                </h1>
-                <p class="text-xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-                    All my official profiles, platforms, and communities where I share code, write articles, and connect with developers.
-                </p>
-            </div>
+with open('resources/views/links.blade.php', 'r', encoding='utf-8') as f:
+    content = f.read()
 
-            @php
+start_idx = content.find('            <!-- Social Media -->')
+end_idx = content.find('            <!-- CTA -->')
+
+if start_idx != -1 and end_idx != -1:
+    new_content = """            @php
                 $sections = [
                     'social_media' => ['title' => 'Social Media', 'delay' => '0'],
                     'developer_profiles' => ['title' => 'Developer Profiles', 'delay' => '100'],
@@ -51,37 +44,10 @@
                 @endif
             @endforeach
 
-            <!-- CTA -->
-            <div class="mt-24 pt-20 border-t border-black/5 text-center" data-aos="fade-up">
-                <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-6">Want to collaborate?</p>
-                <a href="{{ route('contact') }}" class="inline-block bg-black text-white px-12 py-5 text-sm font-bold uppercase tracking-[0.3em] hover:bg-gray-800 transition-all shadow-xl">
-                    Get in Touch
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    @php
-        $linksFaqs = [
-            [
-                'question' => 'Are all these profiles owned by Sumit Kumar?',
-                'answer' => 'Yes, all profiles listed on this page are official accounts owned and maintained by Sumit Kumar (sumitkdev). Any profile not listed here may not be affiliated with sumitkdev.in.',
-            ],
-            [
-                'question' => 'Which is the best way to connect with Sumit Kumar?',
-                'answer' => 'For professional inquiries, LinkedIn or email (contact@sumitkdev.in) is recommended. For quick questions, Twitter/X is great. For project-related discussions, use the Contact form on this website.',
-            ],
-            [
-                'question' => 'Does Sumit Kumar accept freelance work through these platforms?',
-                'answer' => 'Yes, Sumit Kumar accepts freelance projects through Fiverr, Upwork, and Freelancer. You can also reach out directly through the website contact form for custom project discussions.',
-            ],
-        ];
-    @endphp
-
-    <x-faq-section
-        :faqs="$linksFaqs"
-        title="About These Links"
-        subtitle="Quick Info"
-    />
-@endsection
+"""
+    updated = content[:start_idx] + new_content + content[end_idx:]
+    with open('resources/views/links.blade.php', 'w', encoding='utf-8') as f:
+        f.write(updated)
+    print('Updated successfully')
+else:
+    print('Could not find markers')

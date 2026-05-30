@@ -172,6 +172,7 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::post('/settings', [AdminSetting::class, 'update'])->name('settings.update');
 
     Route::resource('seo', \App\Http\Controllers\Admin\PageSeoController::class);
+    Route::resource('social-links', \App\Http\Controllers\Admin\SocialLinkController::class);
 
     Route::get('/contacts', [AdminContact::class, 'index'])->name('contacts.index');
     Route::get('/contacts/{id}', [AdminContact::class, 'show'])->name('contacts.show');

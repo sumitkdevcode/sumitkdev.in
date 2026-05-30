@@ -51,5 +51,15 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('seoData', $seo);
         });
+
+        View::composer('layouts.app', function ($view) {
+            $socialLinks = Cache::remember('global_social_links', 3600, function () {
+                return \App\Models\SocialLink::where('is_active', true)
+                    ->orderBy('order')
+                    ->get()
+                    ->groupBy('category');
+            });
+            $view->with('globalSocialLinks', $socialLinks);
+        });
     }
 }
