@@ -302,7 +302,7 @@
                         <h4 class="uppercase tracking-widest text-xs text-gray-500 mb-6">Connect With Me</h4>
                         <div class="flex gap-4">
                             <!-- LinkedIn -->
-                            <a href="https://linkedin.com/in/sumit-kumar-84b869231" target="_blank"
+                            <a href="https://linkedin.com/in/sumitkdev" target="_blank"
                                 rel="noopener noreferrer"
                                 class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -312,7 +312,7 @@
                             </a>
 
                             <!-- GitHub -->
-                            <a href="https://github.com/sumitkumar5683" target="_blank" rel="noopener noreferrer"
+                            <a href="https://github.com/sumitkdevcode" target="_blank" rel="noopener noreferrer"
                                 class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path

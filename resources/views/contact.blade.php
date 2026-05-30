@@ -23,7 +23,7 @@
                             <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-6">Social Architecture</p>
                             <ul class="flex space-x-6">
                                 <li>
-                                    <a href="https://www.linkedin.com/in/sumit-kumar-84b869231" target="_blank"
+                                    <a href="https://www.linkedin.com/in/sumitkdev" target="_blank"
                                         rel="noopener noreferrer"
                                         class="w-10 h-10 border border-black/10 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all group">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -33,7 +33,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/sumitkumar5683" target="_blank" rel="noopener noreferrer"
+                                    <a href="https://github.com/sumitkdevcode" target="_blank" rel="noopener noreferrer"
                                         class="w-10 h-10 border border-black/10 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all group">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                             <path
@@ -158,4 +158,4 @@
         subtitle="Before You Reach Out"
         :dark="true"
     />
-@endsection
+@endsection
