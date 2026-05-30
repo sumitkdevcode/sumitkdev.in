@@ -121,6 +121,79 @@
         </div>
     </section>
 
+    <!-- Digital Presence -->
+    <section class="py-32 bg-gray-50 border-t border-black/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16" data-aos="fade-up">
+                <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-4">Active On</p>
+                <h2 class="text-5xl font-premium">Digital Presence</h2>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" data-aos="fade-up" data-aos-delay="100">
+                @php
+                    $platforms = [
+                        ['name' => 'GitHub', 'url' => 'https://github.com/sumitkdevcode', 'icon' => 'github/github-original.svg'],
+                        ['name' => 'LinkedIn', 'url' => 'https://linkedin.com/in/sumitkdev', 'icon' => 'linkedin/linkedin-plain.svg'],
+                        ['name' => 'Twitter', 'url' => 'https://twitter.com/sumitkdevs', 'icon' => 'twitter/twitter-original.svg'],
+                        ['name' => 'Stack Overflow', 'url' => 'https://stackoverflow.com/users/sumitkdev', 'icon' => 'stackoverflow/stackoverflow-plain.svg'],
+                        ['name' => 'Dev.to', 'url' => 'https://dev.to/sumitkdev', 'icon' => 'devto/devto-plain.svg'],
+                        ['name' => 'HackerRank', 'url' => 'https://hackerrank.com/profile/sumitkdev', 'icon' => null],
+                    ];
+                @endphp
+
+                @foreach($platforms as $index => $platform)
+                    <a href="{{ $platform['url'] }}" target="_blank" rel="noopener"
+                        class="group bg-white border border-black/10 p-6 flex flex-col items-center justify-center gap-3 hover:border-black hover:bg-black hover:text-white transition-all duration-300 hover:shadow-xl"
+                        data-aos="fade-up" data-aos-delay="{{ $index * 50 }}">
+                        @if($platform['icon'])
+                            <div class="w-10 h-10 flex items-center justify-center">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ $platform['icon'] }}"
+                                    alt="{{ $platform['name'] }}" loading="lazy"
+                                    class="w-full h-full object-contain grayscale group-hover:grayscale-0 group-hover:brightness-0 group-hover:invert transition-all duration-300">
+                            </div>
+                        @else
+                            <div class="w-10 h-10 flex items-center justify-center border border-black/10 rounded-full group-hover:border-white/30">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c1.285 0 9.75 4.886 10.392 6 .645 1.115.645 10.885 0 12S13.287 24 12 24s-9.75-4.886-10.392-6c-.646-1.115-.646-10.885 0-12S10.715 0 12 0zm2.295 6.799c-.141 0-.258.115-.258.258v3.875H9.963V7.057c0-.143-.117-.258-.258-.258h-1.2c-.141 0-.258.115-.258.258v9.886c0 .143.117.258.258.258h1.2c.141 0 .258-.115.258-.258v-3.875h4.074v3.875c0 .143.117.258.258.258h1.2c.141 0 .258-.115.258-.258V7.057c0-.143-.117-.258-.258-.258h-1.2z"/>
+                                </svg>
+                            </div>
+                        @endif
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-center">{{ $platform['name'] }}</span>
+                    </a>
+                @endforeach
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="{{ route('links') }}" class="text-sm font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">
+                    View all profiles &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cross-Link CTAs -->
+    <section class="py-32 border-t border-black/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <a href="{{ route('portfolio.index') }}" class="group block p-12 bg-black text-white hover:bg-gray-900 transition-all" data-aos="fade-up">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-4">Explore</p>
+                    <h3 class="text-2xl font-premium italic mb-4">See My Work</h3>
+                    <span class="text-xs uppercase tracking-widest font-bold group-hover:ml-2 transition-all">View Portfolio &rarr;</span>
+                </a>
+                <a href="{{ route('blog.index') }}" class="group block p-12 border border-black/10 hover:border-black transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-4">Read</p>
+                    <h3 class="text-2xl font-premium italic mb-4">Technical Blog</h3>
+                    <span class="text-xs uppercase tracking-widest font-bold group-hover:ml-2 transition-all">Browse Articles &rarr;</span>
+                </a>
+                <a href="{{ route('links') }}" class="group block p-12 border border-black/10 hover:border-black transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-4">Connect</p>
+                    <h3 class="text-2xl font-premium italic mb-4">Find Me Everywhere</h3>
+                    <span class="text-xs uppercase tracking-widest font-bold group-hover:ml-2 transition-all">All Profiles &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ Section -->
     @php
         $aboutFaqs = [

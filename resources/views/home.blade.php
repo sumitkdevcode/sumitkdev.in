@@ -18,6 +18,10 @@
                         <span>View Work</span>
                         <span class="w-12 h-[1px] bg-black group-hover:w-20 transition-all"></span>
                     </a>
+                    <a href="{{ route('about') }}"
+                        class="text-sm uppercase tracking-widest text-gray-400 hover:text-black transition-colors">
+                        Read My Story
+                    </a>
                 </div>
             </div>
             <div class="relative" data-aos="fade-up" data-aos-delay="200">
@@ -306,6 +310,25 @@
             ],
         ];
     @endphp
+
+    <!-- Find Me Across the Web CTA -->
+    <section class="py-24 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8" data-aos="fade-up">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.4em] text-gray-500 mb-4">Beyond This Website</p>
+                    <h2 class="text-4xl md:text-5xl font-premium italic">Find me across the web</h2>
+                </div>
+                <a href="{{ route('links') }}"
+                    class="group flex items-center space-x-4 border border-white/20 px-8 py-4 hover:bg-white hover:text-black transition-all">
+                    <span class="text-sm font-bold uppercase tracking-widest">All Profiles</span>
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <x-faq-section 
         :faqs="$homeFaqs" 
