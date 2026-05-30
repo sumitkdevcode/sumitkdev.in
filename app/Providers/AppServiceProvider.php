@@ -52,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('seoData', $seo);
         });
 
-        View::composer('layouts.app', function ($view) {
+        View::composer('*', function ($view) {
             $socialLinks = Cache::remember('global_social_links', 3600, function () {
                 return \App\Models\SocialLink::where('is_active', true)
                     ->orderBy('order')
