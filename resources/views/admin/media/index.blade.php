@@ -37,12 +37,15 @@
                         <div class="hidden lg:flex absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex-col justify-center items-center p-6 text-center space-y-4">
                             <p class="text-[8px] uppercase tracking-widest text-gray-400 font-bold">{{ $item->mime_type }}</p>
                             <p class="text-[8px] uppercase tracking-widest text-gray-400 font-bold">{{ $item->file_size }} KB</p>
-                            <form action="{{ route('admin.media.destroy', $item->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-[10px] font-bold uppercase text-red-500 hover:underline"
-                                    onclick="return confirm('Delete permanently?')">Remove</button>
-                            </form>
+                            <div class="flex items-center gap-4">
+                                <a href="{{ route('admin.media.edit', $item->id) }}" class="text-[10px] font-bold uppercase text-white hover:underline">Edit</a>
+                                <form action="{{ route('admin.media.destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-[10px] font-bold uppercase text-red-500 hover:underline"
+                                        onclick="return confirm('Delete permanently?')">Remove</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     
@@ -52,12 +55,15 @@
                         <!-- Mobile Actions (visible only on smaller screens) -->
                         <div class="flex lg:hidden justify-between items-center">
                              <p class="text-[8px] uppercase tracking-widest text-gray-400">{{ $item->file_size }} KB</p>
-                             <form action="{{ route('admin.media.destroy', $item->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-[9px] font-bold uppercase text-red-500"
-                                    onclick="return confirm('Delete permanently?')">Delete</button>
-                            </form>
+                             <div class="flex gap-3">
+                                 <a href="{{ route('admin.media.edit', $item->id) }}" class="text-[9px] font-bold uppercase text-black">Edit</a>
+                                 <form action="{{ route('admin.media.destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-[9px] font-bold uppercase text-red-500"
+                                        onclick="return confirm('Delete permanently?')">Delete</button>
+                                </form>
+                             </div>
                         </div>
                     </div>
                 </div>

@@ -40,6 +40,13 @@
                             placeholder="e.g. Development">
                     </div>
 
+                    <!-- Display Order -->
+                    <div class="space-y-2">
+                        <label class="text-[9px] lg:text-[10px] uppercase tracking-widest font-bold text-gray-400">Display Order (0 is first)</label>
+                        <input type="number" name="order" value="{{ old('order', $portfolio->order) }}"
+                            class="w-full bg-transparent border-b border-black/10 focus:border-black py-4 text-sm outline-none transition-all placeholder:text-gray-200">
+                    </div>
+
                     <!-- Featured Image -->
                     <div class="space-y-2">
                         <label class="text-[9px] lg:text-[10px] uppercase tracking-widest font-bold text-gray-400">Featured

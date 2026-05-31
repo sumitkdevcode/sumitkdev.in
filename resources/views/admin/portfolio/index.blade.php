@@ -21,6 +21,7 @@
                     <tr class="border-b border-black/5 text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400">
                         <th class="px-6 lg:px-8 py-4 lg:py-6">Project</th>
                         <th class="px-6 lg:px-8 py-4 lg:py-6">Category</th>
+                        <th class="px-6 lg:px-8 py-4 lg:py-6">Order</th>
                         <th class="px-6 lg:px-8 py-4 lg:py-6">Visibility</th>
                         <th class="px-6 lg:px-8 py-4 lg:py-6 text-right">Actions</th>
                     </tr>
@@ -45,6 +46,9 @@
                             </td>
                             <td class="px-6 lg:px-8 py-4 lg:py-6 text-[10px] lg:text-xs uppercase tracking-widest text-gray-500">
                                 {{ $item->category ?: 'General' }}
+                            </td>
+                            <td class="px-6 lg:px-8 py-4 lg:py-6 text-[10px] lg:text-xs uppercase tracking-widest font-bold">
+                                {{ $item->order }}
                             </td>
                             <td class="px-6 lg:px-8 py-4 lg:py-6">
                                 <div class="flex items-center">

@@ -61,4 +61,24 @@ class MediaController extends Controller
         $medium->delete();
         return redirect()->route('admin.media.index')->with('success', 'Media deleted.');
     }
+
+    public function edit(Media $medium)
+    {
+        return view('admin.media.edit', compact('medium'));
+    }
+
+    public function update(Request $request, Media $medium)
+    {
+        $request->validate([
+            'title' => 'nullable|max:255',
+            'category' => 'nullable|string',
+        ]);
+
+        $medium->update([
+            'title' => $request->title,
+            'category' => $request->category,
+        ]);
+
+        return redirect()->route('admin.media.index')->with('success', 'Media updated successfully.');
+    }
 }

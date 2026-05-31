@@ -35,6 +35,7 @@ class PortfolioController extends Controller
             'github_link' => 'nullable|url',
             'live_link' => 'nullable|url',
             'is_featured' => 'nullable',
+            'order' => 'nullable|integer',
             'sub_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
@@ -57,6 +58,7 @@ class PortfolioController extends Controller
         $validated['tech_stack'] = $request->tech_stack ?? [];
         $validated['is_featured'] = $request->has('is_featured');
         $validated['is_published'] = $request->has('is_published');
+        $validated['order'] = $request->order ?? 0;
 
         PortfolioItem::create($validated);
 
@@ -79,6 +81,7 @@ class PortfolioController extends Controller
             'category' => 'nullable|string',
             'github_link' => 'nullable|url',
             'live_link' => 'nullable|url',
+            'order' => 'nullable|integer',
             'sub_images' => 'nullable|array',
             'sub_images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
@@ -108,6 +111,7 @@ class PortfolioController extends Controller
         $validated['is_featured'] = $request->has('is_featured');
         $validated['is_published'] = $request->has('is_published');
         $validated['tech_stack'] = $request->tech_stack ?? [];
+        $validated['order'] = $request->order ?? 0;
 
         $portfolio->update($validated);
 
