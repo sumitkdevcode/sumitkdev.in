@@ -7,7 +7,7 @@
         <!-- Animated Background Grid -->
         <div class="bg-grid-pattern"></div>
 
-        <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center relative z-10 mt-4 md:mt-8">
+        <div class="max-w-[1400px] mx-auto w-full grid md:grid-cols-2 gap-12 items-center relative z-10 mt-4 md:mt-8">
             <!-- Left Content: Typography & CTAs -->
             <div class="relative">
                 <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-8 relative">
@@ -101,7 +101,7 @@
 
     <!-- Stats / Skills Section -->
     <section class="py-32 border-y border-black/5 bg-gray-50/50">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div data-aos="fade-up" class="neo-frame bg-white p-8 group">
                 <h3 class="text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">02+</h3>
                 <p class="text-xs uppercase tracking-widest text-gray-500">Years Experience</p>
@@ -123,64 +123,79 @@
 
     <!-- Featured Projects -->
     <section class="py-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6">
                 <div data-aos="fade-right">
                     <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-4">Selected Work</p>
-                    <h2 class="text-6xl font-bold tracking-tighter">Portfolio Highlights</h2>
+                    <h2 class="text-6xl font-bold tracking-tighter">Project Highlights</h2>
                 </div>
-                <a href="{{ route('portfolio.index') }}" data-aos="fade-left"
-                    class="group flex items-center space-x-4 text-sm font-bold uppercase tracking-widest btn-premium bg-black text-white px-6 py-3">
-                    <span class="relative z-10">View All</span>
-                    <svg class="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-x-20 gap-y-32">
+            <div class="flex items-start overflow-x-auto gap-6 md:gap-8 pb-10 snap-x snap-mandatory scroll-smooth">
                 @forelse($featuredProjects as $index => $project)
-                    <div class="group {{ $index % 2 != 0 ? 'md:mt-32' : '' }}" data-aos="fade-up">
-                        <a href="{{ route('portfolio.show', $project->slug) }}" class="block relative">
-                            <div class="aspect-[16/10] bg-gray-100 overflow-hidden mb-8 neo-frame image-reveal-wrapper">
-                                <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}"
-                                    class="w-full h-full object-cover img-premium project-image-scale" loading="lazy">
-                            </div>
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-3xl font-bold mb-2 group-hover:italic transition-all">{{ $project->title }}</h3>
-                                    <p class="text-gray-500 text-sm uppercase tracking-widest">{{ $project->category }}</p>
+                    @if($loop->index < 7)
+                        <div class="group shrink-0 w-[85vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center {{ $index % 2 != 0 ? 'md:mt-14' : '' }}" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                            <a href="{{ route('portfolio.show', $project->slug) }}" class="block relative">
+                                <div class="aspect-[16/10] bg-gray-100 overflow-hidden mb-6 neo-frame image-reveal-wrapper">
+                                    <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
                                 </div>
-                                <span class="w-12 h-12 flex items-center justify-center border-2 border-black rounded-full group-hover:bg-black group-hover:text-white transition-all -rotate-45 group-hover:rotate-0">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-xl md:text-2xl font-bold mb-1 group-hover:italic transition-all">{{ $project->title }}</h3>
+                                        <p class="text-gray-500 text-xs uppercase tracking-widest">{{ $project->category }}</p>
+                                    </div>
+                                    <span class="w-10 h-10 flex items-center justify-center border-2 border-black rounded-full group-hover:bg-black group-hover:text-white transition-all -rotate-45 group-hover:rotate-0 shrink-0 ml-3">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                    @endif
                 @empty
                     <!-- Placeholder for development -->
-                    <div class="group" data-aos="fade-up">
-                        <div class="aspect-[16/10] bg-gray-100 mb-8 p-12 flex flex-col justify-end neo-frame">
-                            <p class="text-xs uppercase tracking-widest mb-2 opacity-50 italic">Project Category</p>
-                            <h3 class="text-4xl font-bold tracking-tighter">Project Title Coming Soon</h3>
+                    <div class="group shrink-0 w-[85vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center" data-aos="fade-up">
+                        <div class="aspect-[16/10] bg-gray-100 mb-6 p-8 flex flex-col justify-end neo-frame">
+                            <p class="text-[10px] uppercase tracking-widest mb-1 opacity-50 italic">Project Category</p>
+                            <h3 class="text-xl md:text-2xl font-bold tracking-tight">Project Title Coming Soon</h3>
                         </div>
                     </div>
-                    <div class="group md:mt-32" data-aos="fade-up" data-aos-delay="200">
-                        <div class="aspect-[16/10] bg-black text-white mb-8 p-12 flex flex-col justify-end neo-frame">
-                            <p class="text-xs uppercase tracking-widest mb-2 opacity-50 italic">Project Category</p>
-                            <h3 class="text-4xl font-bold tracking-tighter">Example Portfolio Item</h3>
+                    <div class="group shrink-0 w-[85vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center md:mt-14" data-aos="fade-up" data-aos-delay="200">
+                        <div class="aspect-[16/10] bg-black text-white mb-6 p-8 flex flex-col justify-end neo-frame">
+                            <p class="text-[10px] uppercase tracking-widest mb-1 opacity-50 italic">Project Category</p>
+                            <h3 class="text-xl md:text-2xl font-bold tracking-tight">Example Portfolio Item</h3>
                         </div>
                     </div>
                 @endforelse
+
+                <!-- View More Card (Always as the 8th item or at the end) -->
+                @php $viewMoreIndex = count($featuredProjects) > 0 ? min(count($featuredProjects), 7) : 2; @endphp
+                <div class="group shrink-0 w-[85vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center {{ $viewMoreIndex % 2 != 0 ? 'md:mt-14' : '' }}" data-aos="fade-up">
+                    <a href="{{ route('portfolio.index') }}" class="block relative h-full">
+                        <div class="aspect-[16/10] bg-black text-white overflow-hidden mb-6 neo-frame flex flex-col items-center justify-center transition-all duration-500 group-hover:bg-gray-900 group-hover:scale-105">
+                            <h3 class="text-3xl font-bold mb-4">View All</h3>
+                            <span class="w-16 h-16 flex items-center justify-center border-2 border-white rounded-full group-hover:bg-white group-hover:text-black transition-all">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="flex justify-center items-start text-center">
+                            <div>
+                                <p class="text-gray-500 text-xs uppercase tracking-widest">Explore More</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Personal Strengths -->
     <section class="py-32 border-t border-black/5 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-[1400px] mx-auto px-6">
             <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-16 text-center">Core Values</p>
             <div class="grid md:grid-cols-3 gap-20">
                 <div data-aos="fade-up" class="relative group">
@@ -206,18 +221,18 @@
     </section>
 
     <!-- Skills & Abilities Section -->
-    <section class="py-32 bg-white overflow-hidden relative">
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="mb-16 text-center">
+    <section class="py-16 md:py-32 bg-white overflow-hidden relative">
+        <div class="max-w-[1400px] mx-auto px-4 md:px-6 relative z-10">
+            <div class="mb-12 md:mb-16 text-center">
                 <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-4">Technical Expertise</p>
-                <h2 class="text-6xl font-bold tracking-tighter">Skills &amp; Abilities</h2>
+                <h2 class="text-4xl md:text-6xl font-bold tracking-tighter">Skills &amp; Abilities</h2>
             </div>
 
-            <div class="p-8 md:p-16 relative neo-frame bg-white" data-aos="zoom-in">
+            <div class="p-4 md:p-16 relative neo-frame bg-white overflow-hidden" data-aos="zoom-in">
                 <!-- Inner grid pattern specifically for skills box -->
                 <div class="absolute inset-0 bg-grid-pattern opacity-50 z-0 pointer-events-none"></div>
                 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 relative z-10">
+                <div class="relative z-10 flex flex-col gap-6 md:gap-8">
                     @php
                         $skills = [
                             ['name' => 'ReactJS', 'icon' => 'react/react-original.svg'],
@@ -237,20 +252,38 @@
                             ['name' => 'GitHub', 'icon' => 'github/github-original.svg'],
                             ['name' => 'WordPress', 'icon' => 'wordpress/wordpress-plain.svg'],
                         ];
+                        
+                        $row1 = array_slice($skills, 0, 8);
+                        $row2 = array_slice($skills, 8, 8);
                     @endphp
 
-                    @foreach($skills as $index => $skill)
-                        <div data-aos="fade-up" data-aos-delay="{{ ($index % 4) * 100 }}"
-                            class="bg-white p-6 flex flex-col items-center justify-center gap-4 hover:-translate-y-2 transition-transform duration-300 border-2 border-black/10 hover:border-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group skill-card cursor-pointer">
-                            <div class="w-12 h-12 flex items-center justify-center">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ $skill['icon'] }}"
-                                    alt="{{ $skill['name'] }}" loading="lazy"
-                                    class="w-full h-full object-contain skill-icon grayscale group-hover:grayscale-0 transition-all duration-300">
+                    <!-- First Row (Scrolling Left) -->
+                    <div class="flex w-max animate-marquee-left hover:[animation-play-state:paused]">
+                        @foreach(array_merge($row1, $row1) as $index => $skill)
+                            <div class="bg-white w-32 h-32 md:w-48 md:h-48 mx-2 md:mx-4 p-4 md:p-6 flex flex-col items-center justify-center gap-2 md:gap-4 hover:-translate-y-2 transition-transform duration-300 border-2 border-black/10 hover:border-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group skill-card cursor-pointer shrink-0">
+                                <div class="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ $skill['icon'] }}"
+                                        alt="{{ $skill['name'] }}" loading="lazy"
+                                        class="w-full h-full object-contain skill-icon transition-all duration-300">
+                                </div>
+                                <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-black transition-colors text-center">{{ $skill['name'] }}</span>
                             </div>
-                            <span
-                                class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-black transition-colors text-center">{{ $skill['name'] }}</span>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+
+                    <!-- Second Row (Scrolling Right) -->
+                    <div class="flex w-max animate-marquee-right hover:[animation-play-state:paused]">
+                        @foreach(array_merge($row2, $row2) as $index => $skill)
+                            <div class="bg-white w-32 h-32 md:w-48 md:h-48 mx-2 md:mx-4 p-4 md:p-6 flex flex-col items-center justify-center gap-2 md:gap-4 hover:-translate-y-2 transition-transform duration-300 border-2 border-black/10 hover:border-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group skill-card cursor-pointer shrink-0">
+                                <div class="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ $skill['icon'] }}"
+                                        alt="{{ $skill['name'] }}" loading="lazy"
+                                        class="w-full h-full object-contain skill-icon transition-all duration-300">
+                                </div>
+                                <span class="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-black transition-colors text-center">{{ $skill['name'] }}</span>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -262,8 +295,8 @@
 
     <!-- Gallery Section -->
     <section class="py-32 bg-black text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6" data-aos="fade-up">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6" data-aos="fade-up">
                 <div>
                     <p class="text-xs uppercase tracking-[0.4em] text-gray-500 mb-4">Visual Stories</p>
                     <h2 class="text-6xl md:text-7xl font-bold tracking-tighter">Gallery</h2>
@@ -318,51 +351,55 @@
     </section>
 
     <!-- Blog Journal -->
-    <section class="py-32 bg-white border-y border-black/5 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-20" data-aos="fade-right">
-                <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-4">Latest Updates</p>
-                <h2 class="text-6xl font-bold tracking-tighter">Recent Thoughts</h2>
+    <section class="py-32 bg-white text-black overflow-hidden relative">
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6" data-aos="fade-right">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.4em] text-gray-500 mb-4">Latest Updates</p>
+                    <h2 class="text-6xl font-bold tracking-tighter text-black">Recent Thoughts</h2>
+                </div>
             </div>
 
-            <div class="space-y-0 border-t-2 border-black">
-                @forelse($recentBlogs as $blog)
-                    <a href="{{ route('blog.show', $blog->slug) }}"
-                        class="group block py-12 border-b border-black/10 hover:bg-gray-50 transition-colors px-4 relative overflow-hidden">
-                        
-                        <!-- Hover decorative element -->
-                        <div class="absolute inset-0 bg-black/5 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 z-0"></div>
-                        
-                        <div class="grid md:grid-cols-12 items-center gap-8 relative z-10">
-                            <div class="md:col-span-2 text-gray-500 uppercase tracking-widest text-xs font-bold">
-                                {{ optional($blog->published_at)->format('M d, Y') ?? 'Draft' }}
+            <div class="relative z-10 py-4 w-full">
+                <div id="blog-scroll-container" class="flex gap-6 md:gap-8 w-full overflow-x-auto snap-x snap-mandatory pb-8 scroll-smooth items-start cursor-grab active:cursor-grabbing" style="scrollbar-width: thin;">
+                    @forelse($allBlogs->take(10) as $index => $blog)
+                        <a href="{{ route('blog.show', $blog->slug) }}" class="group block w-64 md:w-80 shrink-0 snap-start {{ $index % 2 != 0 ? 'mt-12' : '' }}" data-aos="fade-up" data-aos-delay="{{ ($index % 4) * 100 }}">
+                            <div class="bg-white overflow-hidden mb-6 aspect-[4/3] relative neo-frame">
+                                @if($blog->featured_image)
+                                    <img src="{{ Str::startsWith($blog->featured_image, ['http://', 'https://']) ? $blog->featured_image : asset('storage/' . $blog->featured_image) }}" alt="{{ $blog->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                                @else
+                                    <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
+                                        <span class="text-gray-400 font-bold tracking-widest uppercase text-xs">No Image</span>
+                                    </div>
+                                @endif
                             </div>
-                            <div class="md:col-span-8">
-                                <h3 class="text-3xl md:text-4xl font-bold group-hover:italic transition-all">
-                                    {{ $blog->title }}
-                                </h3>
-                            </div>
-                            <div class="md:col-span-2 text-right">
-                                <span class="inline-flex items-center justify-center w-14 h-14 border-2 border-black/20 rounded-full group-hover:border-black group-hover:bg-black group-hover:text-white transition-all overflow-hidden">
-                                    <svg class="w-6 h-6 blog-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
-                                </span>
-                            </div>
+                            <h3 class="text-xl font-bold mb-3 flex items-center text-black group-hover:text-black/70 transition-colors">
+                                <span class="truncate">{{ $blog->title }}</span>
+                                <svg class="w-4 h-4 ml-2 text-black transform group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </h3>
+                            <p class="text-sm text-gray-500 line-clamp-3 leading-relaxed">
+                                {{ $blog->excerpt ?? Str::limit(strip_tags($blog->content), 100) }}
+                            </p>
+                        </a>
+                    @empty
+                        <div class="w-full py-20 text-center opacity-30">
+                            <p class="text-2xl font-bold text-black">Journal entries are being prepared...</p>
                         </div>
-                    </a>
-                @empty
-                    <div class="py-20 text-center opacity-30 border-b border-black/10">
-                        <p class="text-2xl font-bold">Journal entries are being prepared...</p>
-                    </div>
-                @endforelse
-            </div>
-            
-            <div class="mt-16 text-center" data-aos="fade-up">
-                <a href="{{ route('blog.index') }}" class="inline-flex items-center space-x-2 text-sm font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">
-                    <span>View All Articles</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </a>
+                    @endforelse
+                    
+                    @if($allBlogs->count() > 10)
+                        <a href="{{ route('blog.index') }}" class="group block w-64 md:w-80 shrink-0 snap-start" data-aos="fade-up">
+                            <div class="bg-gray-50 flex flex-col items-center justify-center overflow-hidden mb-6 aspect-[4/3] relative neo-frame group-hover:bg-black group-hover:text-white transition-all duration-300 border-2 border-dashed border-gray-300 hover:border-black">
+                                <span class="text-lg font-bold uppercase tracking-widest mb-4">View All</span>
+                                <svg class="w-8 h-8 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
     </section>
@@ -405,8 +442,16 @@
         ];
     @endphp
 
+
+
     <!-- Find Me Across the Web CTA -->
     <section class="py-32 bg-black text-white relative overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Cyber Background" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+        </div>
+
         <!-- Background Ticker -->
         <div class="absolute inset-0 opacity-[0.03] flex items-center pointer-events-none whitespace-nowrap z-0">
             <div class="animate-float" style="animation-duration: 20s; font-size: 30vw; font-weight: 900; line-height: 1;">
@@ -414,15 +459,15 @@
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10 text-center">
             <div data-aos="zoom-in" class="flex flex-col items-center justify-center">
                 <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8">Beyond This Website</p>
-                <h2 class="text-6xl md:text-8xl font-bold tracking-tighter mb-12">Find me across<br><span class="text-outline-premium opacity-100">the web</span></h2>
+                <h2 class="text-4xl md:text-8xl font-bold tracking-tighter mb-12">Find me across <br class="hidden md:block"><span class="text-white">the web</span></h2>
                 
                 <a href="{{ route('links') }}"
-                    class="group inline-flex items-center space-x-6 border-2 border-white px-12 py-6 hover:bg-white hover:text-black transition-all rounded-full">
-                    <span class="text-lg font-bold uppercase tracking-widest">All Profiles</span>
-                    <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    class="group inline-flex items-center space-x-6 border-2 border-white px-8 md:px-12 py-4 md:py-6 hover:bg-white hover:text-black transition-all">
+                    <span class="text-sm md:text-lg font-bold uppercase tracking-widest">All Profiles</span>
+                    <svg class="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                     </svg>
                 </a>
@@ -435,4 +480,46 @@
         title="Frequently Asked Questions" 
         subtitle="Got Questions?"
     />
-@endsection
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.getElementById('blog-scroll-container');
+            if(!slider) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let isDragging = false;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDragging = false;
+                slider.style.cursor = 'grabbing';
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.style.cursor = '';
+            });
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.style.cursor = '';
+            });
+            slider.addEventListener('mousemove', (e) => {
+                if(!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                if(Math.abs(walk) > 5) isDragging = true;
+                slider.scrollLeft = scrollLeft - walk;
+            });
+            
+            slider.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if(isDragging) e.preventDefault();
+                });
+            });
+        });
+    </script>
+@endsection

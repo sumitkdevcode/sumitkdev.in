@@ -10,6 +10,11 @@
     <link rel="icon" href="{{ asset('images/favicon.webp') }}" sizes="48x48" type="image/webp">
     <link rel="apple-touch-icon" href="{{ asset('images/favicon.webp') }}">
 
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <!-- Canonical URL -->
     <link rel="canonical" href="@yield('canonical_url', strtok(url()->current(), '?'))">
     <link rel="alternate" hreflang="en" href="@yield('canonical_url', strtok(url()->current(), '?'))">
@@ -231,7 +236,7 @@
     x-init="window.addEventListener('closeMobileMenu', () => mobileMenuOpen = false)">
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
             <a href="{{ route('home') }}" class="flex items-center">
                 <img src="{{ asset('images/logo.webp') }}" alt="Sumit Kumar" class="h-10 w-auto" fetchpriority="high">
             </a>
@@ -299,7 +304,7 @@
 
     <!-- Footer -->
     <footer class="bg-black text-white py-12 mt-10">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-[1400px] mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-20">
                 <div>
                     <h2 class="text-5xl font-bold tracking-tighter mb-8">Let's create something remarkable.</h2>

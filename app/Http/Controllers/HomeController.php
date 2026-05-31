@@ -17,10 +17,9 @@ class HomeController extends Controller
                 ->get();
         });
 
-        $recentBlogs = Cache::remember('home_recent_blogs', 1800, function () {
+        $allBlogs = Cache::remember('home_all_blogs', 1800, function () {
             return \App\Models\BlogPost::where('is_published', true)
                 ->orderBy('published_at', 'desc')
-                ->take(3)
                 ->get();
         });
 
@@ -33,7 +32,7 @@ class HomeController extends Controller
 
         $settings = $this->getSettings();
 
-        return view('home', compact('featuredProjects', 'recentBlogs', 'galleryImages', 'settings'));
+        return view('home', compact('featuredProjects', 'allBlogs', 'galleryImages', 'settings'));
     }
 
     public function about()
