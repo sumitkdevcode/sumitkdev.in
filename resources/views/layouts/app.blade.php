@@ -13,7 +13,6 @@
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="@yield('canonical_url', strtok(url()->current(), '?'))">
@@ -169,18 +168,14 @@
     @yield('meta')
 
 
-    <!-- Fonts (non-render-blocking) -->
+    <!-- Fonts (deferred) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     </noscript>
 
     <!-- Styles -->
@@ -240,7 +235,7 @@
             <!-- Left: Logo -->
             <div class="flex-shrink-0 w-[120px] lg:w-[200px]">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img src="{{ asset('images/logo.webp') }}" alt="Sumit Kumar" class="h-10 w-auto" fetchpriority="high">
+                    <img src="{{ asset('images/logo.webp') }}" alt="Sumit Kumar" width="200" height="40" class="h-10 w-auto" fetchpriority="high">
                 </a>
             </div>
 

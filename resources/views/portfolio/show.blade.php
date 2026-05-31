@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('meta_title', $project->title . ' — Portfolio | Sumit Kumar')
-@section('meta_description', Str::limit(strip_tags($project->description), 160))
+@section('meta_title', $project->meta_title ?? ($project->title . ' — Portfolio | Sumit Kumar'))
+@section('meta_description', $project->meta_description ?? Str::limit(strip_tags($project->description), 160))
 @section('meta_keywords', is_array($project->tech_stack) ? implode(', ', $project->tech_stack) . ', Sumit Kumar' : 'Sumit Kumar portfolio')
 
 @section('og_type', 'article')
-@section('og_title', $project->title . ' — Portfolio | Sumit Kumar')
-@section('og_description', Str::limit(strip_tags($project->description), 160))
+@section('og_title', $project->meta_title ?? ($project->title . ' — Portfolio | Sumit Kumar'))
+@section('og_description', $project->meta_description ?? Str::limit(strip_tags($project->description), 160))
 @section('og_image', $project->featured_image ? asset('storage/' . $project->featured_image) : asset('images/og-default.webp'))
 
-@section('twitter_title', $project->title . ' — Portfolio | Sumit Kumar')
-@section('twitter_description', Str::limit(strip_tags($project->description), 160))
+@section('twitter_title', $project->meta_title ?? ($project->title . ' — Portfolio | Sumit Kumar'))
+@section('twitter_description', $project->meta_description ?? Str::limit(strip_tags($project->description), 160))
 @section('twitter_image', $project->featured_image ? asset('storage/' . $project->featured_image) : asset('images/og-default.webp'))
 @section('content')
     <article class="pb-32">

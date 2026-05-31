@@ -53,7 +53,7 @@
                             ? asset('storage/' . \App\Models\Setting::get('home_hero_image'))
                             : asset('storage/media/j0qk6wFOPGrGJEBdwp6IieB8rVokn357csmu91Sq.webp');
                     @endphp
-                    <img src="{{ $heroImage }}"
+                    <img src="{{ $heroImage }}" width="800" height="1000" decoding="async"
                         alt="Sumit Kumar" class="w-full h-full object-cover img-premium" fetchpriority="high">
                 </div>
                 
@@ -137,7 +137,7 @@
                         <div class="group shrink-0 w-[75vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center {{ $index % 2 != 0 ? 'md:mt-14' : '' }}" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                             <a href="{{ route('portfolio.show', $project->slug) }}" class="block relative">
                                 <div class="aspect-[16/10] bg-gray-100 overflow-hidden mb-6 neo-frame image-reveal-wrapper">
-                                    <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}"
+                                    <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}" width="800" height="500" decoding="async"
                                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
                                 </div>
                                 <div class="flex justify-between items-start">
@@ -312,7 +312,7 @@
                     <div class="aspect-square bg-white/10 overflow-hidden group relative" data-aos="fade-up"
                         data-aos-delay="{{ ($index % 4) * 100 }}">
                         <a href="{{ route('gallery') }}" class="block w-full h-full relative">
-                            <img src="{{ asset('storage/' . $image->file_path) }}" alt="{{ $image->title ?? 'Gallery Image' }}"
+                            <img src="{{ asset('storage/' . $image->file_path) }}" alt="{{ $image->title ?? 'Gallery Image' }}" width="400" height="400" decoding="async"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy">
                             <!-- Overlay -->
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
@@ -366,7 +366,7 @@
                         <a href="{{ route('blog.show', $blog->slug) }}" class="group block w-64 md:w-80 shrink-0 snap-start {{ $index % 2 != 0 ? 'mt-12' : '' }}" data-aos="fade-up" data-aos-delay="{{ ($index % 4) * 100 }}">
                             <div class="bg-white overflow-hidden mb-6 aspect-[4/3] relative neo-frame">
                                 @if($blog->featured_image)
-                                    <img src="{{ Str::startsWith($blog->featured_image, ['http://', 'https://']) ? $blog->featured_image : asset('storage/' . $blog->featured_image) }}" alt="{{ $blog->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                                    <img src="{{ Str::startsWith($blog->featured_image, ['http://', 'https://']) ? $blog->featured_image : asset('storage/' . $blog->featured_image) }}" alt="{{ $blog->title }}" width="600" height="450" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                                 @else
                                     <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
                                         <span class="text-gray-400 font-bold tracking-widest uppercase text-xs">No Image</span>
@@ -448,7 +448,7 @@
     <section class="py-16 bg-black text-white relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Cyber Background" class="w-full h-full object-cover opacity-30">
+            <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Cyber Background" width="1920" height="1080" class="w-full h-full object-cover opacity-30" loading="lazy" decoding="async">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
         </div>
 
