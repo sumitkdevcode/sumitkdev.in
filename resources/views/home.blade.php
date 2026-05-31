@@ -3,7 +3,7 @@
 @section('canonical_url', route('home'))
 
 @section('content')
-    <section class="relative px-6 pt-4 pb-20 md:pb-32 overflow-hidden">
+    <section class="relative px-6 pt-4 pb-12 md:pb-16 overflow-hidden">
         <!-- Animated Background Grid -->
         <div class="bg-grid-pattern"></div>
 
@@ -100,7 +100,7 @@
     </section>
 
     <!-- Stats / Skills Section -->
-    <section class="py-32 border-y border-black/5 bg-gray-50/50">
+    <section class="py-16 border-y border-black/5 bg-gray-50/50">
         <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div data-aos="fade-up" class="neo-frame bg-white p-8 group">
                 <h3 class="text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">02+</h3>
@@ -122,7 +122,7 @@
     </section>
 
     <!-- Featured Projects -->
-    <section class="py-32 overflow-hidden">
+    <section class="py-16 overflow-hidden">
         <div class="max-w-[1400px] mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6">
                 <div data-aos="fade-right">
@@ -134,7 +134,7 @@
             <div class="flex items-start overflow-x-auto gap-6 md:gap-8 pb-10 snap-x snap-mandatory scroll-smooth">
                 @forelse($featuredProjects as $index => $project)
                     @if($loop->index < 7)
-                        <div class="group shrink-0 w-[85vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center {{ $index % 2 != 0 ? 'md:mt-14' : '' }}" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                        <div class="group shrink-0 w-[75vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center {{ $index % 2 != 0 ? 'md:mt-14' : '' }}" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                             <a href="{{ route('portfolio.show', $project->slug) }}" class="block relative">
                                 <div class="aspect-[16/10] bg-gray-100 overflow-hidden mb-6 neo-frame image-reveal-wrapper">
                                     <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}"
@@ -194,7 +194,7 @@
     </section>
 
     <!-- Personal Strengths -->
-    <section class="py-32 border-t border-black/5 bg-white">
+    <section class="py-16 border-t border-black/5 bg-white">
         <div class="max-w-[1400px] mx-auto px-6">
             <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-16 text-center">Core Values</p>
             <div class="grid md:grid-cols-3 gap-20">
@@ -221,7 +221,7 @@
     </section>
 
     <!-- Skills & Abilities Section -->
-    <section class="py-16 md:py-32 bg-white overflow-hidden relative">
+    <section class="py-12 md:py-16 bg-white overflow-hidden relative">
         <div class="max-w-[1400px] mx-auto px-4 md:px-6 relative z-10">
             <div class="mb-12 md:mb-16 text-center">
                 <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-4">Technical Expertise</p>
@@ -294,7 +294,7 @@
 
 
     <!-- Gallery Section -->
-    <section class="py-32 bg-black text-white">
+    <section class="py-16 bg-black text-white">
         <div class="max-w-[1400px] mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6" data-aos="fade-up">
                 <div>
@@ -351,7 +351,7 @@
     </section>
 
     <!-- Blog Journal -->
-    <section class="py-32 bg-white text-black overflow-hidden relative">
+    <section class="py-16 bg-white text-black overflow-hidden relative">
         <div class="max-w-[1400px] mx-auto px-6 relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6" data-aos="fade-right">
                 <div>
@@ -445,7 +445,7 @@
 
 
     <!-- Find Me Across the Web CTA -->
-    <section class="py-32 bg-black text-white relative overflow-hidden">
+    <section class="py-16 bg-black text-white relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Cyber Background" class="w-full h-full object-cover opacity-30">
