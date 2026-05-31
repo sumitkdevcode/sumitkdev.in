@@ -72,12 +72,42 @@ class MediaController extends Controller
         $request->validate([
             'title' => 'nullable|max:255',
             'category' => 'nullable|string',
+            'file' => 'nullable|file|mimes:jpeg,png,jpg,webp,mp4,mov,ogg|max:20480',
         ]);
 
-        $medium->update([
+        $updateData = [
             'title' => $request->title,
             'category' => $request->category,
-        ]);
+        ];
+
+        if ($request->hasFile('file')) {
+            // Delete old file
+            if ($medium->file_path) {
+                Storage::disk('public')->delete($medium->file_path);
+            }
+
+            $file = $request->file('file');
+            $mime = $file->getMimeType();
+            $type = str_contains($mime, 'video') ? 'video' : 'image';
+
+            if ($type === 'image') {
+                $path = ImageHelper::storeAsWebp($file, 'media');
+                $mime = 'image/webp';
+            } else {
+                $path = $file->store('media', 'public');
+            }
+
+            $updateData['file_path'] = $path;
+            $updateData['file_type'] = $type;
+            $updateData['mime_type'] = $mime;
+            $updateData['file_size'] = round($file->getSize() / 1024);
+
+            if (empty($updateData['title'])) {
+                $updateData['title'] = $file->getClientOriginalName();
+            }
+        }
+
+        $medium->update($updateData);
 
         return redirect()->route('admin.media.index')->with('success', 'Media updated successfully.');
     }

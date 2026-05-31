@@ -9,16 +9,24 @@
     </div>
 
     <div class="bg-white border border-black/5 p-6 md:p-8 max-w-3xl">
-        <form action="{{ route('admin.media.update', $medium->id) }}" method="POST">
+        <form action="{{ route('admin.media.update', $medium->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
-            <div class="mb-8 border border-black/10 bg-gray-50 p-4 inline-block">
+            <div class="mb-8 border border-black/10 bg-gray-50 p-4 inline-block relative group">
                 @if($medium->file_type === 'video')
                     <video src="{{ asset('storage/' . $medium->file_path) }}" class="max-h-64 object-contain" controls></video>
                 @else
                     <img src="{{ asset('storage/' . $medium->file_path) }}" alt="{{ $medium->title }}" class="max-h-64 object-contain">
                 @endif
+                <div class="mt-4">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest mb-2">Replace File <span class="text-gray-400 font-normal">(Optional)</span></label>
+                    <input type="file" name="file"
+                        class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-[10px] file:font-bold file:uppercase file:bg-black file:text-white hover:file:bg-gray-800 transition-all cursor-pointer">
+                    @error('file')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
 
             <div class="space-y-6">
