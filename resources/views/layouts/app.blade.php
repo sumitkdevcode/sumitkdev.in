@@ -237,33 +237,43 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-black/5">
         <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="{{ route('home') }}" class="flex items-center">
-                <img src="{{ asset('images/logo.webp') }}" alt="Sumit Kumar" class="h-10 w-auto" fetchpriority="high">
-            </a>
+            <!-- Left: Logo -->
+            <div class="flex-shrink-0 w-[120px] lg:w-[200px]">
+                <a href="{{ route('home') }}" class="flex items-center">
+                    <img src="{{ asset('images/logo.webp') }}" alt="Sumit Kumar" class="h-10 w-auto" fetchpriority="high">
+                </a>
+            </div>
 
-            <div class="hidden md:flex items-center space-x-10 text-sm font-medium uppercase tracking-widest">
+            <!-- Center: Links -->
+            <div class="hidden md:flex flex-1 justify-center items-center space-x-6 lg:space-x-10 text-sm font-medium uppercase tracking-widest">
                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                 <a href="{{ route('portfolio.index') }}" class="nav-link">Work</a>
                 <a href="{{ route('blog.index') }}" class="nav-link">Blog</a>
                 <a href="{{ route('gallery') }}" class="nav-link">Gallery</a>
                 <a href="{{ route('about') }}" class="nav-link">About</a>
-                <a href="{{ route('contact') }}" class="nav-link">Connect</a>
                 <a href="{{ route('links') }}" class="nav-link">Links</a>
             </div>
 
-            <!-- Mobile Menu Toggle -->
-            <button @click="mobileMenuOpen = !mobileMenuOpen"
-                class="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7">
-                    </path>
-                </svg>
-                <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
+            <!-- Right: Contact Button & Mobile Toggle -->
+            <div class="flex-shrink-0 w-[120px] lg:w-[200px] flex justify-end items-center">
+                <a href="{{ route('contact') }}" class="hidden md:inline-flex items-center justify-center px-5 py-2 border-2 border-black bg-black text-white hover:bg-white hover:text-black transition-all text-xs font-bold uppercase tracking-widest">
+                    Contact
+                </a>
+                
+                <!-- Mobile Menu Toggle -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen"
+                    class="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors ml-4">
+                    <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7">
+                        </path>
+                    </svg>
+                    <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <!-- Mobile Menu -->

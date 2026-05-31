@@ -55,7 +55,7 @@
                     <div class="flex-none w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 overflow-hidden group border-2 border-black/10 hover:border-black transition-all cursor-pointer neo-frame"
                         onclick="updateMainImage('{{ asset('storage/' . $project->featured_image) }}')">
                         <img src="{{ asset('storage/' . $project->featured_image) }}" alt=""
-                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy">
+                            class="w-full h-full object-cover transition-all duration-700" loading="lazy">
                     </div>
 
                     {{-- Sub Images --}}
@@ -63,7 +63,7 @@
                         <div class="flex-none w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 overflow-hidden group border-2 border-black/10 hover:border-black transition-all cursor-pointer neo-frame"
                             onclick="updateMainImage('{{ asset('storage/' . $image) }}')">
                             <img src="{{ asset('storage/' . $image) }}" alt=""
-                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy">
+                                class="w-full h-full object-cover transition-all duration-700" loading="lazy">
                         </div>
                     @endforeach
                 </div>

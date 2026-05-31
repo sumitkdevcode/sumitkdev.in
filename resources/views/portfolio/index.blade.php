@@ -26,7 +26,7 @@
                         <a href="{{ route('portfolio.show', $project->slug) }}" class="block relative">
                             <div class="aspect-[16/10] bg-gray-100 overflow-hidden mb-8 neo-frame image-reveal-wrapper">
                                 <img src="{{ asset('storage/' . $project->featured_image) }}" alt="{{ $project->title }}"
-                                    class="w-full h-full object-cover img-premium project-image-scale" loading="lazy">
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
                             </div>
                             <div class="flex justify-between items-start">
                                 <div>
