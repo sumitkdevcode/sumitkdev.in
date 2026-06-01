@@ -27,7 +27,7 @@ class PageSeoController extends Controller
             );
         }
 
-        $seos = PageSeo::orderBy('page_name')->get();
+        $seos = PageSeo::orderBy('page_name')->paginate(15);
         return view('admin.seo.index', compact('seos'));
     }
 

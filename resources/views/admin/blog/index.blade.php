@@ -25,7 +25,7 @@
                         <th class="px-8 lg:px-10 py-6 text-right">Utility</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-50">
+                <tbody class="divide-y divide-gray-50" data-infinite-scroll-container>
                     @forelse($posts as $post)
                         <tr class="group hover:bg-gray-50/50 transition-all">
                             <td class="px-8 lg:px-10 py-6">
@@ -91,9 +91,10 @@
         </div>
 
         @if($posts->hasPages())
-            <div class="px-6 lg:px-8 py-4 lg:py-6 border-t border-black/5">
+            <div class="px-6 lg:px-8 py-4 lg:py-6 border-t border-black/5" data-pagination-wrapper>
                 {{ $posts->links() }}
             </div>
+            <div data-next-page-url="{{ $posts->nextPageUrl() }}"></div>
         @endif
     </div>
 @endsection

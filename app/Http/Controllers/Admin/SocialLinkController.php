@@ -11,7 +11,7 @@ class SocialLinkController extends Controller
 {
     public function index()
     {
-        $links = SocialLink::orderBy('order')->get();
+        $links = SocialLink::orderBy('order')->paginate(15);
         return view('admin.social_links.index', compact('links'));
     }
 

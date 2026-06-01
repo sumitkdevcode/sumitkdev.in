@@ -19,7 +19,7 @@
             <p class="text-2xl lg:text-3xl italic">No media assets found.</p>
         </div>
     @else
-        <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6">
+        <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-6" data-infinite-scroll-container>
             @foreach($media as $item)
                 <div class="group bg-white border border-black/5 overflow-hidden shadow-sm flex flex-col">
                     <div class="aspect-square relative flex items-center justify-center bg-gray-50 flex-shrink-0">
@@ -71,9 +71,10 @@
         </div>
 
         @if($media->hasPages())
-            <div class="mt-8 lg:mt-12">
+            <div class="mt-8 lg:mt-12" data-pagination-wrapper>
                 {{ $media->links() }}
             </div>
+            <div data-next-page-url="{{ $media->nextPageUrl() }}"></div>
         @endif
     @endif
 @endsection

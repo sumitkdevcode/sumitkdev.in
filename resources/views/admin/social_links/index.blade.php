@@ -33,7 +33,7 @@
                         <th class="px-6 py-4 text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 text-right">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-50">
+                <tbody class="divide-y divide-gray-50" data-infinite-scroll-container>
                     @foreach($links as $link)
                         <tr class="hover:bg-gray-50/50 transition-colors">
                             <td class="px-6 py-4 text-[10px] font-medium text-gray-400 font-mono">{{ $link->order }}</td>
@@ -84,5 +84,12 @@
                 </tbody>
             </table>
         </div>
+        
+        @if($links->hasPages())
+            <div class="px-6 lg:px-8 py-4 lg:py-6" data-pagination-wrapper>
+                {{ $links->links() }}
+            </div>
+            <div data-next-page-url="{{ $links->nextPageUrl() }}"></div>
+        @endif
     </div>
 @endsection

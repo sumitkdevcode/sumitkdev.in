@@ -20,7 +20,7 @@
                         <th class="px-6 lg:px-8 py-4 lg:py-6 text-right">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-black/5">
+                <tbody class="divide-y divide-black/5" data-infinite-scroll-container>
                     @forelse($messages as $msg)
                         <tr
                             class="group hover:bg-gray-50 transition-colors {{ !$msg->is_read ? 'font-bold bg-black/[0.02]' : '' }}">
@@ -70,9 +70,10 @@
         </div>
 
         @if($messages->hasPages())
-            <div class="px-6 lg:px-8 py-4 lg:py-6 border-t border-black/5">
+            <div class="px-6 lg:px-8 py-4 lg:py-6 border-t border-black/5" data-pagination-wrapper>
                 {{ $messages->links() }}
             </div>
+            <div data-next-page-url="{{ $messages->nextPageUrl() }}"></div>
         @endif
     </div>
 @endsection

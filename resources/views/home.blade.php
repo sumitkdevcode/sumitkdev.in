@@ -448,8 +448,8 @@
     <section class="py-16 bg-black text-white relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Cyber Background" width="1920" height="1080" class="w-full h-full object-cover opacity-30" loading="lazy" decoding="async">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+            <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Cyber Background" width="1920" height="1080" class="w-full h-full object-cover opacity-50" loading="lazy" decoding="async">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
         </div>
 
         <!-- Background Ticker -->

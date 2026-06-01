@@ -40,7 +40,7 @@
                             Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-50">
+                <tbody class="divide-y divide-gray-50" data-infinite-scroll-container>
                     @foreach($users as $user)
                         <tr class="hover:bg-gray-50/50 transition-colors">
                             <td class="px-6 py-4">
@@ -83,5 +83,12 @@
                 </tbody>
             </table>
         </div>
+        
+        @if($users->hasPages())
+            <div class="px-6 lg:px-8 py-4 lg:py-6" data-pagination-wrapper>
+                {{ $users->links() }}
+            </div>
+            <div data-next-page-url="{{ $users->nextPageUrl() }}"></div>
+        @endif
     </div>
 @endsection

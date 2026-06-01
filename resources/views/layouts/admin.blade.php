@@ -297,6 +297,75 @@
         };
     </script>
     @stack('scripts')
+    
+    <!-- Infinite Scroll Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('[data-infinite-scroll-container]');
+            
+            if (container) {
+                // Hide default pagination wrapper if JS is enabled
+                const paginationWrapper = document.querySelector('[data-pagination-wrapper]');
+                if (paginationWrapper) {
+                    paginationWrapper.style.display = 'none';
+                }
+
+                // Add a loading indicator at the bottom of the container's parent
+                const loadingIndicator = document.createElement('div');
+                loadingIndicator.className = 'py-6 text-center text-gray-400 text-xs font-medium tracking-widest uppercase hidden';
+                loadingIndicator.innerHTML = 'Loading more...';
+                container.parentElement.appendChild(loadingIndicator);
+
+                let nextUrl = document.querySelector('[data-next-page-url]')?.getAttribute('data-next-page-url');
+                let isLoading = false;
+
+                window.addEventListener('scroll', () => {
+                    if (isLoading || !nextUrl) return;
+                    
+                    // Trigger load when scrolled near bottom (within 400px)
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 400) {
+                        isLoading = true;
+                        loadingIndicator.classList.remove('hidden');
+                        
+                        fetch(nextUrl, {
+                            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                        })
+                        .then(res => res.text())
+                        .then(html => {
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(html, 'text/html');
+                            
+                            const newContainer = doc.querySelector('[data-infinite-scroll-container]');
+                            const newNextUrl = doc.querySelector('[data-next-page-url]')?.getAttribute('data-next-page-url');
+                            
+                            if (newContainer) {
+                                // For tables, we append inside tbody. For grids, inside the div.
+                                container.insertAdjacentHTML('beforeend', newContainer.innerHTML);
+                            }
+                            
+                            nextUrl = newNextUrl;
+                            const nextUrlElement = document.querySelector('[data-next-page-url]');
+                            if (nextUrlElement) {
+                                if (nextUrl) {
+                                    nextUrlElement.setAttribute('data-next-page-url', nextUrl);
+                                } else {
+                                    nextUrlElement.removeAttribute('data-next-page-url');
+                                }
+                            }
+                            
+                            isLoading = false;
+                            loadingIndicator.classList.add('hidden');
+                        })
+                        .catch(err => {
+                            console.error('Error fetching next page:', err);
+                            isLoading = false;
+                            loadingIndicator.classList.add('hidden');
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
