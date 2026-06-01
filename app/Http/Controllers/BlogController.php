@@ -12,11 +12,22 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $page = $request->get('page', 1);
+        $search = $request->get('search', '');
 
-        $posts = Cache::remember("blog_index_page_{$page}", 1800, function () {
-            return BlogPost::where('is_published', true)
-                ->orderBy('published_at', 'desc')
-                ->paginate(10);
+        $cacheKey = "blog_index_page_{$page}_search_" . md5($search);
+
+        $posts = Cache::remember($cacheKey, 1800, function () use ($search) {
+            $query = BlogPost::where('is_published', true);
+
+            if (!empty($search)) {
+                $query->where(function($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                      ->orWhere('excerpt', 'like', "%{$search}%")
+                      ->orWhere('category', 'like', "%{$search}%");
+                });
+            }
+
+            return $query->orderBy('published_at', 'desc')->paginate(10);
         });
 
         // Only return the partial for genuine AJAX pagination requests,
@@ -25,7 +36,7 @@ class BlogController extends Controller
             return view('blog.partials.posts', compact('posts'))->render();
         }
 
-        return view('blog.index', compact('posts'));
+        return view('blog.index', compact('posts', 'search'));
     }
 
     public function show($slug)
