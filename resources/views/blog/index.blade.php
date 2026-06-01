@@ -68,6 +68,9 @@
                 
                 <div class="w-full md:w-96">
                     <form action="{{ route('blog.index') }}" method="GET" class="relative group" id="search-form">
+                        @if(!empty($category))
+                            <input type="hidden" name="category" value="{{ $category }}">
+                        @endif
                         <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search articles..." 
                             class="w-full bg-transparent border-b-2 border-gray-200 focus:border-black py-3 pl-0 pr-10 text-lg outline-none transition-colors placeholder:text-gray-300">
                         <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-black transition-colors hover:text-black">
@@ -78,6 +81,22 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Category Filters -->
+            @if(isset($categories) && $categories->count() > 0)
+                <div class="mb-12 flex flex-wrap gap-2" data-aos="fade-up">
+                    <a href="{{ route('blog.index', ['search' => request('search')]) }}" 
+                       class="px-4 py-2 text-[10px] font-bold uppercase tracking-widest border-2 transition-all {{ empty($category) ? 'bg-black text-white border-black' : 'bg-transparent text-gray-500 border-gray-200 hover:border-black hover:text-black' }}">
+                        All
+                    </a>
+                    @foreach($categories as $cat)
+                        <a href="{{ route('blog.index', ['category' => $cat, 'search' => request('search')]) }}" 
+                           class="px-4 py-2 text-[10px] font-bold uppercase tracking-widest border-2 transition-all {{ $category === $cat ? 'bg-black text-white border-black' : 'bg-transparent text-gray-500 border-gray-200 hover:border-black hover:text-black' }}">
+                            {{ $cat }}
+                        </a>
+                    @endforeach
+                </div>
+            @endif
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16" id="posts-container">
                 @if($posts->isEmpty())
@@ -124,7 +143,8 @@
                             page++;
                             const urlParams = new URLSearchParams(window.location.search);
                             const searchQuery = urlParams.get('search') || '';
-                            fetch(`/blog?page=${page}&search=${encodeURIComponent(searchQuery)}`, {
+                            const catQuery = urlParams.get('category') || '';
+                            fetch(`/blog?page=${page}&search=${encodeURIComponent(searchQuery)}&category=${encodeURIComponent(catQuery)}`, {
                                 headers: {
                                     'X-Requested-With': 'XMLHttpRequest'
                                 }

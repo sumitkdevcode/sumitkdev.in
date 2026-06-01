@@ -13,11 +13,27 @@ class BlogController extends Controller
     {
         $page = $request->get('page', 1);
         $search = $request->get('search', '');
+        $category = $request->get('category', '');
 
-        $cacheKey = "blog_index_page_{$page}_search_" . md5($search);
+        // Fetch distinct categories for the filter UI
+        $categories = Cache::remember('blog_categories_list', 3600, function () {
+            return BlogPost::where('is_published', true)
+                ->select('category')
+                ->distinct()
+                ->pluck('category')
+                ->filter()
+                ->sort()
+                ->values();
+        });
 
-        $posts = Cache::remember($cacheKey, 1800, function () use ($search) {
+        $cacheKey = "blog_index_page_{$page}_search_" . md5($search) . "_category_" . md5($category);
+
+        $posts = Cache::remember($cacheKey, 1800, function () use ($search, $category) {
             $query = BlogPost::where('is_published', true);
+
+            if (!empty($category)) {
+                $query->where('category', $category);
+            }
 
             if (!empty($search)) {
                 $query->where(function($q) use ($search) {
@@ -36,7 +52,7 @@ class BlogController extends Controller
             return view('blog.partials.posts', compact('posts'))->render();
         }
 
-        return view('blog.index', compact('posts', 'search'));
+        return view('blog.index', compact('posts', 'search', 'categories', 'category'));
     }
 
     public function show($slug)
