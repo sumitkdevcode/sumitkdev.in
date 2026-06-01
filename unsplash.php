@@ -1,11 +1,10 @@
 <?php
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://unsplash.com/napi/search/photos?query=coding&per_page=30');
+curl_setopt($ch, CURLOPT_URL, 'https://unsplash.com/s/photos/coding');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
-$res = curl_exec($ch);
-$data = json_decode($res, true);
-echo 'Count: ' . count($data['results']) . "\n";
-foreach ($data['results'] as $r) {
-    echo $r['id'] . "\n";
-}
+curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)');
+$html = curl_exec($ch);
+preg_match_all('/"id":"([^"]+)"/i', $html, $matches);
+$ids = array_unique($matches[1]);
+echo "Found: " . count($ids) . "\n";
+foreach(array_slice($ids, 0, 10) as $id) echo $id . "\n";
