@@ -3,8 +3,15 @@
 @section('content')
     <!-- Hero -->
     <section class="py-32">
-
-        <div class="max-w-5xl mx-auto px-6">
+        <!-- Floating Background Elements -->
+        <div class="fixed inset-0 pointer-events-none overflow-hidden flex flex-col justify-between py-20 opacity-5">
+            <div class="animate-float-slow whitespace-nowrap text-9xl font-bold uppercase tracking-tighter">
+                LINK IN BIO &bull; CONNECT &bull; DIGITAL PRESENCE &bull; LINK IN BIO &bull; CONNECT &bull;
+            </div>
+            <div class="animate-float-slow-reverse whitespace-nowrap text-9xl font-bold uppercase tracking-tighter">
+                PORTFOLIO &bull; SOCIAL &bull; RESOURCES &bull; PORTFOLIO &bull; SOCIAL &bull; RESOURCES
+            </div>
+        </div>        <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-24" data-aos="fade-up">
                 <p class="text-xs uppercase tracking-[0.5em] text-gray-400 font-bold mb-6">Digital Presence</p>
                 <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase leading-none mb-8">

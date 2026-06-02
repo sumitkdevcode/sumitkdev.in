@@ -4,8 +4,15 @@
 
 @section('content')
     <section class="pt-12 pb-12 relative bg-white border-b border-black/5 overflow-x-hidden">
-
-
+        <!-- Floating Background Elements -->
+        <div class="fixed inset-0 pointer-events-none overflow-hidden flex flex-col justify-between py-20 opacity-5 z-0">
+            <div class="whitespace-nowrap text-9xl font-bold uppercase tracking-tighter" style="animation: float 12s ease-in-out infinite;">
+                GALLERY &bull; MEMORIES &bull; MOMENTS &bull; GALLERY &bull; MEMORIES &bull; MOMENTS
+            </div>
+            <div class="whitespace-nowrap text-9xl font-bold uppercase tracking-tighter" style="animation: float 14s ease-in-out infinite reverse;">
+                ACHIEVEMENTS &bull; AWARDS &bull; HIGHLIGHTS &bull; ACHIEVEMENTS &bull; AWARDS &bull; HIGHLIGHTS
+            </div>
+        </div>
         <!-- Background Grid -->
         <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] pointer-events-none" style="z-index: 1;"></div>
 

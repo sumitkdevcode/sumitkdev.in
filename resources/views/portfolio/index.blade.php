@@ -10,8 +10,15 @@
 
 @section('content')
     <section class="pb-12 pt-12 relative bg-white border-b border-black/5 overflow-x-hidden">
-
-        <!-- Background Grid -->
+        <!-- Floating Background Elements -->
+        <div class="fixed inset-0 pointer-events-none overflow-hidden flex flex-col justify-between py-20 opacity-5 z-0">
+            <div class="whitespace-nowrap text-9xl font-bold uppercase tracking-tighter" style="animation: float 12s ease-in-out infinite;">
+                SELECTED WORK &bull; PROJECTS &bull; CASE STUDIES &bull; SELECTED WORK &bull; PROJECTS &bull;
+            </div>
+            <div class="whitespace-nowrap text-9xl font-bold uppercase tracking-tighter" style="animation: float 14s ease-in-out infinite reverse;">
+                DESIGN &bull; DEVELOPMENT &bull; ARCHITECTURE &bull; DESIGN &bull; DEVELOPMENT &bull; ARCHITECTURE
+            </div>
+        </div>        <!-- Background Grid -->
         <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] pointer-events-none" style="z-index: 1;"></div>
 
         <div class="max-w-7xl mx-auto px-6 relative" style="z-index: 10;">
