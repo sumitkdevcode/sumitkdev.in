@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Admin Panel - {{ config('app.name', 'Sumit Kumar') }}</title>
-    <link rel="icon" type="image/webp" href="{{ asset('images/favicon.webp') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

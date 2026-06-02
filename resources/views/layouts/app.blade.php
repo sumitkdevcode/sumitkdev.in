@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/favicon.webp') }}" sizes="48x48" type="image/webp">
-    <link rel="apple-touch-icon" href="{{ asset('images/favicon.webp') }}">
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,8 +99,8 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "@id": "{{ url('/') }}/#website",
-        "name": "Sumit Kumar (sumitkdev) — Full Stack Developer",
-        "alternateName": ["sumitkdev", "sumitkdev.in", "Sumit Kumar Developer", "Sumit Kumar Portfolio", "Sumit Kumar Blog"],
+        "name": "Sumit Kumar",
+        "alternateName": ["Sumit Kumar (sumitkdev) — Full Stack Developer", "sumitkdev", "sumitkdev.in", "Sumit Kumar Developer", "Sumit Kumar Portfolio", "Sumit Kumar Blog"],
         "url": "{{ url('/') }}",
         "description": "Official website of Sumit Kumar (sumitkdev) — Full Stack Developer & Software Engineer. Explore portfolio, read 500+ coding tutorials, and get in touch.",
         "publisher": {
@@ -150,7 +150,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="@yield('canonical_url', url(request()->path()))">
-    <meta property="og:site_name" content="Sumit Kumar — Full Stack Developer">
+    <meta property="og:site_name" content="Sumit Kumar">
     <meta property="og:title" content="@yield('og_title', optional($seoData)->og_title ?? (optional($seoData)->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
     <meta property="og:description" content="@yield('og_description', optional($seoData)->og_description ?? (optional($seoData)->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer specializing in Laravel, React, Vue.js.'))">
     <meta property="og:image" content="@yield('og_image', optional($seoData)->og_image ? asset(optional($seoData)->og_image) : asset('images/og-default.webp'))">
