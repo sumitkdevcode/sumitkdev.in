@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class DynamicEmail extends Mailable
@@ -15,16 +16,18 @@ class DynamicEmail extends Mailable
 
     public $emailSubject;
     public $emailBody;
+    public $emailAttachments;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject, $body)
+    public function __construct($subject, $body, $attachments = [])
     {
         $this->emailSubject = $subject;
         $this->emailBody = $body;
+        $this->emailAttachments = $attachments ?? [];
     }
 
     /**
@@ -58,6 +61,12 @@ class DynamicEmail extends Mailable
      */
     public function attachments()
     {
-        return [];
+        $attachmentInstances = [];
+        
+        foreach ($this->emailAttachments as $filePath) {
+            $attachmentInstances[] = Attachment::fromStorageDisk('public', $filePath);
+        }
+
+        return $attachmentInstances;
     }
 }

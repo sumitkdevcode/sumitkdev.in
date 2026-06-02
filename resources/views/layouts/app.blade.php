@@ -279,21 +279,24 @@
             x-transition:leave-start="opacity-100 transform translate-y-0"
             x-transition:leave-end="opacity-0 transform -translate-y-2"
             class="md:hidden bg-white border-t border-black/5">
-            <div class="px-6 py-4 space-y-4">
+            <div class="px-6 py-4 space-y-4 flex flex-col">
                 <a href="{{ route('home') }}"
                     class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Home</a>
                 <a href="{{ route('portfolio.index') }}"
                     class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Work</a>
                 <a href="{{ route('blog.index') }}"
-                    class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Journal</a>
+                    class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Blog</a>
                 <a href="{{ route('gallery') }}"
                     class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Gallery</a>
                 <a href="{{ route('about') }}"
                     class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">About</a>
-                <a href="{{ route('contact') }}"
-                    class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Connect</a>
                 <a href="{{ route('links') }}"
-                    class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Links</a>
+                    class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors mb-2">Links</a>
+                
+                <a href="{{ route('contact') }}"
+                    class="block w-full text-center px-5 py-3 border-2 border-black bg-black text-white hover:bg-white hover:text-black transition-all text-xs font-bold uppercase tracking-widest">
+                    Contact
+                </a>
             </div>
         </div>
     </nav>

@@ -35,14 +35,15 @@
 @endsection
 
 @section('content')
-    <section class="pt-12 pb-12 relative bg-white overflow-hidden border-b border-black/5">
+    <section class="pt-12 pb-12 relative bg-white border-b border-black/5 overflow-x-hidden">
+
         <!-- Background Grid -->
-        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] z-0 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] pointer-events-none" style="z-index: 1;"></div>
         
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 relative" style="z-index: 10;">
             <div class="mb-12" data-aos="fade-up">
                 <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 font-bold">About Me</p>
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase leading-none mb-12">Driven by<br><span class="text-outline-premium opacity-100">the result</span></h1>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-[-0.1em] uppercase leading-none mb-12">Driven by<br><span class="text-outline-premium opacity-100">the result</span></h1>
             </div>
 
             <div class="grid lg:grid-cols-12 gap-20">
@@ -62,8 +63,24 @@
                                     <span class="number-decorator text-[80px] -left-4 top-0 group-hover:text-black/5 transition-colors z-0">01</span>
                                     <div class="relative z-10">
                                         <div class="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2 mb-2">
+                                            <h3 class="text-2xl font-bold uppercase tracking-tighter">Software Engineer</h3>
+                                            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Feb 2025 — Present</span>
+                                        </div>
+                                        <p class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Web IT Squad - IT Services Company</p>
+                                        <ul class="text-sm space-y-3 list-disc pl-4 text-gray-600 font-normal">
+                                            <li>Developed and maintained responsive, user-friendly client websites and web applications using .NET, Angular, C#, SQL, HTML, CSS, JavaScript, and PHP.</li>
+                                            <li>Built scalable backend services and REST APIs with ASP.NET Core, following Clean Architecture and Vertical Slice Architecture to keep features modular and maintainable.</li>
+                                            <li>Implemented secure authentication systems and role-based access controls in admin dashboards.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="relative group pl-8 md:pl-20 py-8 border-t border-black/10 hover:bg-gray-50 transition-colors">
+                                    <span class="number-decorator text-[80px] -left-4 top-0 group-hover:text-black/5 transition-colors z-0">02</span>
+                                    <div class="relative z-10">
+                                        <div class="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2 mb-2">
                                             <h3 class="text-2xl font-bold uppercase tracking-tighter">Full Stack Developer</h3>
-                                            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">2023 — Present</span>
+                                            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">2023 — 2025</span>
                                         </div>
                                         <p class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Apex Byte - IT Services Company</p>
                                         <ul class="text-sm space-y-3 list-disc pl-4 text-gray-600 font-normal">
@@ -76,7 +93,7 @@
                                 </div>
 
                                 <div class="relative group pl-8 md:pl-20 py-8 border-t border-black/10 hover:bg-gray-50 transition-colors">
-                                    <span class="number-decorator text-[80px] -left-4 top-0 group-hover:text-black/5 transition-colors z-0">02</span>
+                                    <span class="number-decorator text-[80px] -left-4 top-0 group-hover:text-black/5 transition-colors z-0">03</span>
                                     <div class="relative z-10">
                                         <div class="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2 mb-2">
                                             <h3 class="text-2xl font-bold uppercase tracking-tighter">Web Developer Intern</h3>
@@ -88,7 +105,7 @@
                                 </div>
 
                                 <div class="relative group pl-8 md:pl-20 py-8 border-y border-black/10 hover:bg-gray-50 transition-colors">
-                                    <span class="number-decorator text-[80px] -left-4 top-0 group-hover:text-black/5 transition-colors z-0">03</span>
+                                    <span class="number-decorator text-[80px] -left-4 top-0 group-hover:text-black/5 transition-colors z-0">04</span>
                                     <div class="relative z-10">
                                         <div class="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2 mb-2">
                                             <h3 class="text-2xl font-bold uppercase tracking-tighter">Web Developer Intern</h3>
@@ -153,11 +170,11 @@
                         <ul class="space-y-4 text-xs font-bold uppercase tracking-widest">
                             <li class="flex justify-between items-center pb-4 border-b border-black/5">
                                 <span>React Basic</span>
-                                <span class="text-[10px] text-gray-400 italic">Hackerrank</span>
+                                <span class="text-[10px] text-gray-400">Hackerrank</span>
                             </li>
                             <li class="flex justify-between items-center">
                                 <span>Web Development</span>
-                                <span class="text-[10px] text-gray-400 italic">IIT Bombay</span>
+                                <span class="text-[10px] text-gray-400">IIT Bombay</span>
                             </li>
                         </ul>
                     </div>
@@ -244,7 +261,7 @@
         $aboutFaqs = [
             [
                 'question' => 'What is Sumit Kumar\'s professional experience?',
-                'answer' => 'Sumit Kumar currently works as a Full Stack Developer at Apex Byte IT Services Company, where he develops and maintains responsive client websites using C#, PHP, SQL, and modern JavaScript. He has also interned at Gautam Buddha University (USoICT) redesigning their website, and at the Ministry of Housing and Urban Affairs through the TULIP program, contributing to the DAY-NULM 2.0 portal using React.js.',
+                'answer' => 'Sumit Kumar currently works as a Software Engineer at Web IT Squad - IT Services Company. Previously, he worked as a Full Stack Developer at Apex Byte IT Services Company, where he developed and maintained responsive client websites using C#, PHP, SQL, and modern JavaScript. He has also interned at Gautam Buddha University (USoICT) redesigning their website, and at the Ministry of Housing and Urban Affairs through the TULIP program, contributing to the DAY-NULM 2.0 portal using React.js.',
             ],
             [
                 'question' => 'What programming languages does Sumit Kumar know?',

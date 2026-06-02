@@ -106,7 +106,7 @@
                     </div>
                     <div>
                         <h4 class="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Role</h4>
-                        <p class="text-sm font-bold uppercase italic">Lead Developer & Designer</p>
+                        <p class="text-sm font-bold uppercase">Lead Developer & Designer</p>
                     </div>
                 </div>
             </aside>

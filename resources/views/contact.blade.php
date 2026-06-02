@@ -35,15 +35,17 @@
 @endsection
 
 @section('content')
-    <section class="pt-12 pb-12 relative bg-white overflow-hidden border-b border-black/5">
-        <!-- Background Grid -->
-        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] z-0 pointer-events-none"></div>
+    <section class="pt-12 pb-12 relative bg-white border-b border-black/5 overflow-x-hidden">
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] pointer-events-none" style="z-index: 1;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative" style="z-index: 10;">
             <div class="grid lg:grid-cols-2 gap-16 lg:gap-20">
                 <div data-aos="fade-right">
                     <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-4 font-bold">Get In Touch</p>
-                    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-8 leading-none">
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-[-0.1em] uppercase leading-none mb-12">
+                        Let's<br>
                         <span class="text-outline-premium opacity-100">Connect</span>
                     </h1>
 

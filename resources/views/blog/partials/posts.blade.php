@@ -21,7 +21,7 @@
                     <span>{{ $post->reading_time }}m read</span>
                 </div>
                 
-                <h2 class="text-2xl font-bold tracking-tight mb-4 group-hover:italic transition-colors line-clamp-3">
+                <h2 class="text-2xl font-bold tracking-tight mb-4 transition-colors line-clamp-3">
                     {{ $post->title }}
                 </h2>
                 

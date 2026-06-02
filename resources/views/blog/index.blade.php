@@ -54,16 +54,19 @@
 @endsection
 
 @section('content')
-    <section class="pb-12 pt-12 relative bg-white overflow-hidden border-b border-black/5">
-        <!-- Background Grid -->
-        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] z-0 pointer-events-none"></div>
+    <section class="pb-12 pt-12 relative bg-white border-b border-black/5 overflow-x-hidden">
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] pointer-events-none" style="z-index: 1;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative" style="z-index: 10;">
             <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8" data-aos="fade-up">
-                <div>
-                    <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 font-bold">Journal</p>
-                    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-8">Blog</h1>
-                    <p class="text-xl text-gray-500 max-w-2xl font-light italic">Insights on software architecture, design systems, and the future of creative technology.</p>
+                <div class="mb-12" data-aos="fade-up">
+                <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 font-bold">Tech Journal</p>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-[-0.1em] uppercase mb-8">
+                    <span class="text-outline-premium opacity-100">Blog</span>
+                </h1>
+                    <p class="text-xl text-gray-500 max-w-2xl font-light">Insights on software architecture, design systems, and the future of creative technology.</p>
                 </div>
                 
                 <div class="w-full md:w-96">
@@ -102,9 +105,9 @@
                 @if($posts->isEmpty())
                     <div class="py-40 text-center opacity-20 col-span-full">
                         @if(!empty($search))
-                            <p class="text-3xl italic">No articles found matching "{{ $search }}".</p>
+                            <p class="text-3xl">No articles found matching "{{ $search }}".</p>
                         @else
-                            <p class="text-3xl italic">The journal is currently empty.</p>
+                            <p class="text-3xl">The journal is currently empty.</p>
                         @endif
                     </div>
                 @else

@@ -9,15 +9,18 @@
 @endsection
 
 @section('content')
-    <section class="pb-12 pt-12 relative bg-white overflow-hidden border-b border-black/5">
-        <!-- Background Grid -->
-        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] z-0 pointer-events-none"></div>
+    <section class="pb-12 pt-12 relative bg-white border-b border-black/5 overflow-x-hidden">
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] pointer-events-none" style="z-index: 1;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative" style="z-index: 10;">
             <div class="mb-12" data-aos="fade-up">
                 <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 font-bold">Selected Work</p>
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-8">Work</h1>
-                <p class="text-xl text-gray-500 max-w-2xl font-light italic">A curated selection of digital products, brand identities, and technical architecture.</p>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-[-0.1em] uppercase mb-8">
+                    <span class="text-outline-premium opacity-100">Work</span>
+                </h1>
+                <p class="text-xl text-gray-500 max-w-2xl font-light">A curated selection of digital products, brand identities, and technical architecture.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-x-20 gap-y-32">
@@ -30,10 +33,10 @@
                             </div>
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-3xl font-bold mb-2 group-hover:italic transition-all">{{ $project->title }}</h3>
+                                    <h3 class="text-3xl font-bold mb-2 transition-all">{{ $project->title }}</h3>
                                     <p class="text-gray-500 text-sm uppercase tracking-widest">{{ $project->category }}</p>
                                 </div>
-                                <span class="w-12 h-12 flex items-center justify-center border-2 border-black rounded-full group-hover:bg-black group-hover:text-white transition-all -rotate-45 group-hover:rotate-0">
+                                <span class="w-12 h-12 flex-shrink-0 flex items-center justify-center border-2 border-black rounded-full group-hover:bg-black group-hover:text-white transition-all -rotate-45 group-hover:rotate-0">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                                     </svg>

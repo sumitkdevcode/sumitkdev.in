@@ -48,7 +48,7 @@ class SendBulkMailJob implements ShouldQueue
             $personalizedBody = str_replace('{{ name }}', $name, $this->template->body);
 
             try {
-                \Illuminate\Support\Facades\Mail::to($email)->send(new \App\Mail\DynamicEmail($this->template->subject, $personalizedBody));
+                \Illuminate\Support\Facades\Mail::to($email)->send(new \App\Mail\DynamicEmail($this->template->subject, $personalizedBody, $this->template->attachments));
                 
                 // Sleep for a tiny bit to avoid hitting rate limits on some SMTP providers
                 usleep(200000); // 200ms

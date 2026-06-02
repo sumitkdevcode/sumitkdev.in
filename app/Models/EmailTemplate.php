@@ -13,5 +13,10 @@ class EmailTemplate extends Model
         'name',
         'subject',
         'body',
+        'attachments',
+    ];
+
+    protected $casts = [
+        'attachments' => 'array',
     ];
 }

@@ -103,7 +103,7 @@
     <section class="py-16 border-y border-black/5 bg-gray-50/50">
         <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div data-aos="fade-up" class="neo-frame bg-white p-8 group">
-                <h3 class="text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">02+</h3>
+                <h3 class="text-5xl font-bold mb-2 group-hover:scale-110 transition-transform">03+</h3>
                 <p class="text-xs uppercase tracking-widest text-gray-500">Years Experience</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="100" class="neo-frame bg-white p-8 group">
@@ -142,7 +142,7 @@
                                 </div>
                                 <div class="flex justify-between items-start">
                                     <div>
-                                        <h3 class="text-xl md:text-2xl font-bold mb-1 group-hover:italic transition-all">{{ $project->title }}</h3>
+                                        <h3 class="text-xl md:text-2xl font-bold mb-1 transition-all">{{ $project->title }}</h3>
                                         <p class="text-gray-500 text-xs uppercase tracking-widest">{{ $project->category }}</p>
                                     </div>
                                     <span class="w-10 h-10 flex items-center justify-center border-2 border-black rounded-full group-hover:bg-black group-hover:text-white transition-all -rotate-45 group-hover:rotate-0 shrink-0 ml-3">
@@ -158,13 +158,13 @@
                     <!-- Placeholder for development -->
                     <div class="group shrink-0 w-[85vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center" data-aos="fade-up">
                         <div class="aspect-[16/10] bg-gray-100 mb-6 p-8 flex flex-col justify-end neo-frame">
-                            <p class="text-[10px] uppercase tracking-widest mb-1 opacity-50 italic">Project Category</p>
+                            <p class="text-[10px] uppercase tracking-widest mb-1 opacity-50">Project Category</p>
                             <h3 class="text-xl md:text-2xl font-bold tracking-tight">Project Title Coming Soon</h3>
                         </div>
                     </div>
                     <div class="group shrink-0 w-[85vw] sm:w-[45vw] md:w-1/3 lg:w-1/4 snap-center md:mt-14" data-aos="fade-up" data-aos-delay="200">
                         <div class="aspect-[16/10] bg-black text-white mb-6 p-8 flex flex-col justify-end neo-frame">
-                            <p class="text-[10px] uppercase tracking-widest mb-1 opacity-50 italic">Project Category</p>
+                            <p class="text-[10px] uppercase tracking-widest mb-1 opacity-50">Project Category</p>
                             <h3 class="text-xl md:text-2xl font-bold tracking-tight">Example Portfolio Item</h3>
                         </div>
                     </div>
@@ -409,7 +409,7 @@
         $homeFaqs = [
             [
                 'question' => 'Who is Sumit Kumar?',
-                'answer' => 'Sumit Kumar is a Full Stack Developer and Software Engineer based in Greater Noida, India. With a Master\'s degree in Computer Applications (MCA) from Gautam Buddha University, Sumit specializes in building modern web applications using Laravel, React, Vue.js, Node.js, and other cutting-edge technologies. He has professional experience at Apex Byte IT Services and has interned at the Ministry of Housing and Urban Affairs.',
+                'answer' => 'Sumit Kumar is a Full Stack Developer and Software Engineer based in Greater Noida, India. With a Master\'s degree in Computer Applications (MCA) from Gautam Buddha University, Sumit specializes in building modern web applications using Laravel, React, Vue.js, Node.js, and other cutting-edge technologies. He has professional experience at Web IT Squad and Apex Byte IT Services, and has interned at the Ministry of Housing and Urban Affairs.',
             ],
             [
                 'question' => 'What technologies does Sumit Kumar work with?',

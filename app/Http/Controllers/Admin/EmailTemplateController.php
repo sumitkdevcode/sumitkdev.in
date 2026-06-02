@@ -25,7 +25,18 @@ class EmailTemplateController extends Controller
             'name' => 'required|string|max:255',
             'subject' => 'required|string|max:255',
             'body' => 'required|string',
+            'attachments.*' => 'nullable|file|mimes:pdf,jpg,jpeg,png,gif|max:10240',
         ]);
+
+        $attachments = [];
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $file) {
+                $path = $file->store('email_attachments', 'public');
+                $attachments[] = $path;
+            }
+        }
+        
+        $validated['attachments'] = $attachments;
 
         EmailTemplate::create($validated);
 
@@ -43,7 +54,33 @@ class EmailTemplateController extends Controller
             'name' => 'required|string|max:255',
             'subject' => 'required|string|max:255',
             'body' => 'required|string',
+            'attachments.*' => 'nullable|file|mimes:pdf,jpg,jpeg,png,gif|max:10240',
+            'remove_attachments' => 'nullable|array',
         ]);
+
+        $attachments = $emailTemplate->attachments ?? [];
+
+        // Handle removals
+        if ($request->has('remove_attachments')) {
+            foreach ($request->remove_attachments as $index => $remove) {
+                if ($remove == '1' && isset($attachments[$index])) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($attachments[$index]);
+                    unset($attachments[$index]);
+                }
+            }
+            $attachments = array_values($attachments); // Re-index array
+        }
+
+        // Handle new uploads
+        if ($request->hasFile('attachments')) {
+            foreach ($request->file('attachments') as $file) {
+                $path = $file->store('email_attachments', 'public');
+                $attachments[] = $path;
+            }
+        }
+
+        $validated['attachments'] = $attachments;
+        unset($validated['remove_attachments']);
 
         $emailTemplate->update($validated);
 

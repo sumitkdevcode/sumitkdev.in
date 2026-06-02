@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" 
+      x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }" 
+      x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" 
+      :class="{ 'dark': darkMode }">
 
 <head>
     <meta charset="utf-8">
@@ -103,6 +106,81 @@
         [x-cloak] {
             display: none !important;
         }
+
+        /* Global Dark Mode Overrides */
+        html.dark body {
+            background-color: #0a0a0a !important;
+            color: #f9fafb !important;
+        }
+        html.dark .main-content {
+            background-color: #0a0a0a !important;
+        }
+        html.dark .sidebar {
+            background: #111111 !important;
+            border-right-color: #222222 !important;
+        }
+        html.dark .sidebar-link {
+            color: #d1d5db !important;
+        }
+        html.dark .sidebar-link:hover {
+            background-color: #222222 !important;
+            color: #fff !important;
+        }
+        html.dark .sidebar-link.active {
+            background-color: #222222 !important;
+            color: #fff !important;
+        }
+        html.dark header.bg-white {
+            background-color: #111111 !important;
+            border-bottom-color: #222222 !important;
+        }
+        html.dark .bg-white {
+            background-color: #111111 !important;
+            border-color: #222222 !important;
+        }
+        html.dark .text-gray-900, html.dark .text-black {
+            color: #f9fafb !important;
+        }
+        html.dark .text-gray-600, html.dark .text-gray-500 {
+            color: #a3a3a3 !important;
+        }
+        html.dark input, html.dark textarea, html.dark select {
+            background-color: #222222 !important;
+            border-color: #333333 !important;
+            color: #fff !important;
+        }
+        html.dark .bg-gray-50, html.dark .bg-gray-100 {
+            background-color: #222222 !important;
+        }
+        html.dark .border-gray-200, html.dark .border-gray-100 {
+            border-color: #333333 !important;
+        }
+        html.dark .border-black\/5, html.dark .border-black\/10 {
+            border-color: #222222 !important;
+        }
+        html.dark .bg-black {
+            background-color: #222222 !important;
+            color: #fff !important;
+        }
+        html.dark .hover\:bg-gray-800:hover {
+            background-color: #333333 !important;
+        }
+        html.dark .hover\:bg-gray-50:hover, 
+        html.dark .hover\:bg-gray-50\/50:hover {
+            background-color: #222222 !important;
+        }
+        html.dark .hover\:text-black:hover,
+        html.dark .group:hover .group-hover\:text-black {
+            color: #fff !important;
+        }
+        html.dark th, html.dark td, html.dark tr {
+            border-color: #222222 !important;
+        }
+        html.dark .text-green-800, html.dark .text-red-800 {
+            color: #fff !important;
+        }
+        html.dark .bg-green-50, html.dark .bg-green-100 { background-color: #065f46 !important; border-color: #34d399 !important; }
+        html.dark .bg-red-50, html.dark .bg-red-100 { background-color: #7f1d1d !important; border-color: #f87171 !important; }
     </style>
 </head>
 
@@ -202,6 +280,16 @@
                     </div>
 
                     <div class="flex items-center gap-4">
+                        <!-- Dark Mode Toggle -->
+                        <button @click="darkMode = !darkMode" class="p-2 text-gray-500 hover:text-gray-900 focus:outline-none transition-colors rounded-full" title="Toggle Dark Mode">
+                            <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                            </svg>
+                            <svg x-show="darkMode" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </button>
+
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit"

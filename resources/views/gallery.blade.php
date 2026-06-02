@@ -3,17 +3,19 @@
 @section('canonical_url', route('gallery'))
 
 @section('content')
-    <section class="pt-12 pb-12 relative bg-white overflow-hidden border-b border-black/5">
-        <!-- Background Grid -->
-        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] z-0 pointer-events-none"></div>
+    <section class="pt-12 pb-12 relative bg-white border-b border-black/5 overflow-x-hidden">
 
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-[0.15] pointer-events-none" style="z-index: 1;"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative" style="z-index: 10;">
             <div class="mb-12" data-aos="fade-up">
-                <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 font-bold">Visual Stories</p>
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tighter uppercase mb-8">
+                <p class="text-xs uppercase tracking-[0.4em] text-gray-400 mb-8 font-bold">Moments</p>
+                <h1 class="text-5xl md:text-7xl font-bold tracking-[-0.1em] uppercase mb-8">
                     <span class="text-outline-premium opacity-100">Gallery</span>
                 </h1>
-                <p class="text-xl text-gray-500 max-w-2xl font-light italic">A visual library of behind-the-scenes moments, experimental motion, and creative captures.</p>
+                <p class="text-xl text-gray-500 max-w-2xl font-light">A visual library of behind-the-scenes moments, experimental motion, and creative captures.</p>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
@@ -28,9 +30,7 @@
                         @endif
 
                         <!-- Dark Overlay -->
-                        <div class="gallery-overlay absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-6 text-white pointer-events-none">
-                            <p class="text-[10px] uppercase font-bold tracking-[0.2em] mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-400">{{ $item->category }}</p>
-                            <h4 class="text-sm font-bold truncate transform translate-y-4 group-hover:translate-y-0 transition-transform duration-400 delay-75">{{ $item->title }}</h4>
+                        <div class="gallery-overlay absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none">
                         </div>
                         
                         <!-- Center Icon (Play or View) -->
@@ -51,7 +51,7 @@
                     </div>
                 @empty
                     <div class="col-span-full py-40 text-center opacity-20">
-                        <p class="text-3xl italic font-bold">The visual library is currently empty.</p>
+                        <p class="text-3xl font-bold">The visual library is currently empty.</p>
                     </div>
                 @endforelse
             </div>

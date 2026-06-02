@@ -53,12 +53,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            $socialLinks = Cache::remember('global_social_links', 3600, function () {
-                return \App\Models\SocialLink::where('is_active', true)
-                    ->orderBy('order')
-                    ->get()
-                    ->groupBy('category');
-            });
+            static $socialLinks = null;
+            if ($socialLinks === null) {
+                $socialLinks = Cache::remember('global_social_links', 3600, function () {
+                    return \App\Models\SocialLink::where('is_active', true)
+                        ->orderBy('order')
+                        ->get()
+                        ->groupBy('category');
+                });
+            }
             $view->with('globalSocialLinks', $socialLinks);
         });
 

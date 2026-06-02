@@ -3,15 +3,7 @@
 @section('content')
     <!-- Hero -->
     <section class="py-32">
-        <!-- Floating Background Elements -->
-        <div class="fixed inset-0 pointer-events-none overflow-hidden flex flex-col justify-between py-20 opacity-5">
-            <div class="animate-float-slow whitespace-nowrap text-9xl font-bold uppercase tracking-tighter">
-                LINK IN BIO &bull; CONNECT &bull; DIGITAL PRESENCE &bull; LINK IN BIO &bull; CONNECT &bull;
-            </div>
-            <div class="animate-float-slow-reverse whitespace-nowrap text-9xl font-bold uppercase tracking-tighter">
-                PORTFOLIO &bull; SOCIAL &bull; RESOURCES &bull; PORTFOLIO &bull; SOCIAL &bull; RESOURCES
-            </div>
-        </div>
+
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-24" data-aos="fade-up">
                 <p class="text-xs uppercase tracking-[0.5em] text-gray-400 font-bold mb-6">Digital Presence</p>
@@ -53,7 +45,7 @@
                                             <span class="text-sm font-bold uppercase tracking-widest">{{ $link->platform_name }}</span>
                                         </div>
                                         <!-- Arrow -->
-                                        <span class="w-10 h-10 border-2 border-black flex items-center justify-center -rotate-45 group-hover:rotate-0 group-hover:bg-black group-hover:text-white transition-all neo-frame-small">
+                                        <span class="w-10 h-10 flex-shrink-0 border-2 border-black flex items-center justify-center -rotate-45 group-hover:rotate-0 group-hover:bg-black group-hover:text-white transition-all neo-frame-small">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                                             </svg>
