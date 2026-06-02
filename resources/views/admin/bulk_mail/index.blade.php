@@ -28,13 +28,79 @@
                 </div>
 
                 <!-- Email List -->
-                <div>
+                <div x-data="emailTags()" x-init="init()">
                     <label for="emails" class="block text-xs font-bold text-gray-900 uppercase tracking-widest mb-2">Recipient Emails <span class="text-red-500">*</span></label>
-                    <p class="text-[10px] text-gray-500 mb-3">Paste a list of email addresses. You can separate them by commas or new lines.</p>
-                    <textarea name="emails" id="emails" rows="12" required
-                        class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-none focus:ring-black focus:border-black block p-3 transition-colors"
-                        placeholder="john@example.com&#10;jane@company.com&#10;contact@agency.com">{{ old('emails') }}</textarea>
+                    <p class="text-[10px] text-gray-500 mb-3">Type an email and press Enter, Space, or Comma to add it. You can also paste a list of emails.</p>
+                    
+                    <div class="w-full bg-gray-50 border border-gray-200 p-3 min-h-[150px] cursor-text flex flex-wrap gap-2 items-start transition-colors"
+                         @click="$refs.emailInput.focus()"
+                         :class="{ 'ring-1 ring-black border-black': isFocused }">
+                        
+                        <template x-for="(email, index) in emails" :key="index">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-black text-white text-xs rounded-sm dark:bg-gray-700">
+                                <span x-text="email"></span>
+                                <button type="button" @click="removeEmail(index)" class="hover:text-red-400 focus:outline-none" title="Remove email">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                </button>
+                            </span>
+                        </template>
+                        
+                        <input x-ref="emailInput" type="text" x-model="currentInput" 
+                            @keydown="handleKeydown" @paste="handlePaste"
+                            @focus="isFocused = true" @blur="isFocused = false; addEmails(currentInput); currentInput = ''"
+                            class="flex-1 min-w-[200px] bg-transparent border-none focus:ring-0 p-0 text-sm text-gray-900 outline-none m-1"
+                            placeholder="Add emails...">
+                    </div>
+                    
+                    <!-- Hidden textarea to store the actual comma-separated emails for form submission -->
+                    <textarea name="emails" id="emails" class="hidden" x-model="emails.join(', ')" required></textarea>
                 </div>
+
+                @push('scripts')
+                <script>
+                    function emailTags() {
+                        return {
+                            emails: [],
+                            currentInput: '',
+                            isFocused: false,
+                            init() {
+                                let oldEmails = `{{ old('emails') }}`;
+                                if (oldEmails) {
+                                    this.addEmails(oldEmails);
+                                }
+                            },
+                            handleKeydown(e) {
+                                if (['Enter', ' ', ','].includes(e.key)) {
+                                    e.preventDefault();
+                                    this.addEmails(this.currentInput);
+                                    this.currentInput = '';
+                                } else if (e.key === 'Backspace' && this.currentInput === '' && this.emails.length > 0) {
+                                    this.removeEmail(this.emails.length - 1);
+                                }
+                            },
+                            handlePaste(e) {
+                                e.preventDefault();
+                                let pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                                this.addEmails(pastedData);
+                            },
+                            addEmails(str) {
+                                if (!str) return;
+                                let parts = str.split(/[\s,;\n]+/);
+                                parts.forEach(part => {
+                                    let email = part.trim();
+                                    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                    if (email && emailRegex.test(email) && !this.emails.includes(email)) {
+                                        this.emails.push(email);
+                                    }
+                                });
+                            },
+                            removeEmail(index) {
+                                this.emails.splice(index, 1);
+                            }
+                        }
+                    }
+                </script>
+                @endpush
                 
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
                     <div class="flex">

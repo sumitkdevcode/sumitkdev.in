@@ -368,3 +368,12 @@ body {
     transform: translateX(0);
     opacity: 1;
 }
+
+/* =========================================
+   Fix for iOS Safari Auto-Zoom on Forms
+   ========================================= */
+@media screen and (max-width: 767px) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}

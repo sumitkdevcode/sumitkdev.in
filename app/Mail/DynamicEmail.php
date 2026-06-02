@@ -63,8 +63,13 @@ class DynamicEmail extends Mailable
     {
         $attachmentInstances = [];
         
-        foreach ($this->emailAttachments as $filePath) {
-            $attachmentInstances[] = Attachment::fromStorageDisk('public', $filePath);
+        foreach ($this->emailAttachments as $attachment) {
+            if (is_array($attachment) && isset($attachment['path'], $attachment['name'])) {
+                $attachmentInstances[] = Attachment::fromStorageDisk('public', $attachment['path'])
+                    ->as($attachment['name']);
+            } else {
+                $attachmentInstances[] = Attachment::fromStorageDisk('public', $attachment);
+            }
         }
 
         return $attachmentInstances;

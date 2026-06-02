@@ -181,6 +181,15 @@
         }
         html.dark .bg-green-50, html.dark .bg-green-100 { background-color: #065f46 !important; border-color: #34d399 !important; }
         html.dark .bg-red-50, html.dark .bg-red-100 { background-color: #7f1d1d !important; border-color: #f87171 !important; }
+
+        /* CKEditor Dark Mode */
+        html.dark .ck-editor__editable_inline { background-color: #222 !important; border-color: #333 !important; color: #fff !important; }
+        html.dark .ck.ck-toolbar { background-color: #111 !important; border-color: #333 !important; }
+        html.dark .ck.ck-button { color: #ccc !important; }
+        html.dark .ck.ck-button:hover, html.dark .ck.ck-button.ck-on { background-color: #333 !important; color: #fff !important; }
+        html.dark .ck.ck-dropdown__panel { background-color: #111 !important; border-color: #333 !important; }
+        html.dark .ck.ck-list__item__button { color: #ccc !important; }
+        html.dark .ck.ck-list__item__button:hover { background-color: #333 !important; color: #fff !important; }
     </style>
 </head>
 

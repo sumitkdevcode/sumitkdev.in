@@ -32,7 +32,10 @@ class EmailTemplateController extends Controller
         if ($request->hasFile('attachments')) {
             foreach ($request->file('attachments') as $file) {
                 $path = $file->store('email_attachments', 'public');
-                $attachments[] = $path;
+                $attachments[] = [
+                    'path' => $path,
+                    'name' => $file->getClientOriginalName(),
+                ];
             }
         }
         
@@ -64,7 +67,9 @@ class EmailTemplateController extends Controller
         if ($request->has('remove_attachments')) {
             foreach ($request->remove_attachments as $index => $remove) {
                 if ($remove == '1' && isset($attachments[$index])) {
-                    \Illuminate\Support\Facades\Storage::disk('public')->delete($attachments[$index]);
+                    $attachment = $attachments[$index];
+                    $pathToDelete = is_array($attachment) && isset($attachment['path']) ? $attachment['path'] : $attachment;
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($pathToDelete);
                     unset($attachments[$index]);
                 }
             }
@@ -75,7 +80,10 @@ class EmailTemplateController extends Controller
         if ($request->hasFile('attachments')) {
             foreach ($request->file('attachments') as $file) {
                 $path = $file->store('email_attachments', 'public');
-                $attachments[] = $path;
+                $attachments[] = [
+                    'path' => $path,
+                    'name' => $file->getClientOriginalName(),
+                ];
             }
         }
 

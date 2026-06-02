@@ -15,11 +15,13 @@
             justify-content: center;
             margin: 0;
             font-family: 'Inter', sans-serif;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .login-card {
             width: 100%;
-            max-width: 450px;
+            max-width: 380px;
             background: white;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             border-radius: 0;
@@ -29,32 +31,33 @@
         .login-header {
             background: black;
             color: white;
-            padding: 40px 20px;
+            padding: 15px 20px;
             text-align: center;
         }
 
         .login-header h1 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             margin: 0;
             letter-spacing: 0.5px;
         }
 
         .login-body {
-            padding: 40px;
+            padding: 20px;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
         .input-field {
             width: 100%;
-            padding: 15px;
+            padding: 8px 10px;
             border: 1px solid #e5e7eb;
             outline: none;
-            font-size: 14px;
+            font-size: 13px;
             transition: border-color 0.2s;
+            box-sizing: border-box;
         }
 
         .input-field:focus {
@@ -65,14 +68,15 @@
             width: 100%;
             background: black;
             color: white;
-            padding: 15px;
+            padding: 10px;
             border: none;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: background 0.2s;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-sizing: border-box;
         }
 
         .login-btn:hover {
@@ -83,6 +87,13 @@
             color: #dc2626;
             font-size: 12px;
             margin-top: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .login-header { padding: 15px 15px; }
+            .login-header h1 { font-size: 18px; }
+            .login-body { padding: 15px; }
+            .form-group { margin-bottom: 12px; }
         }
     </style>
 </head>
@@ -118,7 +129,7 @@
                     @endif
                 </div>
 
-                <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center justify-between mb-4">
                     <label class="inline-flex items-center cursor-pointer">
                         <input type="checkbox" name="remember"
                             class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">

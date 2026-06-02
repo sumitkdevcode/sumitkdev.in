@@ -45,8 +45,13 @@
                         <div class="space-y-2">
                             @foreach($emailTemplate->attachments as $index => $attachment)
                                 <div class="flex items-center space-x-3 bg-gray-50 border border-gray-200 p-3">
-                                    <a href="{{ asset('storage/' . $attachment) }}" target="_blank" class="text-sm text-blue-600 hover:underline flex-1 truncate">
-                                        {{ basename($attachment) }}
+                                    @php
+                                        $isNewFormat = is_array($attachment) && isset($attachment['path']);
+                                        $attachmentPath = $isNewFormat ? $attachment['path'] : $attachment;
+                                        $attachmentName = $isNewFormat ? $attachment['name'] : basename($attachment);
+                                    @endphp
+                                    <a href="{{ asset('storage/' . $attachmentPath) }}" target="_blank" class="text-sm text-blue-600 hover:underline flex-1 truncate">
+                                        {{ $attachmentName }}
                                     </a>
                                     <label class="flex items-center space-x-2 text-sm text-red-600 cursor-pointer">
                                         <input type="checkbox" name="remove_attachments[{{ $index }}]" value="1" class="border-gray-300 text-red-600 focus:ring-red-500 rounded-none">
