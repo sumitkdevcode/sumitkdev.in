@@ -61,5 +61,30 @@ class AppServiceProvider extends ServiceProvider
             });
             $view->with('globalSocialLinks', $socialLinks);
         });
+
+        // Override default mail configuration dynamically based on the active SMTP setting
+        try {
+            $defaultSmtp = Cache::rememberForever('default_smtp_setting', function () {
+                if (\Illuminate\Support\Facades\Schema::hasTable('smtp_settings')) {
+                    return \App\Models\SmtpSetting::where('is_default', true)->first();
+                }
+                return null;
+            });
+
+            if ($defaultSmtp) {
+                config([
+                    'mail.default' => $defaultSmtp->mail_mailer ?? 'smtp',
+                    'mail.mailers.smtp.host' => $defaultSmtp->mail_host,
+                    'mail.mailers.smtp.port' => $defaultSmtp->mail_port,
+                    'mail.mailers.smtp.encryption' => $defaultSmtp->mail_encryption,
+                    'mail.mailers.smtp.username' => $defaultSmtp->mail_username,
+                    'mail.mailers.smtp.password' => $defaultSmtp->mail_password,
+                    'mail.from.address' => $defaultSmtp->mail_from_address,
+                    'mail.from.name' => $defaultSmtp->mail_from_name,
+                ]);
+            }
+        } catch (\Exception $e) {
+            // Safely ignore during initial setup / migrations
+        }
     }
 }

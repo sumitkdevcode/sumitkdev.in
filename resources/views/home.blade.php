@@ -3,7 +3,7 @@
 @section('canonical_url', route('home'))
 
 @section('content')
-    <section class="relative px-6 pt-4 pb-12 md:pb-16 overflow-hidden">
+    <section class="relative px-8 lg:px-16 xl:px-24 pt-4 pb-12 md:pb-16 overflow-hidden">
         <!-- Animated Background Grid -->
         <div class="bg-grid-pattern"></div>
 

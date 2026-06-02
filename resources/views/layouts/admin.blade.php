@@ -34,7 +34,7 @@
             top: 0;
             left: 0;
             height: 100vh;
-            width: 175px;
+            width: 250px;
             background: white;
             border-right: 1px solid #e5e7eb;
             z-index: 50;
@@ -65,7 +65,7 @@
 
         /* Main Content Area */
         .main-content {
-            margin-left: 175px;
+            margin-left: 250px;
             min-height: 100vh;
             background: #f3f4f6;
             transition: margin-left 0.3s ease-in-out;
@@ -160,6 +160,18 @@
                     <a href="{{ route('admin.social-links.index') }}"
                         class="sidebar-link {{ request()->is('admin/social-links*') ? 'active' : '' }}">
                         Social Links
+                    </a>
+                    <a href="{{ route('admin.smtp-settings.index') }}"
+                        class="sidebar-link {{ request()->is('admin/smtp-settings*') ? 'active' : '' }}">
+                        SMTP Settings
+                    </a>
+                    <a href="{{ route('admin.email-templates.index') }}"
+                        class="sidebar-link {{ request()->is('admin/email-templates*') ? 'active' : '' }}">
+                        Email Templates
+                    </a>
+                    <a href="{{ route('admin.bulk-mail.index') }}"
+                        class="sidebar-link {{ request()->is('admin/bulk-mail*') ? 'active' : '' }}">
+                        Bulk Mail
                     </a>
                 </div>
             </nav>

@@ -171,6 +171,13 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::get('/settings', [AdminSetting::class, 'index'])->name('settings.index');
     Route::post('/settings', [AdminSetting::class, 'update'])->name('settings.update');
 
+    Route::resource('smtp-settings', \App\Http\Controllers\Admin\SmtpSettingController::class);
+    Route::patch('smtp-settings/{id}/make-default', [\App\Http\Controllers\Admin\SmtpSettingController::class, 'makeDefault'])->name('smtp-settings.make-default');
+
+    Route::resource('email-templates', \App\Http\Controllers\Admin\EmailTemplateController::class);
+    Route::get('bulk-mail', [\App\Http\Controllers\Admin\BulkMailController::class, 'index'])->name('bulk-mail.index');
+    Route::post('bulk-mail', [\App\Http\Controllers\Admin\BulkMailController::class, 'send'])->name('bulk-mail.send');
+
     Route::resource('seo', \App\Http\Controllers\Admin\PageSeoController::class);
     Route::resource('social-links', \App\Http\Controllers\Admin\SocialLinkController::class);
 
