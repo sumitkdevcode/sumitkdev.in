@@ -47,6 +47,12 @@ class HomeController extends Controller
         return view('links', compact('settings'));
     }
 
+    public function openSource()
+    {
+        $settings = $this->getSettings();
+        return view('open-source', compact('settings'));
+    }
+
     private function getSettings()
     {
         return [

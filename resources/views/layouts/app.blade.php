@@ -353,6 +353,7 @@
                             <li><a href="{{ route('about') }}" class="hover:text-gray-400 transition-colors">My
                                     Story</a></li>
                             <li><a href="{{ route('links') }}" class="hover:text-gray-400 transition-colors">All Links</a></li>
+                            <li><a href="{{ route('open-source') }}" class="hover:text-gray-400 transition-colors">Open Source</a></li>
                         </ul>
                     </div>
                     <div>

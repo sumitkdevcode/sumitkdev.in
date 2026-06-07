@@ -36,6 +36,7 @@ Route::middleware(['cache.page'])->group(function () {
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
     Route::get('/links', [HomeController::class, 'links'])->name('links');
+    Route::get('/open-source', [HomeController::class, 'openSource'])->name('open-source');
 });
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
@@ -67,6 +68,7 @@ Route::get('/sitemap.xml', function () {
             ['url' => url('/gallery'),    'priority' => '0.7',  'changefreq' => 'weekly'],
             ['url' => url('/contact'),    'priority' => '0.8',  'changefreq' => 'monthly'],
             ['url' => url('/links'),      'priority' => '0.8',  'changefreq' => 'monthly'],
+            ['url' => url('/open-source'),'priority' => '0.7',  'changefreq' => 'monthly'],
         ];
 
         foreach ($staticPages as $page) {
