@@ -37,6 +37,8 @@ Route::middleware(['cache.page'])->group(function () {
 
     Route::get('/links', [HomeController::class, 'links'])->name('links');
     Route::get('/open-source', [HomeController::class, 'openSource'])->name('open-source');
+    Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
+    Route::get('/privacy-policy', [HomeController::class, 'privacy'])->name('privacy');
 });
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

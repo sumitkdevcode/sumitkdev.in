@@ -382,8 +382,8 @@
                 class="border-t border-white/10 mt-20 pt-10 flex flex-col md:flex-row justify-between text-xs text-gray-500 uppercase tracking-widest">
                 <p>&copy; {{ date('Y') }} Sumit Kumar. All rights reserved.</p>
                 <div class="mt-4 md:mt-0 space-x-6">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-
+                    <a href="{{ route('privacy') }}" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="{{ route('terms') }}" class="hover:text-white transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>

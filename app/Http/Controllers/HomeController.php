@@ -53,6 +53,18 @@ class HomeController extends Controller
         return view('open-source', compact('settings'));
     }
 
+    public function terms()
+    {
+        $settings = $this->getSettings();
+        return view('terms', compact('settings'));
+    }
+
+    public function privacy()
+    {
+        $settings = $this->getSettings();
+        return view('privacy', compact('settings'));
+    }
+
     private function getSettings()
     {
         return [
