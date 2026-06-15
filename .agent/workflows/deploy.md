@@ -52,6 +52,9 @@ npm run build
 # Exit maintenance mode
 php artisan up
 
+# Warm up the cache so the first visitor doesn't experience a slow load
+curl -s -o /dev/null "https://sumitkdev.in" || true
+
 echo "✅ Application deployed!"
 ```
 

@@ -34,13 +34,16 @@ All pre-deployment optimizations have been completed:
    - Upload all files except `node_modules` and `vendor`
    - Upload to `public_html` or your domain folder
 
-3. **On the server (via SSH or File Manager)**
+3. **On the server (via SSH or cPanel Terminal)**
    ```bash
    composer install --no-dev --optimize-autoloader
    php artisan key:generate
    php artisan migrate --force
    php artisan storage:link
    php artisan optimize
+   
+   # Warm up the cache so your first visit isn't slow
+   curl -s -o /dev/null "https://yourdomain.com" || true
    ```
 
 4. **Import database** via phpMyAdmin or command line

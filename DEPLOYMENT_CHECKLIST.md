@@ -139,6 +139,7 @@ MAIL_FROM_NAME="${APP_NAME}"
 
    # Exit maintenance mode
    php artisan up
+   curl -s -o /dev/null "https://sumitkdev.in" || true
 
    echo "✅ Application deployed!"
    ```

@@ -57,6 +57,10 @@ chown -R www-data:www-data storage bootstrap/cache
 echo "✅ Exiting maintenance mode..."
 php artisan up
 
+# Warm up the cache so the first visitor doesn't experience a slow load
+echo "🔥 Warming up application cache..."
+curl -s -o /dev/null "https://sumitkdev.in" || true
+
 echo ""
 echo "✨ Deployment completed successfully!"
 echo "🌐 Your application is now live!"
