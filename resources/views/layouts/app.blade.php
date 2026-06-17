@@ -15,9 +15,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="@yield('canonical_url', url(request()->path()))">
-    <link rel="alternate" hreflang="en" href="@yield('canonical_url', url(request()->path()))">
-    <link rel="alternate" hreflang="x-default" href="@yield('canonical_url', url(request()->path()))">
+    @php
+        $canonicalUrl = request()->url();
+        if (request()->has('page')) {
+            $canonicalUrl .= '?page=' . request()->query('page');
+        }
+    @endphp
+    <link rel="canonical" href="@yield('canonical_url', $canonicalUrl)">
+    <link rel="alternate" hreflang="en" href="@yield('canonical_url', $canonicalUrl)">
+    <link rel="alternate" hreflang="x-default" href="@yield('canonical_url', $canonicalUrl)">
 
     @yield('pagination_meta')
 
@@ -167,7 +173,14 @@
 
     @yield('meta')
 
+    <!-- Geo SEO -->
+    <meta name="geo.region" content="IN" />
+    <meta name="geo.placename" content="India" />
+    <meta name="geo.position" content="20.593684;78.96288" />
+    <meta name="ICBM" content="20.593684, 78.96288" />
 
+    <!-- LLM Optimization -->
+    <link rel="llms" href="/llms.txt">
     <!-- Fonts (deferred) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -244,6 +257,7 @@
                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                 <a href="{{ route('portfolio.index') }}" class="nav-link">Work</a>
                 <a href="{{ route('blog.index') }}" class="nav-link">Blog</a>
+                <a href="{{ route('social.feed') }}" class="nav-link">Feed</a>
                 <a href="{{ route('gallery') }}" class="nav-link">Gallery</a>
                 <a href="{{ route('about') }}" class="nav-link">About</a>
                 <a href="{{ route('links') }}" class="nav-link">Links</a>
@@ -286,6 +300,8 @@
                     class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Work</a>
                 <a href="{{ route('blog.index') }}"
                     class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Blog</a>
+                <a href="{{ route('social.feed') }}"
+                    class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Feed</a>
                 <a href="{{ route('gallery') }}"
                     class="block py-2 text-sm font-medium uppercase tracking-widest hover:text-gray-600 transition-colors">Gallery</a>
                 <a href="{{ route('about') }}"
@@ -350,6 +366,10 @@
                                     class="hover:text-gray-400 transition-colors">Portfolio</a></li>
                             <li><a href="{{ route('blog.index') }}"
                                     class="hover:text-gray-400 transition-colors">Insights</a></li>
+                            <li><a href="{{ route('social.feed') }}"
+                                    class="hover:text-gray-400 transition-colors">Social Feed</a></li>
+                            <li><a href="{{ route('tools.index') }}"
+                                    class="hover:text-gray-400 transition-colors">Dev Tools</a></li>
                             <li><a href="{{ route('about') }}" class="hover:text-gray-400 transition-colors">My
                                     Story</a></li>
                             <li><a href="{{ route('links') }}" class="hover:text-gray-400 transition-colors">All Links</a></li>

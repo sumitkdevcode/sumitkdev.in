@@ -141,8 +141,8 @@
         html.dark .text-gray-900, html.dark .text-black {
             color: #f9fafb !important;
         }
-        html.dark .text-gray-600, html.dark .text-gray-500 {
-            color: #a3a3a3 !important;
+        html.dark .text-gray-600, html.dark .text-gray-500, html.dark .text-gray-800 {
+            color: #d1d5db !important;
         }
         html.dark input, html.dark textarea, html.dark select {
             background-color: #222222 !important;
@@ -172,6 +172,18 @@
         html.dark .hover\:text-black:hover,
         html.dark .group:hover .group-hover\:text-black {
             color: #fff !important;
+        }
+        html.dark .text-indigo-600 {
+            color: #818cf8 !important;
+        }
+        html.dark .hover\:text-indigo-900:hover {
+            color: #a5b4fc !important;
+        }
+        html.dark .text-red-600 {
+            color: #f87171 !important;
+        }
+        html.dark .hover\:text-red-900:hover {
+            color: #fca5a5 !important;
         }
         html.dark th, html.dark td, html.dark tr {
             border-color: #222222 !important;
@@ -236,6 +248,18 @@
                         class="sidebar-link {{ request()->is('admin/settings*') ? 'active' : '' }}">
                         Site Settings
                     </a>
+                    <a href="{{ route('admin.bulk-mail.index') }}"
+                        class="sidebar-link {{ request()->is('admin/bulk-mail*') ? 'active' : '' }}">
+                        Bulk Mail
+                    </a>
+                    <a href="{{ route('admin.email-templates.index') }}"
+                        class="sidebar-link {{ request()->is('admin/email-templates*') ? 'active' : '' }}">
+                        Email Templates
+                    </a>
+                    <a href="{{ route('admin.smtp-settings.index') }}"
+                        class="sidebar-link {{ request()->is('admin/smtp-settings*') ? 'active' : '' }}">
+                        SMTP Settings
+                    </a>
                     <a href="{{ route('admin.seo.index') }}"
                         class="sidebar-link {{ request()->is('admin/seo*') ? 'active' : '' }}">
                         SEO Settings
@@ -248,17 +272,9 @@
                         class="sidebar-link {{ request()->is('admin/social-links*') ? 'active' : '' }}">
                         Social Links
                     </a>
-                    <a href="{{ route('admin.smtp-settings.index') }}"
-                        class="sidebar-link {{ request()->is('admin/smtp-settings*') ? 'active' : '' }}">
-                        SMTP Settings
-                    </a>
-                    <a href="{{ route('admin.email-templates.index') }}"
-                        class="sidebar-link {{ request()->is('admin/email-templates*') ? 'active' : '' }}">
-                        Email Templates
-                    </a>
-                    <a href="{{ route('admin.bulk-mail.index') }}"
-                        class="sidebar-link {{ request()->is('admin/bulk-mail*') ? 'active' : '' }}">
-                        Bulk Mail
+                    <a href="{{ route('admin.social-posts.index') }}"
+                        class="sidebar-link {{ request()->is('admin/social-posts*') ? 'active' : '' }}">
+                        Social Feed Posts
                     </a>
                 </div>
             </nav>

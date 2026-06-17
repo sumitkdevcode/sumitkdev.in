@@ -29,7 +29,7 @@ class BlogController extends Controller
         $cacheKey = "blog_index_page_{$page}_search_" . md5($search) . "_category_" . md5($category);
 
         $posts = Cache::remember($cacheKey, 1800, function () use ($search, $category) {
-            $query = BlogPost::where('is_published', true);
+            $query = BlogPost::with('author')->where('is_published', true);
 
             if (!empty($category)) {
                 $query->where('category', $category);
@@ -58,7 +58,8 @@ class BlogController extends Controller
     public function show($slug)
     {
         $post = Cache::remember("blog_post_{$slug}", 3600, function () use ($slug) {
-            return BlogPost::where('slug', $slug)
+            return BlogPost::with('author')
+                ->where('slug', $slug)
                 ->where('is_published', true)
                 ->firstOrFail();
         });

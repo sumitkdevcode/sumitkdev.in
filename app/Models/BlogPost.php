@@ -56,6 +56,28 @@ class BlogPost extends Model
                 $blogPost->reading_time = ceil($wordCount / 200);
             }
         });
+
+        static::saved(function ($blogPost) {
+            \Illuminate\Support\Facades\Cache::forget("blog_post_{$blogPost->slug}");
+            \Illuminate\Support\Facades\Cache::forget('home_all_blogs');
+            \Illuminate\Support\Facades\Cache::forget("blog_suggestions_{$blogPost->slug}");
+            // Clear cache for related views
+            \Illuminate\Support\Facades\Cache::forget('blog_categories_list');
+            // Since index pages have md5 hashes, clear up to 10 pages assuming typical size
+            for ($i = 1; $i <= 10; $i++) {
+                \Illuminate\Support\Facades\Cache::forget("blog_index_page_{$i}_search_" . md5('') . "_category_" . md5(''));
+            }
+        });
+
+        static::deleted(function ($blogPost) {
+            \Illuminate\Support\Facades\Cache::forget("blog_post_{$blogPost->slug}");
+            \Illuminate\Support\Facades\Cache::forget('home_all_blogs');
+            \Illuminate\Support\Facades\Cache::forget("blog_suggestions_{$blogPost->slug}");
+            \Illuminate\Support\Facades\Cache::forget('blog_categories_list');
+            for ($i = 1; $i <= 10; $i++) {
+                \Illuminate\Support\Facades\Cache::forget("blog_index_page_{$i}_search_" . md5('') . "_category_" . md5(''));
+            }
+        });
     }
 
     public function author()

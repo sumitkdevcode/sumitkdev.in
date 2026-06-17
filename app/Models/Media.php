@@ -26,4 +26,17 @@ class Media extends Model
         'tags' => 'array',
         'is_featured' => 'boolean',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($media) {
+            \Illuminate\Support\Facades\Cache::forget('home_gallery_images');
+        });
+
+        static::deleted(function ($media) {
+            \Illuminate\Support\Facades\Cache::forget('home_gallery_images');
+        });
+    }
 }

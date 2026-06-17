@@ -5,6 +5,8 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SocialFeedController;
+use App\Http\Controllers\ToolController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\PortfolioController as AdminPortfolio;
 use App\Http\Controllers\Admin\BlogController as AdminBlog;
@@ -32,6 +34,15 @@ Route::middleware(['cache.page'])->group(function () {
     Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
     Route::get('/gallery', [MediaController::class, 'index'])->name('gallery');
+    
+    Route::get('/feed', [SocialFeedController::class, 'index'])->name('social.feed');
+
+    Route::prefix('tools')->name('tools.')->group(function () {
+        Route::get('/', [ToolController::class, 'index'])->name('index');
+        Route::get('/json-formatter', [ToolController::class, 'jsonFormatter'])->name('json-formatter');
+        Route::get('/base64', [ToolController::class, 'base64'])->name('base64');
+        Route::get('/uuid-generator', [ToolController::class, 'uuidGenerator'])->name('uuid-generator');
+    });
 
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
@@ -184,6 +195,7 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
 
     Route::resource('seo', \App\Http\Controllers\Admin\PageSeoController::class);
     Route::resource('social-links', \App\Http\Controllers\Admin\SocialLinkController::class);
+    Route::resource('social-posts', \App\Http\Controllers\Admin\SocialPostController::class);
 
     Route::get('/contacts', [AdminContact::class, 'index'])->name('contacts.index');
     Route::get('/contacts/{id}', [AdminContact::class, 'show'])->name('contacts.show');

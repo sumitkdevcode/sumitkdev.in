@@ -45,5 +45,21 @@ class PortfolioItem extends Model
                 $portfolioItem->slug = \Illuminate\Support\Str::slug($portfolioItem->title);
             }
         });
+
+        static::saved(function ($portfolioItem) {
+            \Illuminate\Support\Facades\Cache::forget("portfolio_item_{$portfolioItem->slug}");
+            \Illuminate\Support\Facades\Cache::forget('home_featured_projects');
+            for ($i = 1; $i <= 10; $i++) {
+                \Illuminate\Support\Facades\Cache::forget("portfolio_index_page_{$i}");
+            }
+        });
+
+        static::deleted(function ($portfolioItem) {
+            \Illuminate\Support\Facades\Cache::forget("portfolio_item_{$portfolioItem->slug}");
+            \Illuminate\Support\Facades\Cache::forget('home_featured_projects');
+            for ($i = 1; $i <= 10; $i++) {
+                \Illuminate\Support\Facades\Cache::forget("portfolio_index_page_{$i}");
+            }
+        });
     }
 }
