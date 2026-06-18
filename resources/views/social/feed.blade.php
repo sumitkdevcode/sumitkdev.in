@@ -102,7 +102,7 @@
                     <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.86-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/></svg>
                     Latest Videos
                 </h2>
-                <a href="https://www.youtube.com/channel/{{ config('services.youtube.channel_id') }}" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold uppercase tracking-widest hover:text-red-600 transition-colors">Subscribe &rarr;</a>
+                <a href="https://www.youtube.com/@sumitkdev" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold uppercase tracking-widest hover:text-red-600 transition-colors">Subscribe &rarr;</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
