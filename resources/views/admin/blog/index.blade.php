@@ -11,8 +11,8 @@
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
             <form action="{{ route('admin.blog.index') }}" method="GET" class="w-full sm:w-auto relative group">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="SEARCH ENTRIES..." 
-                    class="w-full sm:w-64 bg-transparent border-b border-gray-200 focus:border-black px-0 py-4 pr-8 text-[10px] font-bold uppercase tracking-widest placeholder-gray-400 focus:outline-none transition-colors">
-                <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-black transition-colors">
+                    class="w-full sm:w-64 bg-white border border-gray-200 focus:border-black px-6 py-4 pr-12 text-[10px] font-black uppercase tracking-[0.2em] placeholder-gray-400 focus:outline-none transition-all shadow-sm">
+                <button type="submit" class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-black transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
             </form>
