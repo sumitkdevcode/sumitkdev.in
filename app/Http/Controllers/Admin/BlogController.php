@@ -13,9 +13,20 @@ use App\Helpers\ImageHelper;
 
 class BlogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = BlogPost::with('author')->orderBy('published_at', 'desc')->paginate(10);
+        $query = BlogPost::with('author')->orderBy('published_at', 'desc');
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('category', 'like', "%{$search}%");
+            });
+        }
+
+        $posts = $query->paginate(10)->withQueryString();
+        
         return view('admin.blog.index', compact('posts'));
     }
 
