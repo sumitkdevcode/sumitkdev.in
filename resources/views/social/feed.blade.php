@@ -43,14 +43,14 @@
     </script>
     @endif
 
-    <!-- SocialMediaPosting Schema for Instagram -->
-    @if(count($instagramPosts) > 0)
+    <!-- SocialMediaPosting Schema for Social Posts -->
+    @if(count($socialPosts) > 0)
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "ItemList",
         "itemListElement": [
-            @foreach($instagramPosts as $index => $post)
+            @foreach($socialPosts as $index => $post)
             {
                 "@type": "ListItem",
                 "position": {{ $index + 1 }},
@@ -102,7 +102,13 @@
                     <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.86-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/></svg>
                     Latest Videos
                 </h2>
-                <a href="https://www.youtube.com/@sumitkdev" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold uppercase tracking-widest hover:text-red-600 transition-colors">Subscribe &rarr;</a>
+                @php
+                    $youtubeLink = isset($globalSocialLinks['social_media']) 
+                        ? $globalSocialLinks['social_media']->firstWhere('platform_name', 'YouTube') 
+                        : null;
+                    $youtubeUrl = $youtubeLink ? $youtubeLink->url : 'https://www.youtube.com/@sumitkdev';
+                @endphp
+                <a href="{{ $youtubeUrl }}" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold uppercase tracking-widest hover:text-red-600 transition-colors">Subscribe &rarr;</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -129,24 +135,28 @@
         </div>
         @endif
 
-        @if(count($instagramPosts) > 0)
-        <!-- Instagram Section -->
+        @if(count($socialPosts) > 0)
+        <!-- Recent Posts Section -->
         <div>
             <div class="flex items-center justify-between mb-8" data-aos="fade-up">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 flex items-center gap-3">
-                    <svg class="w-8 h-8 text-pink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12,2.162c3.204,0,3.584,0.012,4.849,0.07c1.366,0.062,2.633,0.344,3.608,1.319c0.975,0.975,1.257,2.242,1.319,3.608c0.058,1.265,0.07,1.645,0.07,4.849c0,3.204-0.012,3.584-0.07,4.849c-0.062,1.366-0.344,2.633-1.319,3.608c-0.975,0.975-2.242,1.257-3.608,1.319c-1.265,0.058-1.645,0.07-4.849,0.07c-3.204,0-3.584-0.012-4.849-0.07c-1.366-0.062-2.633-0.344-3.608-1.319c-0.975-0.975-1.257-2.242-1.319-3.608c-0.058-1.265-0.07-1.645-0.07-4.849c0-3.204,0.012-3.584,0.07-4.849c0.062-1.366,0.344-2.633,1.319-3.608c0.975-0.975,2.242-1.257,3.608-1.319C8.416,2.174,8.796,2.162,12,2.162 M12,0C8.741,0,8.332,0.014,7.052,0.072C2.695,0.272,0.272,2.69-0.072,7.052C-0.014,8.332,0,8.741,0,12c0,3.259-0.014,3.668,0.072,4.948c0.344,4.362,2.767,6.78,7.124,6.98C8.332,23.986,8.741,24,12,24c3.259,0,3.668-0.014,4.948-0.072c4.358-0.2,6.78-2.618,6.98-6.98C23.986,15.668,24,15.259,24,12c0-3.259-0.014-3.668-0.072-4.948c-0.2-4.358-2.618-6.78-6.98-6.98C15.668,0.014,15.259,0,12,0z"/><path d="M12,5.838c-3.403,0-6.162,2.759-6.162,6.162c0,3.403,2.759,6.162,6.162,6.162c3.403,0,6.162-2.759,6.162-6.162C18.162,8.597,15.403,5.838,12,5.838z M12,16c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4S14.209,16,12,16z"/><circle cx="18.406" cy="5.594" r="1.44"/></svg>
+                    <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15"></path></svg>
                     Recent Posts
                 </h2>
-                <a href="https://instagram.com/sumitkdev" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold uppercase tracking-widest hover:text-pink-600 transition-colors">Follow &rarr;</a>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-8">
-                @foreach($instagramPosts as $post)
-                <a href="{{ $post['permalink'] }}" target="_blank" rel="noopener" class="group block relative aspect-square overflow-hidden border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
-                    <img src="{{ $post['media_url'] }}" alt="Instagram post" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 lg:p-6">
+                @foreach($socialPosts as $post)
+                <a href="{{ $post['permalink'] }}" target="_blank" rel="noopener" class="group block relative aspect-square overflow-hidden border-2 border-black bg-gray-900 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-300" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                    @if($post['media_url'])
+                    <img src="{{ $post['media_url'] }}" alt="Social post" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    @endif
+                    <div class="absolute inset-0 bg-gradient-to-t {{ $post['media_url'] ? 'from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100' : 'from-black/80 via-black/60 to-black/40 opacity-100' }} transition-opacity duration-300 flex flex-col justify-end p-4 lg:p-6">
                         <p class="text-white text-xs lg:text-sm line-clamp-3 mb-2">{{ $post['caption'] }}</p>
-                        <span class="text-white/70 text-[10px] lg:text-xs font-bold uppercase tracking-widest">{{ \Carbon\Carbon::parse($post['published_at'])->diffForHumans() }}</span>
+                        <div class="flex justify-between items-center w-full mt-auto">
+                            <span class="text-white/70 text-[10px] lg:text-xs font-bold uppercase tracking-widest">{{ \Carbon\Carbon::parse($post['published_at'])->diffForHumans() }}</span>
+                            <span class="text-white/50 text-[10px] uppercase font-bold">{{ $post['platform'] ?? 'Update' }}</span>
+                        </div>
                     </div>
                     @if($post['media_type'] === 'VIDEO')
                         <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-2 text-white">

@@ -90,17 +90,16 @@ class SocialMediaService
     }
 
     /**
-     * Get Instagram Posts
+     * Get All Social Posts (Instagram, Twitter, LinkedIn)
      */
-    public function getInstagramPosts($maxResults = 6)
+    public function getSocialPosts($maxResults = 6)
     {
         $accessToken = config('services.instagram.access_token');
         
         // Cache the combined results
-        return Cache::remember('instagram_posts_v2', now()->addHours(12), function () use ($accessToken, $maxResults) {
+        return Cache::remember('social_posts_v2', now()->addHours(12), function () use ($accessToken, $maxResults) {
             // First try to fetch from our local database (Admin Social Posts)
-            $dbPosts = \App\Models\SocialPost::where('platform', 'instagram')
-                ->where('is_published', true)
+            $dbPosts = \App\Models\SocialPost::where('is_published', true)
                 ->orderBy('published_at', 'desc')
                 ->take($maxResults)
                 ->get();
@@ -109,9 +108,10 @@ class SocialMediaService
                 return $dbPosts->map(function ($post) {
                     return [
                         'id' => $post->id,
+                        'platform' => $post->platform,
                         'caption' => $post->content,
                         'media_type' => $post->media_type,
-                        'media_url' => str_starts_with($post->media_url, 'http') ? $post->media_url : asset('storage/' . $post->media_url),
+                        'media_url' => $post->media_url ? (str_starts_with($post->media_url, 'http') ? $post->media_url : asset('storage/' . $post->media_url)) : '',
                         'permalink' => $post->permalink ?? '#',
                         'published_at' => $post->published_at->toIso8601String(),
                     ];
@@ -132,6 +132,7 @@ class SocialMediaService
                         return collect($items)->map(function ($item) {
                             return [
                                 'id' => $item['id'],
+                                'platform' => 'instagram',
                                 'caption' => $item['caption'] ?? 'Instagram Post',
                                 'media_type' => $item['media_type'],
                                 'media_url' => $item['media_type'] === 'VIDEO' ? ($item['thumbnail_url'] ?? '') : $item['media_url'],

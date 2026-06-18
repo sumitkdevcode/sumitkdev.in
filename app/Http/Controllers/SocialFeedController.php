@@ -17,16 +17,16 @@ class SocialFeedController extends Controller
     public function index()
     {
         $youtubeVideos = $this->socialMediaService->getYoutubeVideos(3);
-        $instagramPosts = $this->socialMediaService->getInstagramPosts(6);
+        $socialPosts = $this->socialMediaService->getSocialPosts(6);
 
         // Optional SEO Data
         $seoData = (object) [
             'meta_title' => 'Social Feed - Sumit Kumar',
-            'meta_description' => 'Check out the latest YouTube videos and Instagram posts from Sumit Kumar.',
+            'meta_description' => 'Check out the latest YouTube videos and Social posts from Sumit Kumar.',
             'og_title' => 'Social Feed - Sumit Kumar',
-            'og_description' => 'Check out the latest YouTube videos and Instagram posts from Sumit Kumar.',
+            'og_description' => 'Check out the latest YouTube videos and Social posts from Sumit Kumar.',
         ];
 
-        return view('social.feed', compact('youtubeVideos', 'instagramPosts', 'seoData'));
+        return view('social.feed', compact('youtubeVideos', 'socialPosts', 'seoData'));
     }
 }

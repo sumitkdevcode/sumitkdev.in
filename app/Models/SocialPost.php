@@ -29,11 +29,11 @@ class SocialPost extends Model
         parent::boot();
 
         static::saved(function ($post) {
-            \Illuminate\Support\Facades\Cache::forget('instagram_posts_v2');
+            \Illuminate\Support\Facades\Cache::forget('social_posts_v2');
         });
 
         static::deleted(function ($post) {
-            \Illuminate\Support\Facades\Cache::forget('instagram_posts_v2');
+            \Illuminate\Support\Facades\Cache::forget('social_posts_v2');
         });
     }
 }

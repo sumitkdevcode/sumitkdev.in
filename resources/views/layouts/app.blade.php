@@ -379,10 +379,11 @@
                     <div>
                         <h4 class="uppercase tracking-widest text-xs text-gray-500 mb-6">Find Me Elsewhere</h4>
                         <ul class="space-y-4">
-                            <li><a href="https://github.com/sumitkdevcode" target="_blank" rel="noopener" class="hover:text-gray-400 transition-colors">GitHub</a></li>
-                            <li><a href="https://stackoverflow.com/users/sumitkdev" target="_blank" rel="noopener" class="hover:text-gray-400 transition-colors">Stack Overflow</a></li>
-                            <li><a href="https://dev.to/sumitkdev" target="_blank" rel="noopener" class="hover:text-gray-400 transition-colors">Dev.to</a></li>
-                            <li><a href="https://medium.com/@sumitkdev" target="_blank" rel="noopener" class="hover:text-gray-400 transition-colors">Medium</a></li>
+                            @if(isset($globalSocialLinks['developer_profiles']))
+                                @foreach($globalSocialLinks['developer_profiles']->take(4) as $profile)
+                                    <li><a href="{{ $profile->url }}" target="_blank" rel="noopener" class="hover:text-gray-400 transition-colors">{{ $profile->platform_name }}</a></li>
+                                @endforeach
+                            @endif
                             <li><a href="{{ route('links') }}" class="text-xs uppercase tracking-widest font-bold mt-2 inline-block hover:text-gray-400 transition-colors">View all &rarr;</a></li>
                         </ul>
                     </div>
