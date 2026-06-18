@@ -14,7 +14,7 @@ class SocialMediaService
     public function getYoutubeVideos($maxResults = 6)
     {
         $apiKey = config('services.youtube.api_key');
-        $channelId = config('services.youtube.channel_id') ?: 'UCjTP4KmZdAM8NMeMXPG95Mw'; // Default to @sumitkdev channel
+        $channelId = trim(config('services.youtube.channel_id') ?: 'UCjTP4KmZdAM8NMeMXPG95Mw'); // Default to @sumitkdev channel
 
         // Try API first if configured
         if ($apiKey && $channelId && $channelId !== 'UCjTP4KmZdAM8NMeMXPG95Mw') {
@@ -159,31 +159,31 @@ class SocialMediaService
     {
         return [
             [
-                'id' => 'dQw4w9WgXcQ',
-                'title' => 'Building a Modern Laravel Web App',
-                'description' => 'A comprehensive guide to building a modern web application using Laravel, Livewire, and Tailwind CSS.',
-                'thumbnail' => 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=80',
-                'published_at' => now()->subDays(2)->toIso8601String(),
-                'url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-                'embed_url' => 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+                'id' => '3z4g7gqYlHk',
+                'title' => 'New Client Project Delivered – Law Firm Website Design & Development ⚖️ | #website #app #client',
+                'description' => 'Proud to showcase another professional website successfully designed and developed for a legal services client.',
+                'thumbnail' => 'https://i4.ytimg.com/vi/3z4g7gqYlHk/hqdefault.jpg',
+                'published_at' => '2026-06-17T13:30:17+00:00',
+                'url' => 'https://www.youtube.com/watch?v=3z4g7gqYlHk',
+                'embed_url' => 'https://www.youtube.com/embed/3z4g7gqYlHk',
             ],
             [
-                'id' => 'L_jWHffIx5E',
-                'title' => 'React vs Vue.js for Beginners',
-                'description' => 'Comparing the top two front-end frameworks to help you decide which one to learn next.',
-                'thumbnail' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=640&q=80',
-                'published_at' => now()->subDays(10)->toIso8601String(),
-                'url' => 'https://www.youtube.com/watch?v=L_jWHffIx5E',
-                'embed_url' => 'https://www.youtube.com/embed/L_jWHffIx5E',
+                'id' => 'ikryClF1BTI',
+                'title' => 'Portfolio Website | Modern Design | #coding #programming #design #viral #sumitkdev',
+                'description' => '',
+                'thumbnail' => 'https://i2.ytimg.com/vi/ikryClF1BTI/hqdefault.jpg',
+                'published_at' => '2026-06-17T13:30:01+00:00',
+                'url' => 'https://www.youtube.com/shorts/ikryClF1BTI',
+                'embed_url' => 'https://www.youtube.com/embed/ikryClF1BTI',
             ],
             [
-                'id' => 'k2qgadSvNyU',
-                'title' => 'My Developer Workspace Setup',
-                'description' => 'Tour of my home office setup for software engineering and content creation.',
-                'thumbnail' => 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=640&q=80',
-                'published_at' => now()->subDays(20)->toIso8601String(),
-                'url' => 'https://www.youtube.com/watch?v=k2qgadSvNyU',
-                'embed_url' => 'https://www.youtube.com/embed/k2qgadSvNyU',
+                'id' => '4w0PBDJPfHs',
+                'title' => '🔥 Ghost Card UI Design in 15 Seconds 👻 | HTML CSS JavaScript #shortsvideo',
+                'description' => 'Ghost Card UI Design Animation Built using HTML, CSS & JavaScript.',
+                'thumbnail' => 'https://i1.ytimg.com/vi/4w0PBDJPfHs/hqdefault.jpg',
+                'published_at' => '2026-06-17T09:30:17+00:00',
+                'url' => 'https://www.youtube.com/shorts/4w0PBDJPfHs',
+                'embed_url' => 'https://www.youtube.com/embed/4w0PBDJPfHs',
             ],
         ];
     }
