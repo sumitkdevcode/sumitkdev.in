@@ -21,8 +21,8 @@
     {
         "@context": "https://schema.org",
         "@type": "TechArticle",
-        "headline": "{{ $post->title }}",
-        "description": "{{ $post->meta_description ?? $post->excerpt }}",
+        "headline": @json($post->title),
+        "description": @json($post->meta_description ?? $post->excerpt),
         "author": {
             "@type": "Person",
             "@id": "{{ url('/') }}/#person",
@@ -44,8 +44,8 @@
         @if($post->featured_image)
         "image": "{{ $post->getImageUrl() }}",
         @endif
-        "articleSection": "{{ $post->category }}",
-        "keywords": "{{ is_array($post->tags) ? implode(', ', $post->tags) : '' }}, Sumit Kumar",
+        "articleSection": @json($post->category),
+        "keywords": @json((is_array($post->tags) ? implode(', ', $post->tags) . ', ' : '') . 'Sumit Kumar'),
         "wordCount": {{ str_word_count(strip_tags($post->content)) }},
         "inLanguage": "en",
         "proficiencyLevel": "Beginner",
@@ -77,7 +77,7 @@
             {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "{{ $post->title }}",
+                "name": @json($post->title),
                 "item": "{{ route('blog.show', $post->slug) }}"
             }
         ]

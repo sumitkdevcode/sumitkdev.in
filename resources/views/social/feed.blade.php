@@ -30,11 +30,11 @@
                 "position": {{ $index + 1 }},
                 "item": {
                     "@type": "VideoObject",
-                    "name": "{{ addslashes($video['title']) }}",
-                    "description": "{{ addslashes($video['description']) }}",
-                    "thumbnailUrl": "{{ $video['thumbnail'] }}",
-                    "uploadDate": "{{ $video['published_at'] }}",
-                    "embedUrl": "{{ $video['embed_url'] }}"
+                    "name": @json($video['title']),
+                    "description": @json($video['description']),
+                    "thumbnailUrl": @json($video['thumbnail']),
+                    "uploadDate": @json($video['published_at']),
+                    "embedUrl": @json($video['embed_url'])
                 }
             }{{ $loop->last ? '' : ',' }}
             @endforeach
@@ -56,13 +56,15 @@
                 "position": {{ $index + 1 }},
                 "item": {
                     "@type": "SocialMediaPosting",
-                    "headline": "{{ addslashes(Str::limit($post['caption'], 100)) }}",
-                    "image": "{{ $post['media_url'] }}",
-                    "url": "{{ $post['permalink'] }}",
-                    "datePublished": "{{ $post['published_at'] }}",
+                    "headline": @json(Str::limit($post['caption'], 100)),
+                    "image": @json($post['media_url']),
+                    "url": @json($post['permalink']),
+                    "datePublished": @json($post['published_at']),
                     "author": {
                         "@type": "Person",
-                        "name": "Sumit Kumar"
+                        "@id": "{{ url('/') }}/#person",
+                        "name": "Sumit Kumar",
+                        "url": "{{ url('/') }}"
                     }
                 }
             }{{ $loop->last ? '' : ',' }}
