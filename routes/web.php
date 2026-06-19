@@ -82,6 +82,11 @@ Route::get('/sitemap.xml', function () {
             ['url' => url('/contact'),    'priority' => '0.8',  'changefreq' => 'monthly'],
             ['url' => url('/links'),      'priority' => '0.8',  'changefreq' => 'monthly'],
             ['url' => url('/open-source'),'priority' => '0.7',  'changefreq' => 'monthly'],
+            ['url' => url('/feed'),       'priority' => '0.7',  'changefreq' => 'daily'],
+            ['url' => url('/tools'),      'priority' => '0.6',  'changefreq' => 'monthly'],
+            ['url' => url('/tools/json-formatter'), 'priority' => '0.5', 'changefreq' => 'monthly'],
+            ['url' => url('/tools/base64'),          'priority' => '0.5', 'changefreq' => 'monthly'],
+            ['url' => url('/tools/uuid-generator'),  'priority' => '0.5', 'changefreq' => 'monthly'],
         ];
 
         foreach ($staticPages as $page) {
@@ -130,7 +135,7 @@ Route::get('/sitemap.xml', function () {
 })->name('sitemap');
 
 Route::get('/robots.txt', function () {
-    $content = \Illuminate\Support\Facades\Cache::remember('robots_txt', 86400, function () {
+    $content = \Illuminate\Support\Facades\Cache::remember('robots_txt', 3600, function () {
         $content = "User-agent: *\n";
         $content .= "Allow: /\n";
         $content .= "Disallow: /admin\n";

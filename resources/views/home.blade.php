@@ -2,6 +2,27 @@
 
 @section('canonical_url', route('home'))
 
+@section('meta')
+    <!-- Homepage WebPage Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "{{ url('/') }}/#webpage",
+        "url": "{{ url('/') }}",
+        "name": "Sumit Kumar (sumitkdev) — Full Stack Developer & Software Engineer",
+        "description": "Official website of Sumit Kumar (sumitkdev) — Full Stack Developer & Software Engineer specializing in Laravel, React, Vue.js, Node.js.",
+        "isPartOf": {
+            "@id": "{{ url('/') }}/#website"
+        },
+        "about": {
+            "@id": "{{ url('/') }}/#person"
+        },
+        "inLanguage": "en-IN"
+    }
+    </script>
+@endsection
+
 @section('content')
     <section class="relative px-8 lg:px-16 xl:px-24 pt-4 pb-12 md:pb-16 overflow-hidden">
         <!-- Animated Background Grid -->
@@ -10,7 +31,7 @@
         <div class="max-w-[1400px] mx-auto w-full grid md:grid-cols-2 gap-12 items-center relative z-10 mt-4 md:mt-8">
             <!-- Left Content: Typography & CTAs -->
             <div class="relative">
-                <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-8 relative">
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-4 relative">
                     <span class="reveal-text-container block">
                         <span class="reveal-text">{{ explode(' ', $settings['site_name'])[0] }}</span>
                     </span>
@@ -21,6 +42,9 @@
                         </span>
                     </span>
                 </h1>
+                <p class="reveal-text-container block mb-8">
+                    <span class="reveal-text delay-300 text-sm uppercase tracking-[0.3em] text-gray-400 font-bold">@sumitkdev</span>
+                </p>
                 
                 <div class="reveal-text-container block mb-12">
                     <p class="reveal-text delay-400 text-xl md:text-2xl text-gray-600 max-w-lg font-light leading-relaxed">

@@ -81,7 +81,7 @@
         "knowsAbout": ["Laravel", "React", "Vue.js", "Node.js", "PHP", "JavaScript", "TypeScript", "Python", "MySQL", "PostgreSQL", "Docker", "AWS", "Full Stack Development", "Web Development", "Software Engineering", "ASP.NET Core", "C#", "REST API", "GraphQL"],
         "worksFor": {
             "@type": "Organization",
-            "name": "Apex Byte IT Services"
+            "name": "Web IT Squad"
         },
         "sameAs": [
               @php
@@ -148,30 +148,36 @@
     }
     </script>
 
-    <title>@yield('meta_title', optional($seoData)->meta_title ?? 'Sumit Kumar — Full Stack Developer & Software Engineer')</title>
+    <title>@yield('meta_title', optional($seoData)->meta_title ?? 'Sumit Kumar (sumitkdev) — Full Stack Developer & Software Engineer')</title>
     <meta name="description"
-        content="@yield('meta_description', optional($seoData)->meta_description ?? 'Sumit Kumar is a Full Stack Developer & Software Engineer specializing in Laravel, React, Vue.js, and modern web technologies. Explore portfolio, read tutorials, and get in touch.')">
-    <meta name="keywords" content="@yield('meta_keywords', optional($seoData)->meta_keywords ?? 'Sumit Kumar, full stack developer, web developer, software engineer, Laravel developer, React developer, PHP developer, sumitkdev, Sumit Kumar portfolio')">
+        content="@yield('meta_description', optional($seoData)->meta_description ?? 'Sumit Kumar (sumitkdev) is a Full Stack Developer & Software Engineer specializing in Laravel, React, Vue.js, and modern web technologies. Explore portfolio, read tutorials, and get in touch.')">
+    <meta name="keywords" content="@yield('meta_keywords', optional($seoData)->meta_keywords ?? 'sumitkdev, Sumit Kumar, full stack developer, web developer, software engineer, Laravel developer, React developer, PHP developer, Sumit Kumar portfolio')">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="@yield('canonical_url', url(request()->path()))">
-    <meta property="og:site_name" content="Sumit Kumar">
-    <meta property="og:title" content="@yield('og_title', optional($seoData)->og_title ?? (optional($seoData)->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
-    <meta property="og:description" content="@yield('og_description', optional($seoData)->og_description ?? (optional($seoData)->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer specializing in Laravel, React, Vue.js.'))">
+    <meta property="og:site_name" content="Sumit Kumar (sumitkdev)">
+    <meta property="og:title" content="@yield('og_title', optional($seoData)->og_title ?? (optional($seoData)->meta_title ?? 'Sumit Kumar (sumitkdev) — Full Stack Developer'))">
+    <meta property="og:description" content="@yield('og_description', optional($seoData)->og_description ?? (optional($seoData)->meta_description ?? 'Official website of Sumit Kumar (sumitkdev) — Full Stack Developer specializing in Laravel, React, Vue.js.'))">
     <meta property="og:image" content="@yield('og_image', optional($seoData)->og_image ? asset(optional($seoData)->og_image) : asset('images/og-default.webp'))">
     <meta property="og:locale" content="en_IN">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="@yield('twitter_card', optional($seoData)->twitter_card ?? 'summary_large_image')">
     <meta property="twitter:url" content="@yield('canonical_url', url(request()->path()))">
-    <meta property="twitter:title" content="@yield('twitter_title', optional($seoData)->og_title ?? (optional($seoData)->meta_title ?? 'Sumit Kumar — Full Stack Developer'))">
-    <meta property="twitter:description" content="@yield('twitter_description', optional($seoData)->og_description ?? (optional($seoData)->meta_description ?? 'Official website of Sumit Kumar — Full Stack Developer.'))">
+    <meta property="twitter:title" content="@yield('twitter_title', optional($seoData)->og_title ?? (optional($seoData)->meta_title ?? 'Sumit Kumar (sumitkdev) — Full Stack Developer'))">
+    <meta property="twitter:description" content="@yield('twitter_description', optional($seoData)->og_description ?? (optional($seoData)->meta_description ?? 'Official website of Sumit Kumar (sumitkdev) — Full Stack Developer.'))">
     <meta property="twitter:image" content="@yield('twitter_image', optional($seoData)->og_image ? asset(optional($seoData)->og_image) : asset('images/og-default.webp'))">
     <meta name="twitter:site" content="{{ optional($seoData)->twitter_handle ?? '@sumitkdevs' }}">
     <meta name="twitter:creator" content="{{ optional($seoData)->twitter_handle ?? '@sumitkdevs' }}">
 
     @yield('meta')
+
+    <!-- Social Profile Verification -->
+    <link rel="me" href="https://github.com/sumitkdevcode">
+    <link rel="me" href="https://twitter.com/sumitkdevs">
+    <link rel="me" href="https://linkedin.com/in/sumitkdev">
+    <link rel="me" href="https://instagram.com/sumitkdev">
 
     <!-- Geo SEO -->
     <meta name="geo.region" content="IN" />
@@ -401,7 +407,7 @@
             </div>
             <div
                 class="border-t border-white/10 mt-20 pt-10 flex flex-col md:flex-row justify-between text-xs text-gray-500 uppercase tracking-widest">
-                <p>&copy; {{ date('Y') }} Sumit Kumar. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Sumit Kumar (sumitkdev). All rights reserved.</p>
                 <div class="mt-4 md:mt-0 space-x-6">
                     <a href="{{ route('privacy') }}" class="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="{{ route('terms') }}" class="hover:text-white transition-colors">Terms of Service</a>
