@@ -27,7 +27,7 @@ class PageSeoSeeder extends Seeder
                 'twitter_handle' => '@sumitkdevs',
             ],
             [
-                'page_path' => 'about',
+                'page_path' => '/about',
                 'page_name' => 'About Me',
                 'meta_title' => 'About Sumit Kumar (sumitkdev) — My Journey & Skills',
                 'meta_description' => 'Learn about Sumit Kumar (sumitkdev) — MCA graduate, Software Engineer at Web IT Squad. 3+ years of experience in Laravel, React, ASP.NET Core, and modern web development.',
@@ -38,7 +38,7 @@ class PageSeoSeeder extends Seeder
                 'twitter_handle' => '@sumitkdevs',
             ],
             [
-                'page_path' => 'portfolio',
+                'page_path' => '/portfolio',
                 'page_name' => 'Portfolio',
                 'meta_title' => 'Portfolio & Projects — Sumit Kumar (sumitkdev)',
                 'meta_description' => 'Showcase of web development projects by Sumit Kumar (sumitkdev). Client work, open-source contributions, and technical case studies using Laravel, React, and ASP.NET Core.',
@@ -49,7 +49,7 @@ class PageSeoSeeder extends Seeder
                 'twitter_handle' => '@sumitkdevs',
             ],
             [
-                'page_path' => 'blog',
+                'page_path' => '/blog',
                 'page_name' => 'Blog / Insights',
                 'meta_title' => 'Developer Blog & Tutorials — Sumit Kumar (sumitkdev)',
                 'meta_description' => '500+ tutorials, tips, and insights on PHP, Laravel, JavaScript, React, and software engineering by Sumit Kumar (sumitkdev). Learn modern web development.',
@@ -60,7 +60,7 @@ class PageSeoSeeder extends Seeder
                 'twitter_handle' => '@sumitkdevs',
             ],
             [
-                'page_path' => 'contact',
+                'page_path' => '/contact',
                 'page_name' => 'Contact',
                 'meta_title' => 'Contact Sumit Kumar (sumitkdev) — Let\'s Work Together',
                 'meta_description' => 'Get in touch with Sumit Kumar (sumitkdev) for freelance web development, full-time opportunities, or project consultation. Based in Greater Noida, India.',
@@ -71,7 +71,7 @@ class PageSeoSeeder extends Seeder
                 'twitter_handle' => '@sumitkdevs',
             ],
             [
-                'page_path' => 'open-source',
+                'page_path' => '/open-source',
                 'page_name' => 'Open Source',
                 'meta_title' => 'Open Source Contributions — Sumit Kumar (sumitkdev)',
                 'meta_description' => 'Explore open-source packages, GitHub repositories, and community contributions by Sumit Kumar (sumitkdev) in the Laravel and PHP ecosystem.',
@@ -82,7 +82,7 @@ class PageSeoSeeder extends Seeder
                 'twitter_handle' => '@sumitkdevs',
             ],
             [
-                'page_path' => 'links',
+                'page_path' => '/links',
                 'page_name' => 'All Links',
                 'meta_title' => 'Sumit Kumar (sumitkdev) — All Links & Socials',
                 'meta_description' => 'Find all of Sumit Kumar\'s (sumitkdev) social media profiles, recent articles, and important resources in one place.',
@@ -93,7 +93,7 @@ class PageSeoSeeder extends Seeder
                 'twitter_handle' => '@sumitkdevs',
             ],
             [
-                'page_path' => 'gallery',
+                'page_path' => '/gallery',
                 'page_name' => 'Gallery',
                 'meta_title' => 'Gallery & Setup — Sumit Kumar (sumitkdev)',
                 'meta_description' => 'A visual tour of Sumit Kumar\'s (sumitkdev) workspace, developer setup, and behind-the-scenes moments.',
@@ -104,7 +104,7 @@ class PageSeoSeeder extends Seeder
                 'twitter_handle' => '@sumitkdevs',
             ],
             [
-                'page_path' => 'feed',
+                'page_path' => '/feed',
                 'page_name' => 'Social Feed',
                 'meta_title' => 'Social Feed & YouTube — Sumit Kumar (sumitkdev)',
                 'meta_description' => 'Catch up on Sumit Kumar\'s (sumitkdev) latest YouTube tutorials, Instagram moments, and professional posts. All social updates in one place.',

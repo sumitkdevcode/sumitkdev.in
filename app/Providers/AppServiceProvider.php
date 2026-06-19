@@ -31,19 +31,31 @@ class AppServiceProvider extends ServiceProvider
 
         // Only target layout views instead of '*' to avoid redundant queries on partials/components
         View::composer(['layouts.app', 'layouts.admin'], function ($view) {
-            $path = '/' . request()->path();
+            $path = '/' . ltrim(request()->path(), '/');
             if ($path === '//')
                 $path = '/';
 
             $cacheKey = 'page_seo_' . md5($path);
 
             $seo = Cache::remember($cacheKey, 3600, function () use ($path) {
+                // Try exact match with leading slash first
                 $seo = \App\Models\PageSeo::where('page_path', $path)->first();
 
-                // If not found, try stripping query strings or trailing slashes
+                // Also try without leading slash (legacy entries)
+                if (!$seo && $path !== '/') {
+                    $seo = \App\Models\PageSeo::where('page_path', ltrim($path, '/'))->first();
+                }
+
+                // If not found, try the parent path segment (for sub-pages like /blog/slug)
                 if (!$seo) {
                     $parentPath = '/' . explode('/', ltrim($path, '/'))[0];
-                    $seo = \App\Models\PageSeo::where('page_path', $parentPath)->first();
+                    if ($parentPath !== $path) {
+                        $seo = \App\Models\PageSeo::where('page_path', $parentPath)->first();
+                        // Also try without leading slash
+                        if (!$seo) {
+                            $seo = \App\Models\PageSeo::where('page_path', ltrim($parentPath, '/'))->first();
+                        }
+                    }
                 }
 
                 return $seo;

@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PageSeo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PageSeoController extends Controller
 {
     public function index()
     {
+        // Clean up legacy entries: merge duplicates without leading slash into the /path version
+        $this->cleanupDuplicatePaths();
+
         // Default pages to ensure they always exist for easy setup
         $defaultPages = [
             ['path' => '/', 'name' => 'Home'],
@@ -38,6 +42,11 @@ class PageSeoController extends Controller
 
     public function store(Request $request)
     {
+        // Normalize path to always have a leading slash
+        $request->merge([
+            'page_path' => '/' . ltrim($request->input('page_path'), '/'),
+        ]);
+
         $request->validate([
             'page_name' => 'required|string|max:255',
             'page_path' => 'required|string|max:255|unique:page_seos,page_path',
@@ -52,6 +61,7 @@ class PageSeoController extends Controller
         ]);
 
         PageSeo::create($request->all());
+        $this->clearSeoCache();
 
         return redirect()->route('admin.seo.index')->with('success', 'New page SEO entry created successfully.');
     }
@@ -63,6 +73,11 @@ class PageSeoController extends Controller
 
     public function update(Request $request, PageSeo $seo)
     {
+        // Normalize path to always have a leading slash
+        $request->merge([
+            'page_path' => '/' . ltrim($request->input('page_path'), '/'),
+        ]);
+
         $request->validate([
             'page_name' => 'required|string|max:255',
             'page_path' => 'required|string|max:255|unique:page_seos,page_path,' . $seo->id,
@@ -77,6 +92,7 @@ class PageSeoController extends Controller
         ]);
 
         $seo->update($request->all());
+        $this->clearSeoCache();
 
         return redirect()->route('admin.seo.index')->with('success', 'SEO for ' . $seo->page_name . ' updated successfully.');
     }
@@ -84,6 +100,67 @@ class PageSeoController extends Controller
     public function destroy(PageSeo $seo)
     {
         $seo->delete();
+        $this->clearSeoCache();
         return redirect()->route('admin.seo.index')->with('success', 'Page SEO entry deleted successfully.');
+    }
+
+    /**
+     * Clean up duplicate entries where paths exist both with and without leading slash.
+     * Keeps the entry with more SEO data filled in, or the one with leading slash if equal.
+     */
+    private function cleanupDuplicatePaths()
+    {
+        $allEntries = PageSeo::all();
+        $pathsWithSlash = [];
+        $pathsWithoutSlash = [];
+
+        foreach ($allEntries as $entry) {
+            if (str_starts_with($entry->page_path, '/')) {
+                $pathsWithSlash[$entry->page_path] = $entry;
+            } else {
+                $pathsWithoutSlash[$entry->page_path] = $entry;
+            }
+        }
+
+        foreach ($pathsWithoutSlash as $path => $legacyEntry) {
+            $normalizedPath = '/' . $path;
+
+            if (isset($pathsWithSlash[$normalizedPath])) {
+                $canonicalEntry = $pathsWithSlash[$normalizedPath];
+
+                // If the legacy entry has SEO data but the canonical one doesn't, copy it over
+                if ($legacyEntry->meta_title && !$canonicalEntry->meta_title) {
+                    $canonicalEntry->update([
+                        'page_name' => $legacyEntry->page_name,
+                        'meta_title' => $legacyEntry->meta_title,
+                        'meta_description' => $legacyEntry->meta_description,
+                        'meta_keywords' => $legacyEntry->meta_keywords,
+                        'og_title' => $legacyEntry->og_title,
+                        'og_description' => $legacyEntry->og_description,
+                        'og_image' => $legacyEntry->og_image,
+                        'twitter_card' => $legacyEntry->twitter_card,
+                        'twitter_handle' => $legacyEntry->twitter_handle,
+                    ]);
+                }
+
+                // Delete the duplicate without leading slash
+                $legacyEntry->delete();
+            } else {
+                // No canonical version exists, just fix the path
+                $legacyEntry->update(['page_path' => $normalizedPath]);
+            }
+        }
+    }
+
+    /**
+     * Clear all cached SEO data so changes take effect immediately.
+     */
+    private function clearSeoCache()
+    {
+        // Clear known page SEO cache keys
+        $paths = ['/', '/about', '/portfolio', '/blog', '/gallery', '/contact', '/links', '/open-source', '/feed', '/tools'];
+        foreach ($paths as $path) {
+            Cache::forget('page_seo_' . md5($path));
+        }
     }
 }
