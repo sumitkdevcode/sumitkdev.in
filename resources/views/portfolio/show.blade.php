@@ -100,7 +100,7 @@
                         <h4 class="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4">Core Technology</h4>
                         <ul class="flex flex-wrap gap-2">
                             @foreach($project->tech_stack ?? [] as $tech)
-                                <li class="px-3 py-1 border border-black/20 text-[10px] uppercase font-bold hover:bg-black hover:text-white transition-colors cursor-default neo-frame">{{ $tech }}</li>
+                                <li class="px-3 py-1 border-2 border-black text-[10px] uppercase font-bold hover:bg-black hover:text-white transition-colors cursor-default shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mb-2">{{ $tech }}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -112,7 +112,7 @@
             </aside>
 
             <div class="lg:col-span-8 space-y-16" data-aos="fade-up" data-aos-delay="200">
-                <div class="prose prose-2xl max-w-none text-black font-light leading-relaxed">
+                <div class="prose prose-base md:prose-lg max-w-none text-black font-light leading-relaxed">
                     {!! $project->description !!}
                 </div>
 
