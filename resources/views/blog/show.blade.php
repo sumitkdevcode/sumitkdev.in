@@ -45,7 +45,10 @@
         "image": "{{ $post->getImageUrl() }}",
         @endif
         "articleSection": @json($post->category),
-        "keywords": @json((is_array($post->tags) ? implode(', ', $post->tags) . ', ' : '') . 'Sumit Kumar'),
+        @php
+            $keywordsString = (is_array($post->tags) ? implode(', ', $post->tags) . ', ' : '') . 'Sumit Kumar';
+        @endphp
+        "keywords": @json($keywordsString),
         "wordCount": {{ str_word_count(strip_tags($post->content)) }},
         "inLanguage": "en",
         "proficiencyLevel": "Beginner",
