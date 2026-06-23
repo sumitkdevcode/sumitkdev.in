@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('seoData', $seo);
         });
 
-        View::composer('*', function ($view) {
+        View::composer(['layouts.app', 'layouts.admin'], function ($view) {
             static $socialLinks = null;
             if ($socialLinks === null) {
                 $socialLinks = Cache::remember('global_social_links', 3600, function () {
@@ -80,10 +80,11 @@ class AppServiceProvider extends ServiceProvider
         // Override default mail configuration dynamically based on the active SMTP setting
         try {
             $defaultSmtp = Cache::rememberForever('default_smtp_setting', function () {
-                if (\Illuminate\Support\Facades\Schema::hasTable('smtp_settings')) {
+                try {
                     return \App\Models\SmtpSetting::where('is_default', true)->first();
+                } catch (\Exception $e) {
+                    return null;
                 }
-                return null;
             });
 
             if ($defaultSmtp) {

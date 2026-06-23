@@ -20,7 +20,7 @@ class SocialMediaService
         if ($apiKey && $channelId && $channelId !== 'UCjTP4KmZdAM8NMeMXPG95Mw') {
             return Cache::remember('youtube_videos_v2', now()->addHours(12), function () use ($apiKey, $channelId, $maxResults) {
                 try {
-                    $response = Http::get("https://www.googleapis.com/youtube/v3/search", [
+                    $response = Http::timeout(3)->get("https://www.googleapis.com/youtube/v3/search", [
                         'key' => $apiKey,
                         'channelId' => $channelId,
                         'part' => 'snippet,id',
@@ -51,9 +51,9 @@ class SocialMediaService
         }
 
         // Fallback to Public RSS Feed (No API Key Required!)
-        return Cache::remember('youtube_videos_rss_v2', now()->addHours(1), function () use ($channelId, $maxResults) {
+        return Cache::remember('youtube_videos_rss_v2', now()->addHours(6), function () use ($channelId, $maxResults) {
             try {
-                $rss = Http::get("https://www.youtube.com/feeds/videos.xml?channel_id={$channelId}")->body();
+                $rss = Http::timeout(3)->get("https://www.youtube.com/feeds/videos.xml?channel_id={$channelId}")->body();
                 $xml = simplexml_load_string($rss);
                 
                 if (!$xml || !isset($xml->entry)) {
@@ -97,7 +97,7 @@ class SocialMediaService
         $accessToken = config('services.instagram.access_token');
         
         // Cache the combined results
-        return Cache::remember('social_posts_v2', now()->addHours(12), function () use ($accessToken, $maxResults) {
+        return Cache::remember('social_posts_v2', now()->addHours(24), function () use ($accessToken, $maxResults) {
             // First try to fetch from our local database (Admin Social Posts)
             $dbPosts = \App\Models\SocialPost::where('is_published', true)
                 ->orderBy('published_at', 'desc')
@@ -121,7 +121,7 @@ class SocialMediaService
             // Fallback to API if configured
             if ($accessToken) {
                 try {
-                    $response = Http::get("https://graph.instagram.com/me/media", [
+                    $response = Http::timeout(3)->get("https://graph.instagram.com/me/media", [
                         'fields' => 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp',
                         'access_token' => $accessToken,
                         'limit' => $maxResults

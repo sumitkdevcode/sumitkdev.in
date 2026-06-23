@@ -53,6 +53,7 @@ npm run build
 php artisan up
 
 # Warm up the cache so the first visitor doesn't experience a slow load
+php artisan cache:warmup
 curl -s -o /dev/null "https://sumitkdev.in" || true
 
 echo "✅ Application deployed!"

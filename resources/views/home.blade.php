@@ -73,8 +73,8 @@
             <div class="relative mt-12 md:mt-0 lg:ml-auto">
                 <div class="image-reveal-wrapper neo-frame bg-gray-100 max-w-md mx-auto aspect-[4/5] animate-float">
                     @php
-                        $heroImage = \App\Models\Setting::get('home_hero_image')
-                            ? asset('storage/' . \App\Models\Setting::get('home_hero_image'))
+                        $heroImage = $settings['home_hero_image']
+                            ? asset('storage/' . $settings['home_hero_image'])
                             : asset('storage/media/j0qk6wFOPGrGJEBdwp6IieB8rVokn357csmu91Sq.webp');
                     @endphp
                     <img src="{{ $heroImage }}" width="800" height="1000" decoding="async"
@@ -286,7 +286,7 @@
                         @foreach(array_merge($row1, $row1) as $index => $skill)
                             <div class="bg-white w-32 h-32 md:w-48 md:h-48 mx-2 md:mx-4 p-4 md:p-6 flex flex-col items-center justify-center gap-2 md:gap-4 hover:-translate-y-2 transition-transform duration-300 border-2 border-black/10 hover:border-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group skill-card cursor-pointer shrink-0">
                                 <div class="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ $skill['icon'] }}"
+                                    <img src="{{ asset('images/skills/' . str_replace('/', '-', $skill['icon'])) }}"
                                         alt="{{ $skill['name'] }}" loading="lazy"
                                         class="w-full h-full object-contain skill-icon transition-all duration-300">
                                 </div>
@@ -300,7 +300,7 @@
                         @foreach(array_merge($row2, $row2) as $index => $skill)
                             <div class="bg-white w-32 h-32 md:w-48 md:h-48 mx-2 md:mx-4 p-4 md:p-6 flex flex-col items-center justify-center gap-2 md:gap-4 hover:-translate-y-2 transition-transform duration-300 border-2 border-black/10 hover:border-black hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group skill-card cursor-pointer shrink-0">
                                 <div class="w-10 h-10 md:w-16 md:h-16 flex items-center justify-center">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/{{ $skill['icon'] }}"
+                                    <img src="{{ asset('images/skills/' . str_replace('/', '-', $skill['icon'])) }}"
                                         alt="{{ $skill['name'] }}" loading="lazy"
                                         class="w-full h-full object-contain skill-icon transition-all duration-300">
                                 </div>
@@ -472,7 +472,7 @@
     <section class="py-16 bg-black text-white relative overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Cyber Background" width="1920" height="1080" class="w-full h-full object-cover opacity-50" loading="lazy" decoding="async">
+            <img src="{{ asset('images/cyber-bg.webp') }}" alt="Cyber Background" width="1920" height="1080" class="w-full h-full object-cover opacity-50" loading="lazy" decoding="async">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
         </div>
 

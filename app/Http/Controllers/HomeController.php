@@ -20,6 +20,7 @@ class HomeController extends Controller
         $allBlogs = Cache::remember('home_all_blogs', 1800, function () {
             return \App\Models\BlogPost::where('is_published', true)
                 ->orderBy('published_at', 'desc')
+                ->take(12)
                 ->get();
         });
 
@@ -78,6 +79,7 @@ class HomeController extends Controller
             'github' => \App\Models\Setting::get('github', 'https://github.com/sumitkumar5683'),
             'linkedin' => \App\Models\Setting::get('linkedin', 'https://linkedin.com/in/sumit-kumar-84b869231'),
             'portfolio_url' => \App\Models\Setting::get('portfolio_url', 'https://sumitkdev.in'),
+            'home_hero_image' => \App\Models\Setting::get('home_hero_image'),
             'education' => \App\Models\Setting::get('education', json_encode([
                 ['degree' => 'Master of Computer Applications (MCA)', 'institution' => 'Gautam Buddha University, Greater Noida, Uttar Pradesh', 'year' => '2023-2025'],
                 ['degree' => 'Bachelor of Computer Applications (BCA)', 'institution' => 'Galgotias University, Greater Noida, Uttar Pradesh', 'year' => '2020-2023'],
