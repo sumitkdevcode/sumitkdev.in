@@ -8,15 +8,26 @@ echo "🚀 Starting deployment process..."
 
 # Enter maintenance mode
 echo "📝 Entering maintenance mode..."
-(php artisan down --message 'The app is being quickly updated. Please try again in a minute.') || true
+(php artisan down --retry=60) || true
 
 # Update codebase from Git
 echo "📦 Pulling latest code from repository..."
 git pull origin main
 
-# Install/Update Composer dependencies
-echo "📚 Installing Composer dependencies..."
-composer install --no-dev --optimize-autoloader --no-interaction
+# Auto-detect composer path
+if command -v composer &> /dev/null; then
+    COMPOSER_CMD="composer"
+elif [ -f "$HOME/bin/composer" ]; then
+    COMPOSER_CMD="$HOME/bin/composer"
+elif [ -f "composer.phar" ]; then
+    COMPOSER_CMD="php composer.phar"
+else
+    echo "❌ Composer not found! Please install composer or set the path."
+    exit 1
+fi
+
+echo "📚 Installing Composer dependencies (using: $COMPOSER_CMD)..."
+$COMPOSER_CMD install --no-dev --optimize-autoloader --no-interaction
 
 # Run database migrations
 echo "🗄️  Running database migrations..."
