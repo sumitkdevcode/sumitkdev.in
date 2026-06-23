@@ -135,67 +135,12 @@ class WarmupCache extends Command
 
         // 11. YouTube RSS Feed (with timeout)
         $this->task('YouTube RSS Feed', function () {
-            $channelId = trim(config('services.youtube.channel_id') ?: 'UCjTP4KmZdAM8NMeMXPG95Mw');
-            Cache::remember('youtube_videos_rss_v2', now()->addHours(6), function () use ($channelId) {
-                try {
-                    $rss = Http::timeout(5)->get("https://www.youtube.com/feeds/videos.xml?channel_id={$channelId}")->body();
-                    $xml = simplexml_load_string($rss);
-
-                    if (!$xml || !isset($xml->entry)) {
-                        return [];
-                    }
-
-                    $videos = [];
-                    $count = 0;
-                    foreach ($xml->entry as $entry) {
-                        if ($count >= 3) break;
-                        $media = $entry->children('media', true);
-                        $yt = $entry->children('yt', true);
-                        $videoId = (string)$yt->videoId;
-
-                        $videos[] = [
-                            'id' => $videoId,
-                            'title' => (string)$entry->title,
-                            'description' => (string)$media->group->description,
-                            'thumbnail' => (string)$media->group->thumbnail->attributes()->url,
-                            'published_at' => (string)$entry->published,
-                            'url' => (string)$entry->link->attributes()->href,
-                            'embed_url' => 'https://www.youtube.com/embed/' . $videoId,
-                        ];
-                        $count++;
-                    }
-
-                    return $videos;
-                } catch (\Exception $e) {
-                    return [];
-                }
-            });
+            app(\App\Services\SocialMediaService::class)->getYoutubeVideos(3);
         });
 
         // 12. Social Posts
         $this->task('Social Posts', function () {
-            Cache::remember('social_posts_v2', now()->addHours(24), function () {
-                $dbPosts = \App\Models\SocialPost::where('is_published', true)
-                    ->orderBy('published_at', 'desc')
-                    ->take(6)
-                    ->get();
-
-                if ($dbPosts->count() > 0) {
-                    return $dbPosts->map(function ($post) {
-                        return [
-                            'id' => $post->id,
-                            'platform' => $post->platform,
-                            'caption' => $post->content,
-                            'media_type' => $post->media_type,
-                            'media_url' => $post->media_url ? (str_starts_with($post->media_url, 'http') ? $post->media_url : asset('storage/' . $post->media_url)) : '',
-                            'permalink' => $post->permalink ?? '#',
-                            'published_at' => $post->published_at->toIso8601String(),
-                        ];
-                    })->toArray();
-                }
-
-                return [];
-            });
+            app(\App\Services\SocialMediaService::class)->getSocialPosts(6);
         });
 
         // 13. Sitemap
