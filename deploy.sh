@@ -63,8 +63,7 @@ php artisan optimize
 
 # Set proper permissions
 echo "🔒 Setting file permissions..."
-chmod -R 775 storage bootstrap/cache
-chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache || true
 
 # Exit maintenance mode
 echo "✅ Exiting maintenance mode..."
