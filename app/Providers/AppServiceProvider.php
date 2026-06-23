@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('seoData', $seo);
         });
 
-        View::composer(['layouts.app', 'layouts.admin'], function ($view) {
+        View::composer(['layouts.app', 'layouts.admin', 'social.feed', 'links', 'contact'], function ($view) {
             static $socialLinks = null;
             if ($socialLinks === null) {
                 $socialLinks = Cache::remember('global_social_links', 3600, function () {
