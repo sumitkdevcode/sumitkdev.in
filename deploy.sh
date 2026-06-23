@@ -17,6 +17,8 @@ git pull origin main
 # Auto-detect composer path
 if command -v composer &> /dev/null; then
     COMPOSER_CMD="composer"
+elif [ -f "$HOME/composer.phar" ]; then
+    COMPOSER_CMD="php $HOME/composer.phar"
 elif [ -f "$HOME/bin/composer" ]; then
     COMPOSER_CMD="$HOME/bin/composer"
 elif [ -f "composer.phar" ]; then
