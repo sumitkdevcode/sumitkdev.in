@@ -7,6 +7,7 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SocialFeedController;
 use App\Http\Controllers\ToolController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\PortfolioController as AdminPortfolio;
 use App\Http\Controllers\Admin\BlogController as AdminBlog;
@@ -50,6 +51,7 @@ Route::middleware(['cache.page'])->group(function () {
     Route::get('/open-source', [HomeController::class, 'openSource'])->name('open-source');
     Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
     Route::get('/privacy-policy', [HomeController::class, 'privacy'])->name('privacy');
+    Route::get('/resume', [ResumeController::class, 'show'])->name('resume');
 });
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
@@ -205,6 +207,34 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::get('/contacts', [AdminContact::class, 'index'])->name('contacts.index');
     Route::get('/contacts/{id}', [AdminContact::class, 'show'])->name('contacts.show');
     Route::delete('/contacts/{id}', [AdminContact::class, 'destroy'])->name('contacts.destroy');
+
+    // Resume Management
+    Route::get('/resume', [\App\Http\Controllers\Admin\ResumeController::class, 'index'])->name('resume.index');
+    Route::post('/resume/settings', [\App\Http\Controllers\Admin\ResumeController::class, 'updateSettings'])->name('resume.settings');
+
+    Route::post('/resume/experience', [\App\Http\Controllers\Admin\ResumeController::class, 'storeExperience'])->name('resume.experience.store');
+    Route::put('/resume/experience/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'updateExperience'])->name('resume.experience.update');
+    Route::delete('/resume/experience/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'destroyExperience'])->name('resume.experience.destroy');
+
+    Route::post('/resume/project', [\App\Http\Controllers\Admin\ResumeController::class, 'storeProject'])->name('resume.project.store');
+    Route::put('/resume/project/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'updateProject'])->name('resume.project.update');
+    Route::delete('/resume/project/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'destroyProject'])->name('resume.project.destroy');
+
+    Route::post('/resume/skill', [\App\Http\Controllers\Admin\ResumeController::class, 'storeSkill'])->name('resume.skill.store');
+    Route::put('/resume/skill/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'updateSkill'])->name('resume.skill.update');
+    Route::delete('/resume/skill/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'destroySkill'])->name('resume.skill.destroy');
+
+    Route::post('/resume/certificate', [\App\Http\Controllers\Admin\ResumeController::class, 'storeCertificate'])->name('resume.certificate.store');
+    Route::put('/resume/certificate/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'updateCertificate'])->name('resume.certificate.update');
+    Route::delete('/resume/certificate/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'destroyCertificate'])->name('resume.certificate.destroy');
+
+    Route::post('/resume/training', [\App\Http\Controllers\Admin\ResumeController::class, 'storeTraining'])->name('resume.training.store');
+    Route::put('/resume/training/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'updateTraining'])->name('resume.training.update');
+    Route::delete('/resume/training/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'destroyTraining'])->name('resume.training.destroy');
+
+    Route::post('/resume/strength', [\App\Http\Controllers\Admin\ResumeController::class, 'storeStrength'])->name('resume.strength.store');
+    Route::put('/resume/strength/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'updateStrength'])->name('resume.strength.update');
+    Route::delete('/resume/strength/{id}', [\App\Http\Controllers\Admin\ResumeController::class, 'destroyStrength'])->name('resume.strength.destroy');
 });
 
 require __DIR__ . '/auth.php';

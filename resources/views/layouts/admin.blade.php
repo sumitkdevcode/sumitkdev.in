@@ -276,6 +276,10 @@
                         class="sidebar-link {{ request()->is('admin/social-posts*') ? 'active' : '' }}">
                         Social Feed Posts
                     </a>
+                    <a href="{{ route('admin.resume.index') }}"
+                        class="sidebar-link {{ request()->is('admin/resume*') ? 'active' : '' }}">
+                        Resume / CV
+                    </a>
                 </div>
             </nav>
         </aside>

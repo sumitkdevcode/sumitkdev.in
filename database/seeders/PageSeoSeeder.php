@@ -113,6 +113,17 @@ class PageSeoSeeder extends Seeder
                 'og_description' => 'My latest content from YouTube, Instagram, X, and LinkedIn.',
                 'twitter_card' => 'summary_large_image',
                 'twitter_handle' => '@sumitkdevs',
+            ],
+            [
+                'page_path' => '/resume',
+                'page_name' => 'Resume',
+                'meta_title' => 'Resume & CV — Sumit Kumar (sumitkdev)',
+                'meta_description' => 'Professional resume and CV of Sumit Kumar (sumitkdev), a Full Stack Developer specializing in Laravel, React, ASP.NET Core, and modern web technologies.',
+                'meta_keywords' => 'Sumit Kumar Resume, sumitkdev CV, Full Stack Developer Resume, Laravel Developer CV, Hire Web Developer',
+                'og_title' => 'Resume — Sumit Kumar (sumitkdev)',
+                'og_description' => 'View or download my professional resume and work history.',
+                'twitter_card' => 'summary_large_image',
+                'twitter_handle' => '@sumitkdevs',
             ]
         ];
 
