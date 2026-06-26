@@ -32,4 +32,17 @@ class ResumeProject extends Model
     {
         return $query->orderBy('order')->orderBy('created_at', 'desc');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('resume_projects');
+        });
+
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('resume_projects');
+        });
+    }
 }
