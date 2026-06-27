@@ -82,7 +82,7 @@
         }
 
         .resume-entry-meta {
-            font-size: 0.72rem;
+            font-size: 0.78rem;
             color: #111827;
             font-weight: 500;
             text-transform: uppercase;
@@ -97,7 +97,7 @@
         }
 
         .resume-bullet-list li {
-            font-size: 0.82rem;
+            font-size: 0.9rem;
             color: #111827;
             margin-bottom: 0.35rem;
             line-height: 1.5;
@@ -163,7 +163,7 @@
         }
 
         .resume-contact {
-            font-size: 0.75rem;
+            font-size: 0.82rem;
             color: #111827;
             margin-top: 0.8rem;
         }
@@ -179,7 +179,7 @@
         }
 
         .resume-summary-text {
-            font-size: 0.82rem;
+            font-size: 0.9rem;
             color: #111827;
             line-height: 1.7;
         }
