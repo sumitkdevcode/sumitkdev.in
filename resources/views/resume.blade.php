@@ -486,7 +486,7 @@
                 // Use html2canvas onclone callback to modify the CLONE, not the real DOM.
                 // This avoids all off-screen positioning issues.
                 var canvas = await html2canvas(element, {
-                    scale: 2,
+                    scale: 1.5,                       // reduced from 2 to shrink PDF size (< 500KB)
                     useCORS: true,
                     logging: false,
                     backgroundColor: '#ffffff',
@@ -539,7 +539,7 @@
 
                 // --- Generate PDF with centered content ---
                 var jsPDF = window.jspdf.jsPDF;
-                var pdf = new jsPDF('p', 'mm', 'a4');
+                var pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'p', compress: true });
 
                 var pageWidth = 210;   // A4 width in mm
                 var pageHeight = 297;  // A4 height in mm
@@ -547,17 +547,17 @@
                 var topMargin = 8;     // top margin on first page
 
                 var contentWidth = pageWidth - (margin * 2);
-                var imgData = canvas.toDataURL('image/jpeg', 0.95);
+                var imgData = canvas.toDataURL('image/jpeg', 0.65);  // reduced from 0.95 for smaller PDF
                 var imgHeight = (canvas.height * contentWidth) / canvas.width;
 
                 // First page — content starts below topMargin
-                pdf.addImage(imgData, 'JPEG', margin, topMargin, contentWidth, imgHeight);
+                pdf.addImage(imgData, 'JPEG', margin, topMargin, contentWidth, imgHeight, undefined, 'FAST');
                 var consumed = pageHeight - topMargin;  // how much of the image fits on page 1
 
                 // Subsequent pages — content continues flush from top
                 while (consumed < imgHeight) {
                     pdf.addPage();
-                    pdf.addImage(imgData, 'JPEG', margin, -consumed, contentWidth, imgHeight);
+                    pdf.addImage(imgData, 'JPEG', margin, -consumed, contentWidth, imgHeight, undefined, 'FAST');
                     consumed += pageHeight;
                 }
 
