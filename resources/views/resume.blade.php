@@ -58,15 +58,15 @@
             text-transform: uppercase;
             color: #000;
             border-bottom: 2px solid #000;
-            padding-bottom: 0.6rem;
-            margin-bottom: 1.2rem;
-            margin-top: 2rem;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+            margin-top: 1.2rem;
         }
 
         .resume-entry {
             padding-left: 1rem;
             border-left: 3px solid #000;
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.6rem;
             transition: background-color 0.2s ease;
         }
 
@@ -82,53 +82,50 @@
         }
 
         .resume-entry-meta {
-            font-size: 0.78rem;
+            font-size: 0.82rem;
             color: #111827;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            margin-top: 0.15rem;
+            margin-top: 0.1rem;
         }
 
         .resume-bullet-list {
             list-style-type: disc;
             margin-left: 1.2rem;
-            margin-top: 0.6rem;
+            margin-top: 0.3rem;
         }
 
         .resume-bullet-list li {
-            font-size: 0.9rem;
+            font-size: 0.93rem;
             color: #111827;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.15rem;
             line-height: 1.5;
         }
 
         .resume-skills-grid {
             display: flex;
-            flex-wrap: wrap;
-            margin: 0 -0.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
         }
         .resume-skills-grid > div {
-            width: 20%;
-            padding: 0 0.5rem;
-            box-sizing: border-box;
-        }
-        @media (max-width: 768px) {
-            .resume-skills-grid > div {
-                width: 100%;
-                margin-bottom: 1rem;
-            }
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
 
         .resume-skill-category {
             font-size: 0.78rem;
             font-weight: 600;
             color: #000;
-            margin-bottom: 0.4rem;
+            white-space: nowrap;
+            min-width: 140px;
         }
 
         .resume-skill-tags {
-            display: block;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
         }
 
         .resume-skill-tag {
@@ -142,8 +139,7 @@
             border: 1px solid #e5e7eb;
             text-align: center;
             line-height: 14px;
-            margin-right: 5px;
-            margin-bottom: 6px;
+            white-space: nowrap;
             box-sizing: border-box;
         }
 
@@ -179,7 +175,7 @@
         }
 
         .resume-summary-text {
-            font-size: 0.9rem;
+            font-size: 0.93rem;
             color: #111827;
             line-height: 1.7;
         }
@@ -521,10 +517,16 @@
                         el.removeAttribute('data-aos');
 
                         // Force desktop layout on skill grid items
+                        var gridEl = el.querySelector('.resume-skills-grid');
+                        if (gridEl) {
+                            gridEl.style.flexDirection = 'column';
+                            gridEl.style.gap = '0.5rem';
+                        }
                         var items = el.querySelectorAll('.resume-skills-grid > div');
                         items.forEach(function(item) {
-                            item.style.width = '20%';
-                            item.style.marginBottom = '0';
+                            item.style.display = 'flex';
+                            item.style.alignItems = 'baseline';
+                            item.style.gap = '0.5rem';
                         });
 
                         // Reset AOS on ALL child elements inside the resume
