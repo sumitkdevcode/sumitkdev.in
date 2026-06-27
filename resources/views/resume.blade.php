@@ -510,6 +510,9 @@
                         el.style.boxShadow = 'none';
                         el.style.borderRadius = '0';
 
+                        // Boost base font size for larger text in PDF
+                        el.style.fontSize = '105%';
+
                         // Kill AOS animations — these can push content down or hide it
                         el.style.transform = 'none';
                         el.style.opacity = '1';
