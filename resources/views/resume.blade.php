@@ -481,34 +481,84 @@
                     throw new Error('jsPDF library not loaded. Please refresh the page and try again.');
                 }
 
+                var desktopWidth = 900;
+
+                // Use html2canvas onclone callback to modify the CLONE, not the real DOM.
+                // This avoids all off-screen positioning issues.
                 var canvas = await html2canvas(element, {
                     scale: 2,
                     useCORS: true,
                     logging: false,
                     backgroundColor: '#ffffff',
-                    windowWidth: element.scrollWidth,
-                    scrollY: -window.scrollY,
+                    windowWidth: 1200,                // desktop viewport → disables mobile media queries
+                    onclone: function(clonedDoc) {
+                        var el = clonedDoc.getElementById('resume-content');
+
+                        // Move element to the body root and position absolute to escape all parent 
+                        // constraints (like max-w-7xl) and avoid any scroll offsets in capture
+                        clonedDoc.body.appendChild(el);
+                        el.style.position = 'absolute';
+                        el.style.top = '0';
+                        el.style.left = '0';
+
+                        // Force desktop width
+                        el.style.width = desktopWidth + 'px';
+                        el.style.maxWidth = desktopWidth + 'px';
+                        el.style.minWidth = desktopWidth + 'px';
+                        el.style.padding = '3rem';
+                        el.style.margin = '0';
+                        el.style.boxSizing = 'border-box';
+
+                        // Remove decorative styles for clean PDF output
+                        el.style.border = 'none';
+                        el.style.boxShadow = 'none';
+                        el.style.borderRadius = '0';
+
+                        // Kill AOS animations — these can push content down or hide it
+                        el.style.transform = 'none';
+                        el.style.opacity = '1';
+                        el.style.transition = 'none';
+                        el.removeAttribute('data-aos');
+
+                        // Force desktop layout on skill grid items
+                        var items = el.querySelectorAll('.resume-skills-grid > div');
+                        items.forEach(function(item) {
+                            item.style.width = '20%';
+                            item.style.marginBottom = '0';
+                        });
+
+                        // Reset AOS on ALL child elements inside the resume
+                        var aosEls = el.querySelectorAll('[data-aos]');
+                        aosEls.forEach(function(aosEl) {
+                            aosEl.style.transform = 'none';
+                            aosEl.style.opacity = '1';
+                            aosEl.style.transition = 'none';
+                        });
+                    }
                 });
 
+                // --- Generate PDF with centered content ---
                 var jsPDF = window.jspdf.jsPDF;
                 var pdf = new jsPDF('p', 'mm', 'a4');
 
-                var imgWidth = 210;
-                var pageHeight = 297;
+                var pageWidth = 210;   // A4 width in mm
+                var pageHeight = 297;  // A4 height in mm
+                var margin = 10;       // left/right margin in mm
+                var topMargin = 8;     // top margin on first page
+
+                var contentWidth = pageWidth - (margin * 2);
                 var imgData = canvas.toDataURL('image/jpeg', 0.95);
-                var imgHeight = (canvas.height * imgWidth) / canvas.width;
+                var imgHeight = (canvas.height * contentWidth) / canvas.width;
 
-                var heightLeft = imgHeight;
-                var position = 0;
+                // First page — content starts below topMargin
+                pdf.addImage(imgData, 'JPEG', margin, topMargin, contentWidth, imgHeight);
+                var consumed = pageHeight - topMargin;  // how much of the image fits on page 1
 
-                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-
-                while (heightLeft > 0) {
-                    position = heightLeft - imgHeight;
+                // Subsequent pages — content continues flush from top
+                while (consumed < imgHeight) {
                     pdf.addPage();
-                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
+                    pdf.addImage(imgData, 'JPEG', margin, -consumed, contentWidth, imgHeight);
+                    consumed += pageHeight;
                 }
 
                 pdf.save(filename);
