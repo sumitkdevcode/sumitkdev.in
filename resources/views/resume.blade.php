@@ -152,14 +152,14 @@
         }
 
         .resume-header-title {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: #111827;
             font-weight: 500;
             margin-top: 0.3rem;
         }
 
         .resume-contact {
-            font-size: 0.82rem;
+            font-size: 0.88rem;
             color: #111827;
             margin-top: 0.8rem;
         }
