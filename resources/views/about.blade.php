@@ -83,22 +83,7 @@
                                     </div>
                                 </div>
 
-                                <div class="relative group pl-8 md:pl-20 py-8 border-t border-black/10 hover:bg-gray-50 transition-colors">
-                                    <span class="number-decorator text-[80px] -left-4 top-0 group-hover:text-black/5 transition-colors z-0">02</span>
-                                    <div class="relative z-10">
-                                        <div class="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2 mb-2">
-                                            <h3 class="text-2xl font-bold uppercase tracking-tighter">Full Stack Developer</h3>
-                                            <span class="text-xs font-bold uppercase tracking-widest text-gray-400">2023 — 2025</span>
-                                        </div>
-                                        <p class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Apex Byte - IT Services Company</p>
-                                        <ul class="text-sm space-y-3 list-disc pl-4 text-gray-600 font-normal">
-                                            <li>Developed and maintained responsive client websites using C#, PHP, SQL, and Modern JS.</li>
-                                            <li>Architected backend solutions using ASP.NET Core and Laravel for REST APIs.</li>
-                                            <li>Integrated third-party APIs and payment gateways (PhonePe, Razorpay).</li>
-                                            <li>Implemented secure authentication and RBAC in administrative dashboards.</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                               
 
                                 <div class="relative group pl-8 md:pl-20 py-8 border-t border-black/10 hover:bg-gray-50 transition-colors">
                                     <span class="number-decorator text-[80px] -left-4 top-0 group-hover:text-black/5 transition-colors z-0">03</span>
@@ -299,4 +284,4 @@
         title="About Sumit Kumar" 
         subtitle="Know More"
     />
-@endsection
+@endsection

@@ -16,20 +16,36 @@ class ResumeSeeder extends Seeder
     public function run(): void
     {
         // ─── Resume Settings ───────────────────────────────────
-        Setting::set('resume_summary', "Results-oriented Software Engineer with a Master's in Computer Applications and hands-on experience in designing, developing, and deploying web applications. Proven ability to contribute to all phases of the development lifecycle, from concept to deployment. Eager to leverage strong technical skills and project experience in a challenging role with opportunities for growth and learning within an experienced team.", 'text', 'resume');
+        Setting::set('resume_summary', "Software Engineer with hands-on experience in designing, developing, and deploying scalable web applications using ASP.NET Core, Angular, Next.js, Laravel, React, and SQL. Experienced in building REST APIs, responsive user interfaces, authentication systems, and full-stack enterprise applications following Clean Architecture and Vertical Slice Architecture. Developed ScriptNex, an open-source learning platform, and contributed to government and university web projects. Passionate about solving complex problems, writing clean code, and building high-performance software.", 'text', 'resume');
 
         Setting::set('resume_title', 'Software Engineer', 'text', 'resume');
+
+        Setting::set('education', json_encode([
+            ['degree' => 'Master of Computer Applications (MCA)', 'institution' => 'GAUTAM BUDDHA UNIVERSITY, GREATER NOIDA, UTTAR PRADESH', 'year' => '2023-2025'],
+            ['degree' => 'Bachelor of Computer Applications (BCA)', 'institution' => 'GALGOTIAS UNIVERSITY, GREATER NOIDA, UTTAR PRADESH', 'year' => '2020-2023'],
+        ]), 'json', 'resume');
+
+        // Clear existing records before seeding to avoid duplicates during multiple seeds
+        ResumeExperience::truncate();
+        ResumeSkill::truncate();
+        ResumeProject::truncate();
+        ResumeCertificate::truncate();
+        ResumeTraining::truncate();
+        ResumeStrength::truncate();
 
         // ─── Experiences ───────────────────────────────────────
         ResumeExperience::create([
             'title' => 'Software Engineer',
-            'company' => 'Web IT Squad - IT Services Company',
-            'start_date' => 'February 2025',
-            'end_date' => 'Present',
+            'company' => 'WEB IT SQUAD - IT SERVICES COMPANY',
+            'start_date' => 'FEBRUARY 2025',
+            'end_date' => 'PRESENT',
             'bullets' => [
-                'Developed and maintained responsive, user-friendly client websites and web applications using .NET, Angular, C#, SQL, HTML, CSS, JavaScript, and PHP.',
-                'Built scalable backend services and REST APIs with ASP.NET Core, following Clean Architecture and Vertical Slice Architecture to keep features modular and maintainable.',
-                'Implemented secure authentication systems and role-based access controls in admin dashboards.',
+                'Developed and maintained 5+ production-ready web applications using ASP.NET Core, Angular, JavaScript, SQL, and PHP.',
+                'Designed and implemented RESTful APIs following Clean Architecture and Vertical Slice Architecture.',
+                'Reduced API response time by 30% through database query optimization.',
+                'Built secure authentication and role-based authorization using JWT and ASP.NET Identity.',
+                'Collaborated with cross-functional teams to deliver client projects on schedule.',
+                'Fixed production issues and improved application performance and scalability.',
             ],
             'order' => 1,
             'is_visible' => true,
@@ -37,15 +53,14 @@ class ResumeSeeder extends Seeder
 
         ResumeExperience::create([
             'title' => 'Web Developer Intern',
-            'company' => 'Gautam Buddha University (USoICT Website)',
-            'start_date' => 'December 2023',
-            'end_date' => 'February 2025',
+            'company' => 'GAUTAM BUDDHA UNIVERSITY (USOICT WEBSITE)',
+            'start_date' => 'DECEMBER 2023',
+            'end_date' => 'FEBRUARY 2025',
             'bullets' => [
                 'Redesigned and developed key sections of the university\'s USoICT website, enhancing user experience and information accessibility for students and faculty.',
                 'Implemented responsive design features and interactive elements using HTML, CSS, and JavaScript.',
                 'Collaborated with university staff to gather requirements and ensure the website met institutional standards.',
                 'Optimized web performance and loading speeds through code refactoring and image compression techniques.',
-                'Ensured accessibility compliance by adhering to WCAG guidelines.',
             ],
             'order' => 2,
             'is_visible' => true,
@@ -53,9 +68,9 @@ class ResumeSeeder extends Seeder
 
         ResumeExperience::create([
             'title' => 'Web Developer Intern',
-            'company' => 'TULIP, Ministry of Housing and Urban Affairs, Government of India',
-            'start_date' => 'May 2023',
-            'end_date' => 'July 2023',
+            'company' => 'TULIP, MINISTRY OF HOUSING AND URBAN AFFAIRS, GOVERNMENT OF INDIA',
+            'start_date' => 'MAY 2023',
+            'end_date' => 'JULY 2023',
             'bullets' => [
                 'Contributed to the redesign of the DAY-NULM 2.0 (Deendayal Antyodaya Yojana-National Urban Livelihoods Mission) portal.',
                 'Developed and implemented new UI components using HTML, CSS, JavaScript, and React.js.',
@@ -86,8 +101,8 @@ class ResumeSeeder extends Seeder
         ]);
 
         ResumeSkill::create([
-            'category' => 'Databases',
-            'skills' => ['Microsoft SQL Server', 'MySQL', 'PostgreSQL'],
+            'category' => 'Problem Solving',
+            'skills' => ['Data Structures', 'Algorithms', 'OOP', 'Time & Space Complexity'],
             'order' => 4,
         ]);
 
@@ -96,41 +111,55 @@ class ResumeSeeder extends Seeder
             'skills' => ['Git', 'REST APIs', 'Postman', 'Antigravity', 'Cursor'],
             'order' => 5,
         ]);
+        
+        ResumeSkill::create([
+            'category' => 'Cloud & DevOps',
+            'skills' => ['Docker', 'GitHub Actions', 'Azure (Basics)', 'AWS (Basics)', 'Linux', 'Nginx', 'IIS', 'CI/CD'],
+            'order' => 6,
+        ]);
+
+        ResumeSkill::create([
+            'category' => 'Architecture',
+            'skills' => ['REST API', 'Clean Architecture', 'Vertical Slice Architecture', 'MVC'],
+            'order' => 7,
+        ]);
 
         // ─── Projects ─────────────────────────────────────────
         ResumeProject::create([
-            'title' => 'GBU Placement Portal',
-            'subtitle' => 'MCA - Major Project',
-            'technologies' => 'HTML, CSS, JavaScript, PHP, MySQL',
+            'title' => 'ScriptNex – Open Source Coding Platform',
+            'subtitle' => 'www.scriptnex.com',
+            'technologies' => 'NEXT.JS, LARAVEL, MYSQL, REST API, TAILWIND CSS, GIT/GITHUB',
             'bullets' => [
-                'Developed a comprehensive placement portal for Gautam Buddha University to streamline the campus recruitment process for students and companies.',
-                'Led the backend development, designing the database schema in MySQL and implementing core functionalities using PHP.',
-                'Implemented an automated email notification system to send alerts for new job postings, application statuses, and interview schedules directly from the portal\'s forms.',
-                'Designed and implemented a user-friendly interface for students to create profiles, apply for jobs, and for administrators to manage listings.',
+                'Built a full-stack open-source coding platform from scratch.',
+                'Developed secure authentication and role-based access.',
+                'Designed REST APIs for tutorials, coding challenges, certifications, and blogs.',
+                'Improved SEO using dynamic metadata and sitemap generation.',
+                'Optimized application performance using lazy loading and image optimization.',
+                'Maintained the platform using Git/GitHub and followed clean coding practices.',
             ],
             'order' => 1,
             'is_visible' => true,
         ]);
 
         ResumeProject::create([
-            'title' => 'Decentralized File Storage System',
-            'subtitle' => 'BCA - Major Project',
-            'technologies' => 'React, Solidity, Blockchain',
+            'title' => 'GBU Placement Portal',
+            'subtitle' => 'MCA - Major Project',
+            'technologies' => 'HTML, CSS, JAVASCRIPT, PHP, MYSQL',
             'bullets' => [
-                'Designed and developed a proof-of-concept decentralized file storage application.',
-                'Built the frontend interface using React, allowing users to upload and manage files.',
+                'Developed a comprehensive placement portal for Gautam Buddha University to streamline the campus recruitment process for students and companies.',
+                'Led the backend development, designing the database schema in MySQL and implementing core functionalities using PHP.',
             ],
             'order' => 2,
             'is_visible' => true,
         ]);
 
         ResumeProject::create([
-            'title' => 'ScriptNex',
-            'subtitle' => null,
-            'technologies' => 'HTML, CSS, JavaScript, PHP, MySQL',
+            'title' => 'Decentralized File Storage System',
+            'subtitle' => 'BCA - Major Project',
+            'technologies' => 'REACT, SOLIDITY, BLOCKCHAIN',
             'bullets' => [
-                'Developed a web-based hospital management system to manage patient records, appointments, and doctor information.',
-                'Focused on creating an intuitive UI for ease of use by hospital staff.',
+                'Designed and developed a proof-of-concept decentralized file storage application.',
+                'Built the frontend interface using React, allowing users to upload and manage files.',
             ],
             'order' => 3,
             'is_visible' => true,
@@ -152,16 +181,9 @@ class ResumeSeeder extends Seeder
         // ─── Trainings ────────────────────────────────────────
         ResumeTraining::create([
             'title' => 'Backend Development & Soft Skills',
-            'organization' => 'American Indian Foundation (BlackRock)',
-            'date_range' => 'March 2023 – July 2023',
+            'organization' => 'AMERICAN INDIAN FOUNDATION (BLACKROCK)',
+            'date_range' => 'MARCH 2023 – JULY 2023',
             'order' => 1,
-        ]);
-
-        ResumeTraining::create([
-            'title' => 'Backend Development & Soft Skills',
-            'organization' => 'Anudip Foundation',
-            'date_range' => 'May 2025 – July 2025',
-            'order' => 2,
         ]);
 
         // ─── Strengths ────────────────────────────────────────
